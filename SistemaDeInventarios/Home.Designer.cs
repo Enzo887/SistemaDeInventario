@@ -1,6 +1,6 @@
 ﻿namespace SistemaDeInventarios
 {
-    partial class Form1
+    partial class Home
     {
         /// <summary>
         /// Variable del diseñador necesaria.
@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.panelLateral = new System.Windows.Forms.Panel();
-            this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.btnBuscarProducto = new System.Windows.Forms.Button();
+            this.btnAgregarProducto = new System.Windows.Forms.Button();
+            this.panelPrincipal = new System.Windows.Forms.Panel();
             this.panelLateral.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -38,19 +39,11 @@
             // 
             this.panelLateral.Controls.Add(this.btnBuscarProducto);
             this.panelLateral.Controls.Add(this.btnAgregarProducto);
-            this.panelLateral.Location = new System.Drawing.Point(-1, -3);
+            this.panelLateral.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLateral.Location = new System.Drawing.Point(0, 0);
             this.panelLateral.Name = "panelLateral";
-            this.panelLateral.Size = new System.Drawing.Size(204, 441);
+            this.panelLateral.Size = new System.Drawing.Size(204, 450);
             this.panelLateral.TabIndex = 0;
-            // 
-            // btnAgregarProducto
-            // 
-            this.btnAgregarProducto.Location = new System.Drawing.Point(0, 156);
-            this.btnAgregarProducto.Name = "btnAgregarProducto";
-            this.btnAgregarProducto.Size = new System.Drawing.Size(204, 55);
-            this.btnAgregarProducto.TabIndex = 1;
-            this.btnAgregarProducto.Text = "Agregar Producto";
-            this.btnAgregarProducto.UseVisualStyleBackColor = true;
             // 
             // btnBuscarProducto
             // 
@@ -61,13 +54,32 @@
             this.btnBuscarProducto.Text = "Buscar Producto";
             this.btnBuscarProducto.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // btnAgregarProducto
+            // 
+            this.btnAgregarProducto.Location = new System.Drawing.Point(0, 156);
+            this.btnAgregarProducto.Name = "btnAgregarProducto";
+            this.btnAgregarProducto.Size = new System.Drawing.Size(204, 55);
+            this.btnAgregarProducto.TabIndex = 1;
+            this.btnAgregarProducto.Text = "Agregar Producto";
+            this.btnAgregarProducto.UseVisualStyleBackColor = true;
+            this.btnAgregarProducto.Click += new System.EventHandler(this.btnAgregarProducto_Click);
+            // 
+            // panelPrincipal
+            // 
+            this.panelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPrincipal.Location = new System.Drawing.Point(204, 0);
+            this.panelPrincipal.Name = "panelPrincipal";
+            this.panelPrincipal.Size = new System.Drawing.Size(596, 450);
+            this.panelPrincipal.TabIndex = 1;
+            // 
+            // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.panelPrincipal);
             this.Controls.Add(this.panelLateral);
-            this.Name = "Form1";
+            this.Name = "Home";
             this.Text = "Form1";
             this.panelLateral.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -79,6 +91,7 @@
         private System.Windows.Forms.Panel panelLateral;
         private System.Windows.Forms.Button btnBuscarProducto;
         private System.Windows.Forms.Button btnAgregarProducto;
+        private System.Windows.Forms.Panel panelPrincipal;
     }
 }
 

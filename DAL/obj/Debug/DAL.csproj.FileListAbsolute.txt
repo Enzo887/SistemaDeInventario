@@ -4,3 +4,9 @@ C:\Users\Laptop\Desktop\enzo\proyectos\Sistema de inventario\SistemaDeInventario
 C:\Users\Laptop\Desktop\enzo\proyectos\Sistema de inventario\SistemaDeInventarios\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
 C:\Users\Laptop\Desktop\enzo\proyectos\Sistema de inventario\SistemaDeInventarios\DAL\obj\Debug\DAL.dll
 C:\Users\Laptop\Desktop\enzo\proyectos\Sistema de inventario\SistemaDeInventarios\DAL\obj\Debug\DAL.pdb
+C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\DAL\bin\Debug\DAL.dll
+C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\DAL\bin\Debug\DAL.pdb
+C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\DAL\obj\Debug\DAL.dll
+C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\DAL\obj\Debug\DAL.pdb
