@@ -41,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="GestorDeProductos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BE\BE.csproj">
+      <Project>{a1b7a219-f9b1-45f5-abb2-1aabf1366130}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{71e8afeb-38a3-4c2e-8ec5-781cf29d2543}</Project>
       <Name>DAL</Name>

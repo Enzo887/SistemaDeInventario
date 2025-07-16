@@ -16,5 +16,33 @@ namespace SistemaDeInventarios.Stock
         {
             InitializeComponent();
         }
+
+        private void btnAgregarProducto_Click(object sender, EventArgs e)
+        {
+            string nombreProducto = tboxNombreProducto.Text;
+            decimal precio = numPrecio.Value;
+            DateTime fechaVencimiento = dtVencimiento.Value;
+            int cantidadProducto = (int)numCantidad.Value;
+
+            BE.Producto unProducto = new BE.Producto();
+
+            //validaciones
+            if (string.IsNullOrWhiteSpace(nombreProducto))
+            {
+                MessageBox.Show("El nombre no puede quedar vacio", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            unProducto.NombreProducto = nombreProducto;
+            unProducto.Precio = precio;
+            unProducto.FechaVencimiento = fechaVencimiento;
+            unProducto.Cantidad = cantidadProducto;
+
+            BLL.GestorDeProductos unProductoBLL = new BLL.GestorDeProductos();
+
+            if (unProductoBLL.AgregarProductos(unProducto))
+            {
+                MessageBox.Show("Se agregó el producto correctamente!");
+            }
+        }
     }
 }

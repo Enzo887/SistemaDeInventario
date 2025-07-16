@@ -31,8 +31,8 @@
             this.tboxNombreProducto = new System.Windows.Forms.TextBox();
             this.lblNombreProducto = new System.Windows.Forms.Label();
             this.lblCantidad = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numCantidad = new System.Windows.Forms.NumericUpDown();
+            this.numPrecio = new System.Windows.Forms.NumericUpDown();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.cboxCategoria = new System.Windows.Forms.ComboBox();
             this.lblCategoria = new System.Windows.Forms.Label();
@@ -48,8 +48,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -78,24 +78,24 @@
             this.lblCantidad.TabIndex = 2;
             this.lblCantidad.Text = "Cantidad";
             // 
-            // numericUpDown1
+            // numCantidad
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(45, 250);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(46, 20);
-            this.numericUpDown1.TabIndex = 3;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numCantidad.Location = new System.Drawing.Point(45, 250);
+            this.numCantidad.Name = "numCantidad";
+            this.numCantidad.Size = new System.Drawing.Size(46, 20);
+            this.numCantidad.TabIndex = 3;
+            this.numCantidad.Value = new decimal(new int[] {
             1,
             0,
             0,
             0});
             // 
-            // numericUpDown2
+            // numPrecio
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(45, 128);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(97, 20);
-            this.numericUpDown2.TabIndex = 4;
+            this.numPrecio.Location = new System.Drawing.Point(45, 128);
+            this.numPrecio.Name = "numPrecio";
+            this.numPrecio.Size = new System.Drawing.Size(97, 20);
+            this.numPrecio.TabIndex = 4;
             // 
             // lblPrecio
             // 
@@ -140,6 +140,7 @@
             this.btnAgregarProducto.TabIndex = 9;
             this.btnAgregarProducto.Text = "Agregar Producto";
             this.btnAgregarProducto.UseVisualStyleBackColor = true;
+            this.btnAgregarProducto.Click += new System.EventHandler(this.btnAgregarProducto_Click);
             // 
             // btnCancelar
             // 
@@ -241,15 +242,15 @@
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.cboxCategoria);
             this.Controls.Add(this.lblPrecio);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numPrecio);
+            this.Controls.Add(this.numCantidad);
             this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.lblNombreProducto);
             this.Controls.Add(this.tboxNombreProducto);
             this.Name = "UC_AgregarProducto";
             this.Size = new System.Drawing.Size(650, 450);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -261,8 +262,8 @@
         private System.Windows.Forms.TextBox tboxNombreProducto;
         private System.Windows.Forms.Label lblNombreProducto;
         private System.Windows.Forms.Label lblCantidad;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numCantidad;
+        private System.Windows.Forms.NumericUpDown numPrecio;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.ComboBox cboxCategoria;
         private System.Windows.Forms.Label lblCategoria;
