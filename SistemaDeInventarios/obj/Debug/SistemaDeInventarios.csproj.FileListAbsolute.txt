@@ -27,3 +27,5 @@ C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\SistemaDeInventari
 C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\SistemaDeInventarios\obj\Debug\SistemaDeInventarios.exe
 C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\SistemaDeInventarios\obj\Debug\SistemaDeInventarios.pdb
 C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\SistemaDeInventarios\obj\Debug\SistemaDeInventarios.Home.resources
+C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\SistemaDeInventarios\bin\Debug\BE.dll
+C:\Users\chiguas\Desktop\enzito\proyectos\SistemaDeInventario\SistemaDeInventarios\bin\Debug\BE.pdb

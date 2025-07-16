@@ -44,19 +44,5 @@
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BLL\BLL.csproj">
-      <Project>{1d14c810-40f1-48a9-b01f-24ff2d08749c}</Project>
-      <Name>BLL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{71e8afeb-38a3-4c2e-8ec5-781cf29d2543}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SistemaDeInventarios\SistemaDeInventarios.csproj">
-      <Project>{2dae5b40-7799-4128-9df6-2f0d2563cd9e}</Project>
-      <Name>SistemaDeInventarios</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
