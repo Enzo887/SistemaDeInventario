@@ -89,6 +89,7 @@
             0,
             0,
             0});
+            this.numCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.numCantidad_KeyPress);
             // 
             // numPrecio
             // 
