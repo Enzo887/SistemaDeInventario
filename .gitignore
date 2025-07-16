@@ -14,11 +14,11 @@ UpgradeLog*.htm
 BLL/bin/
 DAL/bin/
 BE/bin/
-LoginPetShop_v1/bin/
+SistemaDeInventario/bin/
 BLL/obj/
 DAL/obj/
 BE/obj/
-LoginPetShop_v1/obj/
+SistemaDeInventario/obj/
 [Bb]uild/
 [Bb]uild[Ll]og.*
 *.log
