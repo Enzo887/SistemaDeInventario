@@ -60,6 +60,12 @@
     <Compile Include="Stock\UC_AgregarProducto.Designer.cs">
       <DependentUpon>UC_AgregarProducto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Stock\UC_GestionarCategoria.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Stock\UC_GestionarCategoria.Designer.cs">
+      <DependentUpon>UC_GestionarCategoria.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -74,6 +80,9 @@
     </Compile>
     <EmbeddedResource Include="Stock\UC_AgregarProducto.resx">
       <DependentUpon>UC_AgregarProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock\UC_GestionarCategoria.resx">
+      <DependentUpon>UC_GestionarCategoria.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

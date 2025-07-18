@@ -44,7 +44,7 @@ namespace SistemaDeInventarios.Stock
                 return;
             }
 
-            if(fechaVencimiento <= DateTime.Today)
+            if(fechaVencimiento.Date <= DateTime.Today)
             {
                 MessageBox.Show("Ingrese una fecha mayor a la de hoy", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -56,7 +56,6 @@ namespace SistemaDeInventarios.Stock
                 return;
             }
             
-
             unProducto.NombreProducto = nombreProducto;
             unProducto.Precio = precio;
             unProducto.FechaVencimiento = fechaVencimiento;
@@ -64,16 +63,22 @@ namespace SistemaDeInventarios.Stock
 
             BLL.GestorDeProductos unProductoBLL = new BLL.GestorDeProductos();
 
-            if (unProductoBLL.AgregarProductos(unProducto))
+            try
             {
+                unProductoBLL.AgregarProductos(unProducto);
                 MessageBox.Show("Se agregó el producto correctamente!");
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Hubo un error al agregar el producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Hubo un error al agregar el producto:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally 
+            {
+                LimparInputsProductos();
             }
         }
 
+        //No permite escribir una . o , en la cantidad
         private void numCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == '.' || e.KeyChar == ',')
@@ -81,6 +86,26 @@ namespace SistemaDeInventarios.Stock
                 e.Handled = true;
             }
         
+        }
+
+        private void LimparInputsProductos()
+        {
+            tboxNombreProducto.Clear();
+            numPrecio.Value = numPrecio.Minimum;
+            numCantidad.Value = numCantidad.Minimum;
+            dtVencimiento.Value = DateTime.Today;
+        }
+
+        private void btnGestionarCategoria_Click(object sender, EventArgs e)
+        {
+            var home = FindForm() as Home;
+            if (home != null) {
+                home.MostrarGestionarCategoria();
+            }
+            else
+            {
+                MessageBox.Show("No se encontro el form");
+            }
         }
     }
 }
