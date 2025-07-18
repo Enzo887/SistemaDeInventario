@@ -40,7 +40,7 @@ namespace BE
             set { _categoria = value; }
         }
 
-        private DateTime _fechaIngreso;
+        private DateTime _fechaIngreso = DateTime.Now;
 
         public DateTime FechaIngreso
         {

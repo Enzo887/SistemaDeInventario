@@ -42,14 +42,14 @@
             this.panelLateral.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLateral.Location = new System.Drawing.Point(0, 0);
             this.panelLateral.Name = "panelLateral";
-            this.panelLateral.Size = new System.Drawing.Size(204, 450);
+            this.panelLateral.Size = new System.Drawing.Size(155, 450);
             this.panelLateral.TabIndex = 0;
             // 
             // btnBuscarProducto
             // 
             this.btnBuscarProducto.Location = new System.Drawing.Point(0, 95);
             this.btnBuscarProducto.Name = "btnBuscarProducto";
-            this.btnBuscarProducto.Size = new System.Drawing.Size(204, 55);
+            this.btnBuscarProducto.Size = new System.Drawing.Size(155, 55);
             this.btnBuscarProducto.TabIndex = 2;
             this.btnBuscarProducto.Text = "Buscar Producto";
             this.btnBuscarProducto.UseVisualStyleBackColor = true;
@@ -58,7 +58,7 @@
             // 
             this.btnAgregarProducto.Location = new System.Drawing.Point(0, 156);
             this.btnAgregarProducto.Name = "btnAgregarProducto";
-            this.btnAgregarProducto.Size = new System.Drawing.Size(204, 55);
+            this.btnAgregarProducto.Size = new System.Drawing.Size(155, 55);
             this.btnAgregarProducto.TabIndex = 1;
             this.btnAgregarProducto.Text = "Agregar Producto";
             this.btnAgregarProducto.UseVisualStyleBackColor = true;
@@ -67,9 +67,9 @@
             // panelPrincipal
             // 
             this.panelPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPrincipal.Location = new System.Drawing.Point(204, 0);
+            this.panelPrincipal.Location = new System.Drawing.Point(155, 0);
             this.panelPrincipal.Name = "panelPrincipal";
-            this.panelPrincipal.Size = new System.Drawing.Size(596, 450);
+            this.panelPrincipal.Size = new System.Drawing.Size(645, 450);
             this.panelPrincipal.TabIndex = 1;
             // 
             // Home

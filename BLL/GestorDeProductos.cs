@@ -8,9 +8,10 @@ namespace BLL
 {
     public class GestorDeProductos
     {
-        public bool AgregarProductos(BE.Producto unProducto)
+        public void AgregarProductos(BE.Producto unProducto)
         {
-            return true;
+            DAL.ProductoDAL productoDAL = new DAL.ProductoDAL();
+            productoDAL.AgregarProductos(unProducto);
         }
     }
 }
