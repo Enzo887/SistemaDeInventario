@@ -32,13 +32,14 @@ namespace BE
             set { _cantidad = value; }
         }
 
-        private string _categoria;
+        private Categoria _categoria;
 
-        public string Categoria
+        public Categoria Categoria
         {
             get { return _categoria; }
             set { _categoria = value; }
         }
+
 
         private DateTime _fechaIngreso = DateTime.Now;
 

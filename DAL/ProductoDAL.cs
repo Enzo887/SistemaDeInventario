@@ -20,7 +20,7 @@ namespace DAL
                 new SqlParameter("@NombreProducto", unProducto.NombreProducto),
                 new SqlParameter("@Precio", unProducto.Precio),
                 new SqlParameter("@Cantidad", unProducto.Cantidad),
-                new SqlParameter("@IdCategoria", 1), //hardcodeado por el momento
+                new SqlParameter("@IdCategoria", unProducto.Categoria.IDCategoria), //hardcodeado por el momento
                 new SqlParameter("@FechaIngreso", unProducto.FechaIngreso),
                 new SqlParameter("@FechaVencimiento", unProducto.FechaVencimiento)
                             };
@@ -28,7 +28,7 @@ namespace DAL
             }
             catch (Exception e)
             {
-                throw new Exception("Hubo un error en la insercion del producto en la BD", e);
+                throw new Exception("Hubo un error en el INSERT del producto en la BD", e);
             }
         }
         

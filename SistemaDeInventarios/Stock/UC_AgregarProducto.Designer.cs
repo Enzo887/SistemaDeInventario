@@ -41,7 +41,8 @@
             this.lblFechaVencimiento = new System.Windows.Forms.Label();
             this.dtVencimiento = new System.Windows.Forms.DateTimePicker();
             this.dgCategoria = new System.Windows.Forms.DataGridView();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
@@ -158,18 +159,32 @@
             // 
             // dgCategoria
             // 
+            this.dgCategoria.AllowUserToAddRows = false;
+            this.dgCategoria.AllowUserToDeleteRows = false;
             this.dgCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Categoria});
+            this.idCategoria,
+            this.nombreCategoria});
             this.dgCategoria.Location = new System.Drawing.Point(319, 69);
             this.dgCategoria.Name = "dgCategoria";
+            this.dgCategoria.ReadOnly = true;
+            this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCategoria.Size = new System.Drawing.Size(145, 129);
             this.dgCategoria.TabIndex = 14;
+            this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
             // 
-            // Categoria
+            // idCategoria
             // 
-            this.Categoria.HeaderText = "Nombre";
-            this.Categoria.Name = "Categoria";
+            this.idCategoria.HeaderText = "idCategoria";
+            this.idCategoria.Name = "idCategoria";
+            this.idCategoria.ReadOnly = true;
+            this.idCategoria.Visible = false;
+            // 
+            // nombreCategoria
+            // 
+            this.nombreCategoria.HeaderText = "Nombre";
+            this.nombreCategoria.Name = "nombreCategoria";
+            this.nombreCategoria.ReadOnly = true;
             // 
             // UC_AgregarProducto
             // 
@@ -213,6 +228,7 @@
         private System.Windows.Forms.Label lblFechaVencimiento;
         private System.Windows.Forms.DateTimePicker dtVencimiento;
         private System.Windows.Forms.DataGridView dgCategoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idCategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCategoria;
     }
 }
