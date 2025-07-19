@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class GestorDeProductos
+    public class GestorProducto
     {
         public void AgregarProductos(BE.Producto unProducto)
         {
             DAL.ProductoDAL productoDAL = new DAL.ProductoDAL();
             productoDAL.AgregarProductos(unProducto);
         }
+
     }
 }

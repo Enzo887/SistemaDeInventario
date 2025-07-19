@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using System.Text.RegularExpressions;
+using BE;
 
 namespace SistemaDeInventarios.Stock
 {
@@ -17,16 +18,17 @@ namespace SistemaDeInventarios.Stock
         public UC_AgregarProducto()
         {
             InitializeComponent();
+            MostrarCategoriasDataGrid();
         }
         
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
+            BE.Producto unProducto = new BE.Producto();
+            
             string nombreProducto = tboxNombreProducto.Text;
             decimal precio = numPrecio.Value;
             DateTime fechaVencimiento = dtVencimiento.Value;
             int cantidadProducto = (int)numCantidad.Value;
-
-            BE.Producto unProducto = new BE.Producto();
 
             //validaciones
             if (string.IsNullOrWhiteSpace(nombreProducto))
@@ -55,13 +57,26 @@ namespace SistemaDeInventarios.Stock
                 MessageBox.Show("Ingrese una cantidad del producto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            if (dgCategoria.Rows.Count == 0) 
+            {
+                MessageBox.Show("No hay ninguna categoria creada. Porfavor, cree una.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (dgCategoria.CurrentRow == null || dgCategoria.CurrentRow.Index < 0) 
+            {
+                MessageBox.Show("Debe seleccionar una categoria", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             
             unProducto.NombreProducto = nombreProducto;
             unProducto.Precio = precio;
             unProducto.FechaVencimiento = fechaVencimiento;
             unProducto.Cantidad = cantidadProducto;
+            unProducto.Categoria = dgCategoria.CurrentRow?.DataBoundItem as Categoria;
 
-            BLL.GestorDeProductos unProductoBLL = new BLL.GestorDeProductos();
+            BLL.GestorProducto unProductoBLL = new BLL.GestorProducto();
 
             try
             {
@@ -106,6 +121,26 @@ namespace SistemaDeInventarios.Stock
             {
                 MessageBox.Show("No se encontro el form");
             }
+        }
+
+        private void MostrarCategoriasDataGrid()
+        {
+            List<BE.Categoria> categorias = new List<BE.Categoria>();
+            BLL.GestorCategoria categoriaBLL = new BLL.GestorCategoria();
+
+            categorias = categoriaBLL.ObtenerCategorias();
+            
+            dgCategoria.AutoGenerateColumns = false;
+            dgCategoria.Columns["NombreCategoria"].DataPropertyName = "NombreCategoria";
+            dgCategoria.Columns["idCategoria"].DataPropertyName = "IDCategoria";
+            dgCategoria.DataSource = categorias;
+        }
+
+        //Hace que ninguna fila del DataGrid de categorias este seleccionada por defecto
+        private void dgCategoria_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            dgCategoria.ClearSelection();
+            dgCategoria.CurrentCell = null;
         }
     }
 }

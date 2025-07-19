@@ -28,26 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgCategoria = new System.Windows.Forms.DataGridView();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblCategoria = new System.Windows.Forms.Label();
+            this.dgCategoria = new System.Windows.Forms.DataGridView();
+            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAgregarCategoria = new System.Windows.Forms.Button();
+            this.tboxNombreCategoria = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
             this.SuspendLayout();
-            // 
-            // dgCategoria
-            // 
-            this.dgCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Categoria});
-            this.dgCategoria.Location = new System.Drawing.Point(180, 73);
-            this.dgCategoria.Name = "dgCategoria";
-            this.dgCategoria.Size = new System.Drawing.Size(145, 129);
-            this.dgCategoria.TabIndex = 16;
-            // 
-            // Categoria
-            // 
-            this.Categoria.HeaderText = "Nombre";
-            this.Categoria.Name = "Categoria";
             // 
             // lblCategoria
             // 
@@ -58,10 +46,57 @@
             this.lblCategoria.TabIndex = 15;
             this.lblCategoria.Text = "Categoria";
             // 
+            // dgCategoria
+            // 
+            this.dgCategoria.AllowUserToAddRows = false;
+            this.dgCategoria.AllowUserToDeleteRows = false;
+            this.dgCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idCategoria,
+            this.Categoria});
+            this.dgCategoria.Location = new System.Drawing.Point(180, 72);
+            this.dgCategoria.Name = "dgCategoria";
+            this.dgCategoria.ReadOnly = true;
+            this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgCategoria.Size = new System.Drawing.Size(145, 129);
+            this.dgCategoria.TabIndex = 16;
+            // 
+            // idCategoria
+            // 
+            this.idCategoria.HeaderText = "idCategoria";
+            this.idCategoria.Name = "idCategoria";
+            this.idCategoria.ReadOnly = true;
+            this.idCategoria.Visible = false;
+            // 
+            // Categoria
+            // 
+            this.Categoria.HeaderText = "Nombre";
+            this.Categoria.Name = "Categoria";
+            this.Categoria.ReadOnly = true;
+            // 
+            // btnAgregarCategoria
+            // 
+            this.btnAgregarCategoria.Location = new System.Drawing.Point(340, 220);
+            this.btnAgregarCategoria.Name = "btnAgregarCategoria";
+            this.btnAgregarCategoria.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarCategoria.TabIndex = 17;
+            this.btnAgregarCategoria.Text = "Agregar";
+            this.btnAgregarCategoria.UseVisualStyleBackColor = true;
+            // 
+            // tboxNombreCategoria
+            // 
+            this.tboxNombreCategoria.Location = new System.Drawing.Point(180, 220);
+            this.tboxNombreCategoria.Name = "tboxNombreCategoria";
+            this.tboxNombreCategoria.Size = new System.Drawing.Size(145, 20);
+            this.tboxNombreCategoria.TabIndex = 18;
+            this.tboxNombreCategoria.Text = "Nombre de la Categoria";
+            // 
             // UC_GestionarCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tboxNombreCategoria);
+            this.Controls.Add(this.btnAgregarCategoria);
             this.Controls.Add(this.dgCategoria);
             this.Controls.Add(this.lblCategoria);
             this.Name = "UC_GestionarCategoria";
@@ -73,9 +108,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView dgCategoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.Label lblCategoria;
+        private System.Windows.Forms.DataGridView dgCategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idCategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
+        private System.Windows.Forms.Button btnAgregarCategoria;
+        private System.Windows.Forms.TextBox tboxNombreCategoria;
     }
 }
