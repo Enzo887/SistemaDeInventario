@@ -32,10 +32,10 @@ namespace BLL
         {
             DAL.CategoriaDAL categoriaDAL = new DAL.CategoriaDAL();
             //validacion si el nombreCategoria ya existe en la BD.
-            if (categoriaDAL.ExisteCategoria(nuevaCategoria))
-            {
-                return;
-            }
+            //if (categoriaDAL.ExisteCategoria(nuevaCategoria))
+            //{
+            //    return;
+            //}
             
             categoriaDAL.AgregarCategoria(nuevaCategoria);
                 

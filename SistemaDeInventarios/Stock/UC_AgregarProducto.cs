@@ -115,12 +115,13 @@ namespace SistemaDeInventarios.Stock
         {
             var home = FindForm() as Home;
             if (home != null) {
-                home.MostrarGestionarCategoria();
+                home.MostrarGestionarCategoria(Gestionar_CategoriaActualizada);
             }
             else
             {
                 MessageBox.Show("No se encontro el form");
             }
+            
         }
 
         private void MostrarCategoriasDataGrid()
@@ -136,7 +137,6 @@ namespace SistemaDeInventarios.Stock
             dgCategoria.DataSource = categorias;
         }
 
-        //Hace que ninguna fila del DataGrid de categorias este seleccionada por defecto
         private void dgCategoria_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgCategoria.ClearSelection();
@@ -144,6 +144,12 @@ namespace SistemaDeInventarios.Stock
         }
 
         private void UC_AgregarProducto_Load(object sender, EventArgs e)
+        {
+            MostrarCategoriasDataGrid();
+        }
+        
+        //metodo que se suscribe
+        private void Gestionar_CategoriaActualizada(object sender, EventArgs e)
         {
             MostrarCategoriasDataGrid();
         }

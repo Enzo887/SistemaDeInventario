@@ -24,7 +24,7 @@ namespace SistemaDeInventarios
 
         private void btnAgregarProducto_Click(object sender, EventArgs e)
         {
-            CargarUserControl(AgregarProducto);
+            MostrarAgregarProducto();
         }
 
         private void CargarUserControl(UserControl control)
@@ -34,9 +34,17 @@ namespace SistemaDeInventarios
             panelPrincipal.Controls.Add(control);      // Agrega el nuevo
         }
 
-        public void MostrarGestionarCategoria()
+        public void MostrarGestionarCategoria(EventHandler eventoCategoriaActualizada)
         {
+            GestionarCategoria.CategoriaActualizada -= eventoCategoriaActualizada;
+            GestionarCategoria.CategoriaActualizada += eventoCategoriaActualizada;
+
             CargarUserControl(GestionarCategoria);
+        }
+
+        public void MostrarAgregarProducto()
+        {
+            CargarUserControl(AgregarProducto);
         }
     }
 }
