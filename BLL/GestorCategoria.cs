@@ -27,5 +27,19 @@ namespace BLL
             }
             return categorias;
         }
+
+        public void AgregarCategoria(BE.Categoria nuevaCategoria)
+        {
+            DAL.CategoriaDAL categoriaDAL = new DAL.CategoriaDAL();
+            //validacion si el nombreCategoria ya existe en la BD.
+            if (categoriaDAL.ExisteCategoria(nuevaCategoria))
+            {
+                return;
+            }
+            
+            categoriaDAL.AgregarCategoria(nuevaCategoria);
+                
+        }
+
     }
 }
