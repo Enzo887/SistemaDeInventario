@@ -30,10 +30,12 @@
         {
             this.lblCategoria = new System.Windows.Forms.Label();
             this.dgCategoria = new System.Windows.Forms.DataGridView();
-            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnAgregarCategoria = new System.Windows.Forms.Button();
             this.tboxNombreCategoria = new System.Windows.Forms.TextBox();
+            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEditarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnEliminarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,13 +55,33 @@
             this.dgCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idCategoria,
-            this.Categoria});
+            this.NombreCategoria,
+            this.btnEditarCategoria,
+            this.btnEliminarCategoria});
             this.dgCategoria.Location = new System.Drawing.Point(180, 72);
             this.dgCategoria.Name = "dgCategoria";
             this.dgCategoria.ReadOnly = true;
             this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCategoria.Size = new System.Drawing.Size(145, 129);
+            this.dgCategoria.Size = new System.Drawing.Size(251, 129);
             this.dgCategoria.TabIndex = 16;
+            this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
+            // 
+            // btnAgregarCategoria
+            // 
+            this.btnAgregarCategoria.Location = new System.Drawing.Point(356, 220);
+            this.btnAgregarCategoria.Name = "btnAgregarCategoria";
+            this.btnAgregarCategoria.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarCategoria.TabIndex = 17;
+            this.btnAgregarCategoria.Text = "Agregar";
+            this.btnAgregarCategoria.UseVisualStyleBackColor = true;
+            this.btnAgregarCategoria.Click += new System.EventHandler(this.btnAgregarCategoria_Click);
+            // 
+            // tboxNombreCategoria
+            // 
+            this.tboxNombreCategoria.Location = new System.Drawing.Point(180, 220);
+            this.tboxNombreCategoria.Name = "tboxNombreCategoria";
+            this.tboxNombreCategoria.Size = new System.Drawing.Size(145, 20);
+            this.tboxNombreCategoria.TabIndex = 18;
             // 
             // idCategoria
             // 
@@ -68,28 +90,29 @@
             this.idCategoria.ReadOnly = true;
             this.idCategoria.Visible = false;
             // 
-            // Categoria
+            // NombreCategoria
             // 
-            this.Categoria.HeaderText = "Nombre";
-            this.Categoria.Name = "Categoria";
-            this.Categoria.ReadOnly = true;
+            this.NombreCategoria.HeaderText = "Nombre";
+            this.NombreCategoria.Name = "NombreCategoria";
+            this.NombreCategoria.ReadOnly = true;
             // 
-            // btnAgregarCategoria
+            // btnEditarCategoria
             // 
-            this.btnAgregarCategoria.Location = new System.Drawing.Point(340, 220);
-            this.btnAgregarCategoria.Name = "btnAgregarCategoria";
-            this.btnAgregarCategoria.Size = new System.Drawing.Size(75, 23);
-            this.btnAgregarCategoria.TabIndex = 17;
-            this.btnAgregarCategoria.Text = "Agregar";
-            this.btnAgregarCategoria.UseVisualStyleBackColor = true;
+            this.btnEditarCategoria.HeaderText = "";
+            this.btnEditarCategoria.Name = "btnEditarCategoria";
+            this.btnEditarCategoria.ReadOnly = true;
+            this.btnEditarCategoria.Text = "Editar";
+            this.btnEditarCategoria.Width = 50;
             // 
-            // tboxNombreCategoria
+            // btnEliminarCategoria
             // 
-            this.tboxNombreCategoria.Location = new System.Drawing.Point(180, 220);
-            this.tboxNombreCategoria.Name = "tboxNombreCategoria";
-            this.tboxNombreCategoria.Size = new System.Drawing.Size(145, 20);
-            this.tboxNombreCategoria.TabIndex = 18;
-            this.tboxNombreCategoria.Text = "Nombre de la Categoria";
+            this.btnEliminarCategoria.HeaderText = "";
+            this.btnEliminarCategoria.Name = "btnEliminarCategoria";
+            this.btnEliminarCategoria.ReadOnly = true;
+            this.btnEliminarCategoria.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnEliminarCategoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnEliminarCategoria.Text = "Eliminar";
+            this.btnEliminarCategoria.Width = 50;
             // 
             // UC_GestionarCategoria
             // 
@@ -110,9 +133,11 @@
         #endregion
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.DataGridView dgCategoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idCategoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Categoria;
         private System.Windows.Forms.Button btnAgregarCategoria;
         private System.Windows.Forms.TextBox tboxNombreCategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idCategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreCategoria;
+        private System.Windows.Forms.DataGridViewButtonColumn btnEditarCategoria;
+        private System.Windows.Forms.DataGridViewButtonColumn btnEliminarCategoria;
     }
 }

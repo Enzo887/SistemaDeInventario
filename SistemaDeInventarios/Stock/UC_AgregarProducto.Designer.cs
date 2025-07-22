@@ -205,6 +205,7 @@
             this.Controls.Add(this.tboxNombreProducto);
             this.Name = "UC_AgregarProducto";
             this.Size = new System.Drawing.Size(645, 450);
+            this.Load += new System.EventHandler(this.UC_AgregarProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).EndInit();

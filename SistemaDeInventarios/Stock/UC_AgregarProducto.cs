@@ -142,5 +142,10 @@ namespace SistemaDeInventarios.Stock
             dgCategoria.ClearSelection();
             dgCategoria.CurrentCell = null;
         }
+
+        private void UC_AgregarProducto_Load(object sender, EventArgs e)
+        {
+            MostrarCategoriasDataGrid();
+        }
     }
 }
