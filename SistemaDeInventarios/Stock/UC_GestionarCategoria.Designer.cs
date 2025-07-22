@@ -36,6 +36,7 @@
             this.NombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnEliminarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnVolver = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,14 +62,14 @@
             this.dgCategoria.Location = new System.Drawing.Point(180, 72);
             this.dgCategoria.Name = "dgCategoria";
             this.dgCategoria.ReadOnly = true;
-            this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCategoria.Size = new System.Drawing.Size(251, 129);
+            this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgCategoria.Size = new System.Drawing.Size(251, 248);
             this.dgCategoria.TabIndex = 16;
             this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
             // 
             // btnAgregarCategoria
             // 
-            this.btnAgregarCategoria.Location = new System.Drawing.Point(356, 220);
+            this.btnAgregarCategoria.Location = new System.Drawing.Point(356, 326);
             this.btnAgregarCategoria.Name = "btnAgregarCategoria";
             this.btnAgregarCategoria.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarCategoria.TabIndex = 17;
@@ -78,7 +79,7 @@
             // 
             // tboxNombreCategoria
             // 
-            this.tboxNombreCategoria.Location = new System.Drawing.Point(180, 220);
+            this.tboxNombreCategoria.Location = new System.Drawing.Point(180, 326);
             this.tboxNombreCategoria.Name = "tboxNombreCategoria";
             this.tboxNombreCategoria.Size = new System.Drawing.Size(145, 20);
             this.tboxNombreCategoria.TabIndex = 18;
@@ -102,6 +103,7 @@
             this.btnEditarCategoria.Name = "btnEditarCategoria";
             this.btnEditarCategoria.ReadOnly = true;
             this.btnEditarCategoria.Text = "Editar";
+            this.btnEditarCategoria.UseColumnTextForButtonValue = true;
             this.btnEditarCategoria.Width = 50;
             // 
             // btnEliminarCategoria
@@ -112,12 +114,24 @@
             this.btnEliminarCategoria.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.btnEliminarCategoria.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.btnEliminarCategoria.Text = "Eliminar";
+            this.btnEliminarCategoria.UseColumnTextForButtonValue = true;
             this.btnEliminarCategoria.Width = 50;
+            // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(15, 22);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.Size = new System.Drawing.Size(75, 23);
+            this.btnVolver.TabIndex = 19;
+            this.btnVolver.Text = "Volver";
+            this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // UC_GestionarCategoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.tboxNombreCategoria);
             this.Controls.Add(this.btnAgregarCategoria);
             this.Controls.Add(this.dgCategoria);
@@ -139,5 +153,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreCategoria;
         private System.Windows.Forms.DataGridViewButtonColumn btnEditarCategoria;
         private System.Windows.Forms.DataGridViewButtonColumn btnEliminarCategoria;
+        private System.Windows.Forms.Button btnVolver;
     }
 }

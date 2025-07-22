@@ -12,6 +12,7 @@ namespace SistemaDeInventarios.Stock
 {
     public partial class UC_GestionarCategoria : UserControl
     {
+        public event EventHandler CategoriaActualizada;
         public UC_GestionarCategoria()
         {
             InitializeComponent();
@@ -29,8 +30,7 @@ namespace SistemaDeInventarios.Stock
             dgCategoria.Columns["idCategoria"].DataPropertyName = "IDCategoria";
             dgCategoria.DataSource = categorias;
         }
-
-        //Hace que ninguna fila del DataGrid de categorias este seleccionada por defecto       
+    
         private void dgCategoria_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgCategoria.ClearSelection();
@@ -55,11 +55,26 @@ namespace SistemaDeInventarios.Stock
             {
                 categoriaBLL.AgregarCategoria(nuevaCategoria);
                 MostrarCategoriasDataGrid();
+
+                CategoriaActualizada?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show("Se agregó la categoria exitosamente!");
             }
             catch (Exception ex)
             {
                 throw new Exception("Hubo un error al intentar agregar la nueva categoria", ex);
+            }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            var home = FindForm() as Home;
+            if (home != null) 
+            {
+                home.MostrarAgregarProducto();
+            }
+            else
+            {
+                MessageBox.Show("No se encontro el form");
             }
         }
     }
