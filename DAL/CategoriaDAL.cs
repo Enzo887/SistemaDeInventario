@@ -50,20 +50,36 @@ namespace DAL
                 {
                 new SqlParameter("@NombreCategoria",nuevaCategoria.NombreCategoria)
                 };
-                
-                if (conexion.EscribirPorStoreProcedure("SP_BuscarCategoria", parametros) != 0) 
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+
+                DataTable resultado = conexion.LeerPorStoreProcedure("SP_BuscarCategoriaDuplicada", parametros);
+
+                //es 1 si tiene coincidencia
+                return resultado.Rows.Count > 0;
             }
             catch (Exception e)
             {
                 throw new Exception("Hubo un error en el SELECT de la categoria en la BD", e);
             }
+        }
+
+        public void EditarCategoria(BE.Categoria categoriaEditada)
+        {
+            try
+            {
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    
+                    new SqlParameter("@NombreCategoria", categoriaEditada.NombreCategoria),
+                    new SqlParameter("@IdCategoria", categoriaEditada.IDCategoria)
+                };
+
+                conexion.EscribirPorStoreProcedure("SP_ActualizarCategoria", parametros);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Hubo un error en el UPDATE de la categoria en la BD",e);
+            }
+
         }
     }
 }
