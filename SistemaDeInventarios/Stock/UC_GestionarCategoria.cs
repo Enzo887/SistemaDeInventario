@@ -105,19 +105,28 @@ namespace SistemaDeInventarios.Stock
         private void dgCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //primero, que no sea ninguna celda del tipo encabezado. Luego que la columna a la que le pertenece es la correcta
-            if(e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgCategoria.Columns[e.ColumnIndex].Name == "btnEditarCategoria")
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 unaCategoria.IDCategoria = Convert.ToInt32(dgCategoria.Rows[e.RowIndex].Cells["idCategoria"].Value);
                 unaCategoria.NombreCategoria = dgCategoria.Rows[e.RowIndex].Cells["NombreCategoria"].Value.ToString();
 
+                if (dgCategoria.Columns[e.ColumnIndex].Name == "btnEditarCategoria")
+                {
+                    tboxNombreCategoria.Text = unaCategoria.NombreCategoria;
+                    btnAgregarCategoria.Text = "Aceptar";
+                }
+                else if (dgCategoria.Columns[e.ColumnIndex].Name == "btnEliminarCategoria")
+                {
+                    DialogResult resultadoMsj = MessageBox.Show("¿Seguro que desea eliminar la categoria?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-                tboxNombreCategoria.Text = unaCategoria.NombreCategoria;
-                btnAgregarCategoria.Text = "Aceptar";
+                    if (resultadoMsj == DialogResult.OK)
+                    {
+                        //unaCategoria.IDCategoria = Convert.ToInt32(dgCategoria.Rows[e.RowIndex].Cells["idCategoria"].Value);
+                        BLL.GestorCategoria categoriaBLL = new BLL.GestorCategoria();
+                        categoriaBLL.EliminarCategoria(unaCategoria);
+                    }
 
-            }
-            if(e.RowIndex >=0 && e.ColumnIndex >= 0 && dgCategoria.Columns[e.ColumnIndex].Name == "btnEliminarCategoria")
-            {
-                MessageBox.Show("¿Seguro que desea eliminar la categoria?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                }
             }
         }
 

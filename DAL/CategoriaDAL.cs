@@ -81,5 +81,10 @@ namespace DAL
             }
 
         }
+
+        public void EliminarCategoria(BE.Categoria cateriaAEliminar)
+        {
+
+        }
     }
 }
