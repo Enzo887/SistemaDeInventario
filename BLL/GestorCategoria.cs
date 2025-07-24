@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,9 +10,11 @@ namespace BLL
 {
     public class GestorCategoria
     {
+        
+        private DAL.CategoriaDAL categoriaDAL = new DAL.CategoriaDAL();
+
         public List<BE.Categoria> ObtenerCategorias()
         {
-            DAL.CategoriaDAL categoriaDAL = new DAL.CategoriaDAL();
             DataTable tabla = categoriaDAL.ObtenerCategorias();
 
             List<BE.Categoria> categorias = new List<BE.Categoria>();
@@ -30,15 +33,17 @@ namespace BLL
 
         public void AgregarCategoria(BE.Categoria nuevaCategoria)
         {
-            DAL.CategoriaDAL categoriaDAL = new DAL.CategoriaDAL();
-            //validacion si el nombreCategoria ya existe en la BD.
-            //if (categoriaDAL.ExisteCategoria(nuevaCategoria))
-            //{
-            //    return;
-            //}
-            
-            categoriaDAL.AgregarCategoria(nuevaCategoria);
-                
+            categoriaDAL.AgregarCategoria(nuevaCategoria);      
+        }
+
+        public void EditarCategoria(BE.Categoria categoriaEditada)
+        {
+            categoriaDAL.EditarCategoria(categoriaEditada);   
+        }
+
+        public bool ExisteCategoria (BE.Categoria categoriaExiste)
+        {
+            return categoriaDAL.ExisteCategoria(categoriaExiste);
         }
 
     }

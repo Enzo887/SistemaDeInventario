@@ -20,7 +20,7 @@ namespace DAL
                 new SqlParameter("@NombreProducto", unProducto.NombreProducto),
                 new SqlParameter("@Precio", unProducto.Precio),
                 new SqlParameter("@Cantidad", unProducto.Cantidad),
-                new SqlParameter("@IdCategoria", unProducto.Categoria.IDCategoria), //hardcodeado por el momento
+                new SqlParameter("@IdCategoria", unProducto.Categoria.IDCategoria),
                 new SqlParameter("@FechaIngreso", unProducto.FechaIngreso),
                 new SqlParameter("@FechaVencimiento", unProducto.FechaVencimiento)
                             };

@@ -13,6 +13,7 @@ namespace SistemaDeInventarios.Stock
     public partial class UC_GestionarCategoria : UserControl
     {
         public event EventHandler CategoriaActualizada;
+        private BE.Categoria unaCategoria = new BE.Categoria();
         public UC_GestionarCategoria()
         {
             InitializeComponent();
@@ -40,7 +41,6 @@ namespace SistemaDeInventarios.Stock
         private void btnAgregarCategoria_Click(object sender, EventArgs e)
         {
             string nombreCategoria = tboxNombreCategoria.Text;
-            BE.Categoria nuevaCategoria = new BE.Categoria();
             BLL.GestorCategoria categoriaBLL = new BLL.GestorCategoria();
 
             if (string.IsNullOrEmpty(nombreCategoria))
@@ -48,16 +48,40 @@ namespace SistemaDeInventarios.Stock
                 MessageBox.Show("No puede quedar vacio el nombre", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
-            nuevaCategoria.NombreCategoria = nombreCategoria;
+            unaCategoria.NombreCategoria = nombreCategoria;
+
+            if (categoriaBLL.ExisteCategoria(unaCategoria))
+            {
+                MessageBox.Show("Esta categoria ya existe", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            //Seccion de cuando se Edita
+            if (btnAgregarCategoria.Text == "Aceptar")
+            {
+                try
+                {                    
+                    categoriaBLL.EditarCategoria(unaCategoria);
+                    MostrarCategoriasDataGrid();
+                    CategoriaActualizada?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show("Se editó la categoria correctamente!");                    
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Hubo un error en editar la categoria", ex);
+                }
+                btnAgregarCategoria.Text = "Agregar";
+                tboxNombreCategoria.Clear();
+                return;
+            }
             
             try
             {
-                categoriaBLL.AgregarCategoria(nuevaCategoria);
+                categoriaBLL.AgregarCategoria(unaCategoria);
                 MostrarCategoriasDataGrid();
-
                 CategoriaActualizada?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show("Se agregó la categoria exitosamente!");
+                tboxNombreCategoria.Clear();
             }
             catch (Exception ex)
             {
@@ -75,6 +99,34 @@ namespace SistemaDeInventarios.Stock
             else
             {
                 MessageBox.Show("No se encontro el form");
+            }
+        }
+
+        private void dgCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //primero, que no sea ninguna celda del tipo encabezado. Luego que la columna a la que le pertenece es la correcta
+            if(e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgCategoria.Columns[e.ColumnIndex].Name == "btnEditarCategoria")
+            {
+                unaCategoria.IDCategoria = Convert.ToInt32(dgCategoria.Rows[e.RowIndex].Cells["idCategoria"].Value);
+                unaCategoria.NombreCategoria = dgCategoria.Rows[e.RowIndex].Cells["NombreCategoria"].Value.ToString();
+
+
+                tboxNombreCategoria.Text = unaCategoria.NombreCategoria;
+                btnAgregarCategoria.Text = "Aceptar";
+
+            }
+            if(e.RowIndex >=0 && e.ColumnIndex >= 0 && dgCategoria.Columns[e.ColumnIndex].Name == "btnEliminarCategoria")
+            {
+                MessageBox.Show("¿Seguro que desea eliminar la categoria?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            tboxNombreCategoria.Clear();
+            if (btnAgregarCategoria.Text == "Aceptar")
+            {
+                btnAgregarCategoria.Text = "Agregar";
             }
         }
     }

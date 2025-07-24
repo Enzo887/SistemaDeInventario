@@ -40,9 +40,9 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblFechaVencimiento = new System.Windows.Forms.Label();
             this.dtVencimiento = new System.Windows.Forms.DateTimePicker();
-            this.nombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgCategoria = new System.Windows.Forms.DataGridView();
+            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
@@ -113,7 +113,7 @@
             // 
             // btnGestionarCategoria
             // 
-            this.btnGestionarCategoria.Location = new System.Drawing.Point(419, 204);
+            this.btnGestionarCategoria.Location = new System.Drawing.Point(367, 202);
             this.btnGestionarCategoria.Name = "btnGestionarCategoria";
             this.btnGestionarCategoria.Size = new System.Drawing.Size(65, 23);
             this.btnGestionarCategoria.TabIndex = 8;
@@ -135,7 +135,7 @@
             // 
             this.btnCancelar.Location = new System.Drawing.Point(319, 246);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(165, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(113, 23);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -157,11 +157,25 @@
             this.dtVencimiento.Size = new System.Drawing.Size(122, 20);
             this.dtVencimiento.TabIndex = 13;
             // 
-            // nombreCategoria
+            // dgCategoria
             // 
-            this.nombreCategoria.HeaderText = "Nombre";
-            this.nombreCategoria.Name = "nombreCategoria";
-            this.nombreCategoria.ReadOnly = true;
+            this.dgCategoria.AllowUserToAddRows = false;
+            this.dgCategoria.AllowUserToDeleteRows = false;
+            this.dgCategoria.AllowUserToResizeColumns = false;
+            this.dgCategoria.AllowUserToResizeRows = false;
+            this.dgCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idCategoria,
+            this.nombreCategoria});
+            this.dgCategoria.Location = new System.Drawing.Point(319, 69);
+            this.dgCategoria.MultiSelect = false;
+            this.dgCategoria.Name = "dgCategoria";
+            this.dgCategoria.ReadOnly = true;
+            this.dgCategoria.RowHeadersVisible = false;
+            this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgCategoria.Size = new System.Drawing.Size(113, 129);
+            this.dgCategoria.TabIndex = 14;
+            this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
             // 
             // idCategoria
             // 
@@ -170,21 +184,11 @@
             this.idCategoria.ReadOnly = true;
             this.idCategoria.Visible = false;
             // 
-            // dgCategoria
+            // nombreCategoria
             // 
-            this.dgCategoria.AllowUserToAddRows = false;
-            this.dgCategoria.AllowUserToDeleteRows = false;
-            this.dgCategoria.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idCategoria,
-            this.nombreCategoria});
-            this.dgCategoria.Location = new System.Drawing.Point(319, 69);
-            this.dgCategoria.Name = "dgCategoria";
-            this.dgCategoria.ReadOnly = true;
-            this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCategoria.Size = new System.Drawing.Size(165, 129);
-            this.dgCategoria.TabIndex = 14;
-            this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
+            this.nombreCategoria.HeaderText = "Nombre";
+            this.nombreCategoria.Name = "nombreCategoria";
+            this.nombreCategoria.ReadOnly = true;
             // 
             // UC_AgregarProducto
             // 
@@ -228,8 +232,8 @@
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label lblFechaVencimiento;
         private System.Windows.Forms.DateTimePicker dtVencimiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCategoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idCategoria;
         private System.Windows.Forms.DataGridView dgCategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idCategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreCategoria;
     }
 }
