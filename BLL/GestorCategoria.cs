@@ -46,5 +46,9 @@ namespace BLL
             return categoriaDAL.ExisteCategoria(categoriaExiste);
         }
 
+        public void EliminarCategoria(BE.Categoria categoriaAEliminar)
+        {
+            categoriaDAL.EliminarCategoria (categoriaAEliminar);
+        }
     }
 }
