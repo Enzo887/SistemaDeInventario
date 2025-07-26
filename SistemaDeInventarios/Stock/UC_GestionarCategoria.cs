@@ -100,6 +100,7 @@ namespace SistemaDeInventarios.Stock
             {
                 MessageBox.Show("No se encontro el form");
             }
+            tboxNombreCategoria.Clear();
         }
 
         private void dgCategoria_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -124,6 +125,9 @@ namespace SistemaDeInventarios.Stock
                         //unaCategoria.IDCategoria = Convert.ToInt32(dgCategoria.Rows[e.RowIndex].Cells["idCategoria"].Value);
                         BLL.GestorCategoria categoriaBLL = new BLL.GestorCategoria();
                         categoriaBLL.EliminarCategoria(unaCategoria);
+                        MostrarCategoriasDataGrid();
+                        CategoriaActualizada?.Invoke(this,EventArgs.Empty);
+                        MessageBox.Show("Categoria eliminada exitosamente!");
                     }
 
                 }

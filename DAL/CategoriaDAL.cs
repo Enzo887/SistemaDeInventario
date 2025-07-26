@@ -84,7 +84,11 @@ namespace DAL
 
         public void EliminarCategoria(BE.Categoria cateriaAEliminar)
         {
-
+            SqlParameter[] parametros = new SqlParameter[]
+            {
+                new SqlParameter("@IdCategoria",cateriaAEliminar.IDCategoria)
+            };
+            conexion.EscribirPorStoreProcedure("SP_EliminarCategoria", parametros);
         }
     }
 }

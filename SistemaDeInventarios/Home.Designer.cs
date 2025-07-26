@@ -32,11 +32,13 @@
             this.btnBuscarProducto = new System.Windows.Forms.Button();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
+            this.btnVenta = new System.Windows.Forms.Button();
             this.panelLateral.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLateral
             // 
+            this.panelLateral.Controls.Add(this.btnVenta);
             this.panelLateral.Controls.Add(this.btnBuscarProducto);
             this.panelLateral.Controls.Add(this.btnAgregarProducto);
             this.panelLateral.Dock = System.Windows.Forms.DockStyle.Left;
@@ -47,7 +49,7 @@
             // 
             // btnBuscarProducto
             // 
-            this.btnBuscarProducto.Location = new System.Drawing.Point(0, 95);
+            this.btnBuscarProducto.Location = new System.Drawing.Point(0, 217);
             this.btnBuscarProducto.Name = "btnBuscarProducto";
             this.btnBuscarProducto.Size = new System.Drawing.Size(155, 55);
             this.btnBuscarProducto.TabIndex = 2;
@@ -72,6 +74,16 @@
             this.panelPrincipal.Size = new System.Drawing.Size(645, 450);
             this.panelPrincipal.TabIndex = 1;
             // 
+            // btnVenta
+            // 
+            this.btnVenta.Location = new System.Drawing.Point(0, 95);
+            this.btnVenta.Name = "btnVenta";
+            this.btnVenta.Size = new System.Drawing.Size(155, 55);
+            this.btnVenta.TabIndex = 3;
+            this.btnVenta.Text = "Registrar Venta";
+            this.btnVenta.UseVisualStyleBackColor = true;
+            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -92,6 +104,7 @@
         private System.Windows.Forms.Button btnBuscarProducto;
         private System.Windows.Forms.Button btnAgregarProducto;
         private System.Windows.Forms.Panel panelPrincipal;
+        private System.Windows.Forms.Button btnVenta;
     }
 }
 

@@ -172,6 +172,7 @@
             this.dgCategoria.Name = "dgCategoria";
             this.dgCategoria.ReadOnly = true;
             this.dgCategoria.RowHeadersVisible = false;
+            this.dgCategoria.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgCategoria.Size = new System.Drawing.Size(113, 129);
             this.dgCategoria.TabIndex = 14;
