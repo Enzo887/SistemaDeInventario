@@ -44,7 +44,7 @@
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(191, 57);
+            this.lblCategoria.Location = new System.Drawing.Point(166, 52);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 15;
@@ -61,7 +61,7 @@
             this.NombreCategoria,
             this.btnEditarCategoria,
             this.btnEliminarCategoria});
-            this.dgCategoria.Location = new System.Drawing.Point(194, 128);
+            this.dgCategoria.Location = new System.Drawing.Point(169, 123);
             this.dgCategoria.MultiSelect = false;
             this.dgCategoria.Name = "dgCategoria";
             this.dgCategoria.ReadOnly = true;
@@ -74,7 +74,7 @@
             // 
             // btnAgregarCategoria
             // 
-            this.btnAgregarCategoria.Location = new System.Drawing.Point(194, 99);
+            this.btnAgregarCategoria.Location = new System.Drawing.Point(169, 94);
             this.btnAgregarCategoria.Name = "btnAgregarCategoria";
             this.btnAgregarCategoria.Size = new System.Drawing.Size(113, 23);
             this.btnAgregarCategoria.TabIndex = 17;
@@ -84,7 +84,7 @@
             // 
             // tboxNombreCategoria
             // 
-            this.tboxNombreCategoria.Location = new System.Drawing.Point(194, 73);
+            this.tboxNombreCategoria.Location = new System.Drawing.Point(169, 68);
             this.tboxNombreCategoria.Name = "tboxNombreCategoria";
             this.tboxNombreCategoria.Size = new System.Drawing.Size(229, 20);
             this.tboxNombreCategoria.TabIndex = 18;
@@ -101,7 +101,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(313, 99);
+            this.btnCancelar.Location = new System.Drawing.Point(288, 94);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(110, 23);
             this.btnCancelar.TabIndex = 20;

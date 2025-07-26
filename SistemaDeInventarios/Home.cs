@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SistemaDeInventarios.Stock;
+using SistemaDeInventarios.Venta;
 
 namespace SistemaDeInventarios
 {
@@ -15,11 +16,13 @@ namespace SistemaDeInventarios
     {
         private UC_AgregarProducto AgregarProducto;
         private UC_GestionarCategoria GestionarCategoria;
+        private UC_RegistratVenta RegistrarVenta;
         public Home()
         {
             InitializeComponent();
             AgregarProducto = new UC_AgregarProducto();
             GestionarCategoria = new UC_GestionarCategoria();
+            RegistrarVenta = new UC_RegistratVenta();
         }
 
         private void btnAgregarProducto_Click(object sender, EventArgs e)
@@ -45,6 +48,11 @@ namespace SistemaDeInventarios
         public void MostrarAgregarProducto()
         {
             CargarUserControl(AgregarProducto);
+        }
+
+        private void btnVenta_Click(object sender, EventArgs e)
+        {
+            CargarUserControl(RegistrarVenta);
         }
     }
 }
