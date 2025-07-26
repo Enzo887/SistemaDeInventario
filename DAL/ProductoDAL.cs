@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -24,15 +25,28 @@ namespace DAL
                 new SqlParameter("@FechaIngreso", unProducto.FechaIngreso),
                 new SqlParameter("@FechaVencimiento", unProducto.FechaVencimiento)
                             };
-                conexion.EscribirPorStoreProcedure("SP_AgregarProducto", parametros);
+                conexion.EscribirPorStoreProcedure("SP_AgregarProductos", parametros);
             }
             catch (Exception e)
             {
                 throw new Exception("Hubo un error en el INSERT del producto en la BD", e);
             }
         }
-        
-        
+
+        public DataTable ObtenerProductos()
+        {
+            try
+            {
+                return conexion.LeerPorComando("SELECT * FROM V_ObtenerProductos");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Hubo un error en obtener los datos de la tabla productos en la BD", e);
+            }
+        }
+
+
+
 
     }
 }

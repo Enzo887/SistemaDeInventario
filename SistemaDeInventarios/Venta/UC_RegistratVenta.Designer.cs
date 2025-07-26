@@ -33,6 +33,10 @@
             this.dgProductos = new System.Windows.Forms.DataGridView();
             this.lblVenta = new System.Windows.Forms.Label();
             this.dgVenta = new System.Windows.Forms.DataGridView();
+            this.reducirCantidad = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tboxCantidad = new System.Windows.Forms.TextBox();
             this.tboxTotal = new System.Windows.Forms.TextBox();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
@@ -40,10 +44,6 @@
             this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.agregarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.reducirCantidad = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgVenta)).BeginInit();
             this.SuspendLayout();
@@ -115,6 +115,35 @@
             this.dgVenta.Size = new System.Drawing.Size(243, 143);
             this.dgVenta.TabIndex = 4;
             // 
+            // reducirCantidad
+            // 
+            this.reducirCantidad.HeaderText = "-";
+            this.reducirCantidad.Name = "reducirCantidad";
+            this.reducirCantidad.ReadOnly = true;
+            this.reducirCantidad.Text = "-";
+            this.reducirCantidad.UseColumnTextForButtonValue = true;
+            this.reducirCantidad.Width = 20;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Producto";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cantidad
+            // 
+            this.cantidad.HeaderText = "Cant";
+            this.cantidad.Name = "cantidad";
+            this.cantidad.Width = 40;
+            // 
+            // subtotal
+            // 
+            this.subtotal.HeaderText = "SubTotal";
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
+            this.subtotal.Width = 80;
+            // 
             // tboxCantidad
             // 
             this.tboxCantidad.Location = new System.Drawing.Point(344, 79);
@@ -167,36 +196,8 @@
             this.agregarProducto.Name = "agregarProducto";
             this.agregarProducto.ReadOnly = true;
             this.agregarProducto.Text = "+";
+            this.agregarProducto.UseColumnTextForButtonValue = true;
             this.agregarProducto.Width = 20;
-            // 
-            // reducirCantidad
-            // 
-            this.reducirCantidad.HeaderText = "-";
-            this.reducirCantidad.Name = "reducirCantidad";
-            this.reducirCantidad.ReadOnly = true;
-            this.reducirCantidad.Text = "-";
-            this.reducirCantidad.UseColumnTextForButtonValue = true;
-            this.reducirCantidad.Width = 20;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Producto";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // cantidad
-            // 
-            this.cantidad.HeaderText = "Cant";
-            this.cantidad.Name = "cantidad";
-            this.cantidad.Width = 40;
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "SubTotal";
-            this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
-            this.subtotal.Width = 80;
             // 
             // UC_RegistratVenta
             // 
@@ -229,13 +230,13 @@
         private System.Windows.Forms.TextBox tboxCantidad;
         private System.Windows.Forms.TextBox tboxTotal;
         private System.Windows.Forms.Button btnRegistrarVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
-        private System.Windows.Forms.DataGridViewButtonColumn agregarProducto;
         private System.Windows.Forms.DataGridViewButtonColumn reducirCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
+        private System.Windows.Forms.DataGridViewButtonColumn agregarProducto;
     }
 }
