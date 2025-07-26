@@ -15,6 +15,7 @@ namespace SistemaDeInventarios.Stock
 {
     public partial class UC_AgregarProducto : UserControl
     {
+        public event EventHandler TablaProductosActualizada;
         public UC_AgregarProducto()
         {
             InitializeComponent();
@@ -81,6 +82,7 @@ namespace SistemaDeInventarios.Stock
             try
             {
                 unProductoBLL.AgregarProductos(unProducto);
+                TablaProductosActualizada?.Invoke(this, EventArgs.Empty);
                 MessageBox.Show("Se agregó el producto correctamente!");
             }
             catch (Exception ex)
