@@ -23,6 +23,8 @@ namespace SistemaDeInventarios
             AgregarProducto = new UC_AgregarProducto();
             GestionarCategoria = new UC_GestionarCategoria();
             RegistrarVenta = new UC_RegistratVenta();
+            CargarUserControl(RegistrarVenta);
+
         }
 
         private void btnAgregarProducto_Click(object sender, EventArgs e)
@@ -47,12 +49,19 @@ namespace SistemaDeInventarios
 
         public void MostrarAgregarProducto()
         {
+            AgregarProducto.TablaProductosActualizada -= MostrarProductosEnVenta;
+            AgregarProducto.TablaProductosActualizada += MostrarProductosEnVenta;
             CargarUserControl(AgregarProducto);
         }
 
         private void btnVenta_Click(object sender, EventArgs e)
         {
             CargarUserControl(RegistrarVenta);
+        }
+
+        private void MostrarProductosEnVenta(object sender, EventArgs e)
+        {
+            RegistrarVenta.MostrarProductosDataGrid();
         }
     }
 }

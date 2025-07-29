@@ -31,6 +31,10 @@
             this.tboxBucarProducto = new System.Windows.Forms.TextBox();
             this.lblBuscador = new System.Windows.Forms.Label();
             this.dgProductos = new System.Windows.Forms.DataGridView();
+            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.agregarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblVenta = new System.Windows.Forms.Label();
             this.dgVenta = new System.Windows.Forms.DataGridView();
             this.reducirCantidad = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -40,10 +44,8 @@
             this.tboxCantidad = new System.Windows.Forms.TextBox();
             this.tboxTotal = new System.Windows.Forms.TextBox();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
-            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.agregarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgVenta)).BeginInit();
             this.SuspendLayout();
@@ -84,6 +86,36 @@
             this.dgProductos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgProductos.Size = new System.Drawing.Size(228, 267);
             this.dgProductos.TabIndex = 2;
+            // 
+            // idProducto
+            // 
+            this.idProducto.HeaderText = "Nº";
+            this.idProducto.Name = "idProducto";
+            this.idProducto.ReadOnly = true;
+            this.idProducto.Width = 25;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.HeaderText = "Producto";
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            this.nombreProducto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // precio
+            // 
+            this.precio.HeaderText = "Precio";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
+            this.precio.Width = 80;
+            // 
+            // agregarProducto
+            // 
+            this.agregarProducto.HeaderText = "+";
+            this.agregarProducto.Name = "agregarProducto";
+            this.agregarProducto.ReadOnly = true;
+            this.agregarProducto.Text = "+";
+            this.agregarProducto.UseColumnTextForButtonValue = true;
+            this.agregarProducto.Width = 20;
             // 
             // lblVenta
             // 
@@ -162,47 +194,37 @@
             // 
             // btnRegistrarVenta
             // 
-            this.btnRegistrarVenta.Location = new System.Drawing.Point(493, 280);
+            this.btnRegistrarVenta.Location = new System.Drawing.Point(418, 349);
             this.btnRegistrarVenta.Name = "btnRegistrarVenta";
             this.btnRegistrarVenta.Size = new System.Drawing.Size(94, 23);
             this.btnRegistrarVenta.TabIndex = 8;
             this.btnRegistrarVenta.Text = "Registrar Venta";
             this.btnRegistrarVenta.UseVisualStyleBackColor = true;
             // 
-            // idProducto
+            // btnCancelar
             // 
-            this.idProducto.HeaderText = "Nº";
-            this.idProducto.Name = "idProducto";
-            this.idProducto.ReadOnly = true;
-            this.idProducto.Width = 25;
+            this.btnCancelar.Location = new System.Drawing.Point(518, 349);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(69, 23);
+            this.btnCancelar.TabIndex = 9;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // nombreProducto
+            // label1
             // 
-            this.nombreProducto.HeaderText = "Producto";
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            this.nombreProducto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // precio
-            // 
-            this.precio.HeaderText = "Precio";
-            this.precio.Name = "precio";
-            this.precio.ReadOnly = true;
-            this.precio.Width = 80;
-            // 
-            // agregarProducto
-            // 
-            this.agregarProducto.HeaderText = "+";
-            this.agregarProducto.Name = "agregarProducto";
-            this.agregarProducto.ReadOnly = true;
-            this.agregarProducto.Text = "+";
-            this.agregarProducto.UseColumnTextForButtonValue = true;
-            this.agregarProducto.Width = 20;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(351, 259);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "TOTAL:";
             // 
             // UC_RegistratVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnRegistrarVenta);
             this.Controls.Add(this.tboxTotal);
             this.Controls.Add(this.tboxCantidad);
@@ -238,5 +260,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn precio;
         private System.Windows.Forms.DataGridViewButtonColumn agregarProducto;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label label1;
     }
 }

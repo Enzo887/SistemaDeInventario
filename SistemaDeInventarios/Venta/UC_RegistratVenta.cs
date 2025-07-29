@@ -16,11 +16,11 @@ namespace SistemaDeInventarios.Venta
         public UC_RegistratVenta()
         {
             InitializeComponent();
-            MostrarCategoriasDataGrid();
+            MostrarProductosDataGrid();
         }
 
 
-        private void MostrarCategoriasDataGrid()
+        public void MostrarProductosDataGrid()
         {
             List<BE.Producto> productos = new List<BE.Producto>();
             BLL.GestorProducto productoBLL = new BLL.GestorProducto();
