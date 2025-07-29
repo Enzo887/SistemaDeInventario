@@ -145,15 +145,24 @@ namespace SistemaDeInventarios.Stock
             dgCategoria.CurrentCell = null;
         }
 
+        //tengo que borrarlo
         private void UC_AgregarProducto_Load(object sender, EventArgs e)
         {
-            MostrarCategoriasDataGrid();
+            //MostrarCategoriasDataGrid();
         }
         
         //metodo que se suscribe
         private void Gestionar_CategoriaActualizada(object sender, EventArgs e)
         {
             MostrarCategoriasDataGrid();
+        }
+
+        private void numPrecio_ValueChanged(object sender, EventArgs e)
+        {
+            if (numPrecio.Value == numPrecio.Maximum) 
+            {
+                MessageBox.Show("Has alcanzado la cantidad máxima permitida.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

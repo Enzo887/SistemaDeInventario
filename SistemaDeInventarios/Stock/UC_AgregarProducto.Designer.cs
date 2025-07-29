@@ -67,7 +67,7 @@
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(242, 116);
+            this.lblCantidad.Location = new System.Drawing.Point(166, 97);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(49, 13);
             this.lblCantidad.TabIndex = 2;
@@ -75,9 +75,14 @@
             // 
             // numCantidad
             // 
-            this.numCantidad.Location = new System.Drawing.Point(245, 132);
+            this.numCantidad.Location = new System.Drawing.Point(169, 113);
+            this.numCantidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numCantidad.Name = "numCantidad";
-            this.numCantidad.Size = new System.Drawing.Size(46, 20);
+            this.numCantidad.Size = new System.Drawing.Size(87, 20);
             this.numCantidad.TabIndex = 3;
             this.numCantidad.Value = new decimal(new int[] {
             1,
@@ -88,15 +93,32 @@
             // 
             // numPrecio
             // 
-            this.numPrecio.Location = new System.Drawing.Point(169, 132);
+            this.numPrecio.DecimalPlaces = 2;
+            this.numPrecio.Location = new System.Drawing.Point(169, 152);
+            this.numPrecio.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.numPrecio.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numPrecio.Name = "numPrecio";
-            this.numPrecio.Size = new System.Drawing.Size(58, 20);
+            this.numPrecio.Size = new System.Drawing.Size(87, 20);
             this.numPrecio.TabIndex = 4;
+            this.numPrecio.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numPrecio.ValueChanged += new System.EventHandler(this.numPrecio_ValueChanged);
             // 
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(166, 116);
+            this.lblPrecio.Location = new System.Drawing.Point(166, 136);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(37, 13);
             this.lblPrecio.TabIndex = 5;
