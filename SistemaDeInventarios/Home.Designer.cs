@@ -29,15 +29,17 @@
         private void InitializeComponent()
         {
             this.panelLateral = new System.Windows.Forms.Panel();
+            this.btnVenta = new System.Windows.Forms.Button();
             this.btnBuscarProducto = new System.Windows.Forms.Button();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
-            this.btnVenta = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.panelLateral.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelLateral
             // 
+            this.panelLateral.Controls.Add(this.btnCerrar);
             this.panelLateral.Controls.Add(this.btnVenta);
             this.panelLateral.Controls.Add(this.btnBuscarProducto);
             this.panelLateral.Controls.Add(this.btnAgregarProducto);
@@ -46,6 +48,16 @@
             this.panelLateral.Name = "panelLateral";
             this.panelLateral.Size = new System.Drawing.Size(155, 450);
             this.panelLateral.TabIndex = 0;
+            // 
+            // btnVenta
+            // 
+            this.btnVenta.Location = new System.Drawing.Point(0, 95);
+            this.btnVenta.Name = "btnVenta";
+            this.btnVenta.Size = new System.Drawing.Size(155, 55);
+            this.btnVenta.TabIndex = 3;
+            this.btnVenta.Text = "Registrar Venta";
+            this.btnVenta.UseVisualStyleBackColor = true;
+            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
             // 
             // btnBuscarProducto
             // 
@@ -74,15 +86,15 @@
             this.panelPrincipal.Size = new System.Drawing.Size(645, 450);
             this.panelPrincipal.TabIndex = 1;
             // 
-            // btnVenta
+            // btnCerrar
             // 
-            this.btnVenta.Location = new System.Drawing.Point(0, 95);
-            this.btnVenta.Name = "btnVenta";
-            this.btnVenta.Size = new System.Drawing.Size(155, 55);
-            this.btnVenta.TabIndex = 3;
-            this.btnVenta.Text = "Registrar Venta";
-            this.btnVenta.UseVisualStyleBackColor = true;
-            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
+            this.btnCerrar.Location = new System.Drawing.Point(0, 317);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(155, 55);
+            this.btnCerrar.TabIndex = 4;
+            this.btnCerrar.Text = "Salir del programa";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // Home
             // 
@@ -105,6 +117,7 @@
         private System.Windows.Forms.Button btnAgregarProducto;
         private System.Windows.Forms.Panel panelPrincipal;
         private System.Windows.Forms.Button btnVenta;
+        private System.Windows.Forms.Button btnCerrar;
     }
 }
 
