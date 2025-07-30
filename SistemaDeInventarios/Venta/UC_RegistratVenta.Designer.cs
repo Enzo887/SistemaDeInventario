@@ -37,15 +37,15 @@
             this.agregarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblVenta = new System.Windows.Forms.Label();
             this.dgVenta = new System.Windows.Forms.DataGridView();
-            this.reducirCantidad = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tboxCantidad = new System.Windows.Forms.TextBox();
             this.tboxTotal = new System.Windows.Forms.TextBox();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.reducirCantidad = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.nombreProductoAgregado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadProductoAgregado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgVenta)).BeginInit();
             this.SuspendLayout();
@@ -86,6 +86,7 @@
             this.dgProductos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgProductos.Size = new System.Drawing.Size(228, 267);
             this.dgProductos.TabIndex = 2;
+            this.dgProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellClick);
             // 
             // idProducto
             // 
@@ -135,46 +136,18 @@
             this.dgVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.reducirCantidad,
-            this.dataGridViewTextBoxColumn2,
-            this.cantidad,
+            this.nombreProductoAgregado,
+            this.cantidadProductoAgregado,
             this.subtotal});
             this.dgVenta.Location = new System.Drawing.Point(344, 105);
             this.dgVenta.MultiSelect = false;
             this.dgVenta.Name = "dgVenta";
+            this.dgVenta.ReadOnly = true;
             this.dgVenta.RowHeadersVisible = false;
             this.dgVenta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgVenta.Size = new System.Drawing.Size(243, 143);
             this.dgVenta.TabIndex = 4;
-            // 
-            // reducirCantidad
-            // 
-            this.reducirCantidad.HeaderText = "-";
-            this.reducirCantidad.Name = "reducirCantidad";
-            this.reducirCantidad.ReadOnly = true;
-            this.reducirCantidad.Text = "-";
-            this.reducirCantidad.UseColumnTextForButtonValue = true;
-            this.reducirCantidad.Width = 20;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Producto";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // cantidad
-            // 
-            this.cantidad.HeaderText = "Cant";
-            this.cantidad.Name = "cantidad";
-            this.cantidad.Width = 40;
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "SubTotal";
-            this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
-            this.subtotal.Width = 80;
             // 
             // tboxCantidad
             // 
@@ -219,6 +192,35 @@
             this.label1.TabIndex = 10;
             this.label1.Text = "TOTAL:";
             // 
+            // reducirCantidad
+            // 
+            this.reducirCantidad.HeaderText = "-";
+            this.reducirCantidad.Name = "reducirCantidad";
+            this.reducirCantidad.ReadOnly = true;
+            this.reducirCantidad.Text = "-";
+            this.reducirCantidad.UseColumnTextForButtonValue = true;
+            this.reducirCantidad.Width = 20;
+            // 
+            // nombreProductoAgregado
+            // 
+            this.nombreProductoAgregado.HeaderText = "Producto";
+            this.nombreProductoAgregado.Name = "nombreProductoAgregado";
+            this.nombreProductoAgregado.ReadOnly = true;
+            this.nombreProductoAgregado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cantidadProductoAgregado
+            // 
+            this.cantidadProductoAgregado.HeaderText = "Cant";
+            this.cantidadProductoAgregado.Name = "cantidadProductoAgregado";
+            this.cantidadProductoAgregado.Width = 40;
+            // 
+            // subtotal
+            // 
+            this.subtotal.HeaderText = "SubTotal";
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
+            this.subtotal.Width = 80;
+            // 
             // UC_RegistratVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,5 +264,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn agregarProducto;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProductoAgregado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadProductoAgregado;
     }
 }
