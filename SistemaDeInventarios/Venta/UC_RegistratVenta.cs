@@ -56,10 +56,27 @@ namespace SistemaDeInventarios.Venta
                 unProducto.NombreProducto = dgProductos.Rows[e.RowIndex].Cells["nombreProducto"].Value.ToString();
                 unProducto.Precio = Convert.ToDecimal(dgProductos.Rows[e.RowIndex].Cells["precio"].Value);
 
-                gestorVenta.AgregarDetalle(ventaActual, unProducto, 1);
-                
+                gestorVenta.AgregarDetalle(ventaActual, unProducto, 1);               
                 MostrarProductosAgregadosDataGrid();
+                tboxTotal.Text = gestorVenta.CalcularTotal(ventaActual).ToString();
             }
+        }
+
+        private void btnRegistrarVenta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult mensajeResultado = MessageBox.Show("Seguro que desea cancelar la venta?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (mensajeResultado == DialogResult.OK) 
+            {
+                ventaActual = new BE.Venta();
+                dgVenta.DataSource = null;
+                tboxTotal.Clear();
+            }
+            
         }
     }
 }

@@ -37,15 +37,15 @@
             this.agregarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblVenta = new System.Windows.Forms.Label();
             this.dgVenta = new System.Windows.Forms.DataGridView();
+            this.reducirCantidad = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.nombreProductoAgregado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadProductoAgregado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tboxCantidad = new System.Windows.Forms.TextBox();
             this.tboxTotal = new System.Windows.Forms.TextBox();
             this.btnRegistrarVenta = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.reducirCantidad = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.nombreProductoAgregado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadProductoAgregado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgVenta)).BeginInit();
             this.SuspendLayout();
@@ -149,6 +149,36 @@
             this.dgVenta.Size = new System.Drawing.Size(243, 143);
             this.dgVenta.TabIndex = 4;
             // 
+            // reducirCantidad
+            // 
+            this.reducirCantidad.HeaderText = "-";
+            this.reducirCantidad.Name = "reducirCantidad";
+            this.reducirCantidad.ReadOnly = true;
+            this.reducirCantidad.Text = "-";
+            this.reducirCantidad.UseColumnTextForButtonValue = true;
+            this.reducirCantidad.Width = 20;
+            // 
+            // nombreProductoAgregado
+            // 
+            this.nombreProductoAgregado.HeaderText = "Producto";
+            this.nombreProductoAgregado.Name = "nombreProductoAgregado";
+            this.nombreProductoAgregado.ReadOnly = true;
+            this.nombreProductoAgregado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // cantidadProductoAgregado
+            // 
+            this.cantidadProductoAgregado.HeaderText = "Cant";
+            this.cantidadProductoAgregado.Name = "cantidadProductoAgregado";
+            this.cantidadProductoAgregado.ReadOnly = true;
+            this.cantidadProductoAgregado.Width = 40;
+            // 
+            // subtotal
+            // 
+            this.subtotal.HeaderText = "SubTotal";
+            this.subtotal.Name = "subtotal";
+            this.subtotal.ReadOnly = true;
+            this.subtotal.Width = 80;
+            // 
             // tboxCantidad
             // 
             this.tboxCantidad.Location = new System.Drawing.Point(344, 79);
@@ -173,6 +203,7 @@
             this.btnRegistrarVenta.TabIndex = 8;
             this.btnRegistrarVenta.Text = "Registrar Venta";
             this.btnRegistrarVenta.UseVisualStyleBackColor = true;
+            this.btnRegistrarVenta.Click += new System.EventHandler(this.btnRegistrarVenta_Click);
             // 
             // btnCancelar
             // 
@@ -182,6 +213,7 @@
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label1
             // 
@@ -191,35 +223,6 @@
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 10;
             this.label1.Text = "TOTAL:";
-            // 
-            // reducirCantidad
-            // 
-            this.reducirCantidad.HeaderText = "-";
-            this.reducirCantidad.Name = "reducirCantidad";
-            this.reducirCantidad.ReadOnly = true;
-            this.reducirCantidad.Text = "-";
-            this.reducirCantidad.UseColumnTextForButtonValue = true;
-            this.reducirCantidad.Width = 20;
-            // 
-            // nombreProductoAgregado
-            // 
-            this.nombreProductoAgregado.HeaderText = "Producto";
-            this.nombreProductoAgregado.Name = "nombreProductoAgregado";
-            this.nombreProductoAgregado.ReadOnly = true;
-            this.nombreProductoAgregado.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // cantidadProductoAgregado
-            // 
-            this.cantidadProductoAgregado.HeaderText = "Cant";
-            this.cantidadProductoAgregado.Name = "cantidadProductoAgregado";
-            this.cantidadProductoAgregado.Width = 40;
-            // 
-            // subtotal
-            // 
-            this.subtotal.HeaderText = "SubTotal";
-            this.subtotal.Name = "subtotal";
-            this.subtotal.ReadOnly = true;
-            this.subtotal.Width = 80;
             // 
             // UC_RegistratVenta
             // 

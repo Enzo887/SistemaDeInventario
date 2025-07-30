@@ -29,19 +29,11 @@ namespace BLL
             }
         }
 
-        //public decimal CalcularPrecioTotal(List<BE.DetalleVenta> detallesVenta)
-        //{
-        //    decimal resultado = 0;
-        //    foreach (var detalle in detallesVenta)
-        //    {
-        //        resultado += detalle.PrecioSubTotal;
-        //    }
-        //    return resultado;
-        //}
 
-        //public decimal CalcularTotal(Venta venta)
-        //{
-        //    return venta.DetallesVenta.Sum(d => d.);
-        //}
+
+        public decimal CalcularTotal(Venta venta)
+        {
+            return venta.DetallesVenta.Sum(detalle => detalle.Subtotal);
+        }
     }
 }
