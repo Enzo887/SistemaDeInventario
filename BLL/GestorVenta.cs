@@ -22,6 +22,7 @@ namespace BLL
             {
                 BE.DetalleVenta nuevoDetalle = new BE.DetalleVenta
                 {
+                    IDDetalleVenta = producto.IDProducto,
                     Producto = producto,
                     CantidadProducto = cantidad
                 };
@@ -29,11 +30,34 @@ namespace BLL
             }
         }
 
+        public void SacarDetalle(BE.Venta venta, BE.Producto producto)
+        {
+            var detalleExistente = venta.DetallesVenta.FirstOrDefault(detalle => detalle.Producto.IDProducto == producto.IDProducto);
+
+            if(detalleExistente != null)
+            {
+                if(detalleExistente.CantidadProducto > 1)
+                {
+                    detalleExistente.CantidadProducto -= 1;
+                }
+                else
+                {
+                    venta.DetallesVenta.Remove(detalleExistente);
+                }     
+            }
+        }
 
 
         public decimal CalcularTotal(Venta venta)
         {
             return venta.DetallesVenta.Sum(detalle => detalle.Subtotal);
+        }
+
+        public void RegistrarVenta(BE.Venta venta)
+        {
+            DAL.VentaDAL ventaDAL = new DAL.VentaDAL();
+            venta.IDVenta = ventaDAL.RegistrarVenta(venta);
+            ventaDAL.GuardarDetalleVenta(venta);
         }
     }
 }

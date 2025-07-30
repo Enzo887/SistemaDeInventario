@@ -63,5 +63,10 @@ namespace SistemaDeInventarios
         {
             RegistrarVenta.MostrarProductosDataGrid();
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
