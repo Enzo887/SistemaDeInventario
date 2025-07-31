@@ -63,5 +63,10 @@ namespace BE
             get { return _precio; }
             set { _precio = value; }
         }
+
+        public string NombreCategoria
+        {
+            get { return _categoria != null ? _categoria.NombreCategoria : ""; }
+        }
     }
 }

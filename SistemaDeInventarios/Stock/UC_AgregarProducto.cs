@@ -16,16 +16,16 @@ namespace SistemaDeInventarios.Stock
     public partial class UC_AgregarProducto : UserControl
     {
         public event EventHandler TablaProductosActualizada;
+        private BE.Producto unProducto = new BE.Producto();
         public UC_AgregarProducto()
         {
             InitializeComponent();
             MostrarCategoriasDataGrid();
+            MostrarProductosDataGrid();
         }
         
         private void btnAgregarProducto_Click(object sender, EventArgs e)
-        {
-            BE.Producto unProducto = new BE.Producto();
-            
+        {   
             string nombreProducto = tboxNombreProducto.Text;
             decimal precio = numPrecio.Value;
             DateTime fechaVencimiento = dtVencimiento.Value;
@@ -111,6 +111,7 @@ namespace SistemaDeInventarios.Stock
             numPrecio.Value = numPrecio.Minimum;
             numCantidad.Value = numCantidad.Minimum;
             dtVencimiento.Value = DateTime.Today;
+            dgCategoria.ClearSelection();
         }
 
         private void btnGestionarCategoria_Click(object sender, EventArgs e)
@@ -139,6 +140,23 @@ namespace SistemaDeInventarios.Stock
             dgCategoria.DataSource = categorias;
         }
 
+        public void MostrarProductosDataGrid()
+        {
+            List<BE.Producto> productos = new List<BE.Producto>();
+            BLL.GestorProducto productoBLL = new BLL.GestorProducto();
+
+            productos = productoBLL.ObtenerProductos();
+
+            dgProductos.AutoGenerateColumns = false;
+            dgProductos.Columns["idProducto"].DataPropertyName = "IDProducto";
+            dgProductos.Columns["nombreProducto"].DataPropertyName = "NombreProducto";
+            dgProductos.Columns["precioProducto"].DataPropertyName = "Precio";
+            dgProductos.Columns["cantidadProducto"].DataPropertyName = "Cantidad";
+            dgProductos.Columns["vencimientoProducto"].DataPropertyName = "FechaVencimiento";
+            dgProductos.Columns["categoriaProducto"].DataPropertyName = "NombreCategoria";
+            dgProductos.DataSource = productos;
+        }
+
         private void dgCategoria_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             dgCategoria.ClearSelection();
@@ -162,6 +180,31 @@ namespace SistemaDeInventarios.Stock
             if (numPrecio.Value == numPrecio.Maximum) 
             {
                 MessageBox.Show("Has alcanzado la cantidad máxima permitida.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult mensajeResultado = MessageBox.Show("Seguro que desea cancelar la venta?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            if (mensajeResultado == DialogResult.OK)
+            {
+                unProducto = new BE.Producto();
+                LimparInputsProductos();
+            }
+        }
+
+        private void dgProductos_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if(e.RowIndex >= 0 && e.ColumnIndex >= 0){
+                if (dgProductos.Columns[e.ColumnIndex].Name == "editarProducto")
+                {
+                    //tboxNombreProducto.Text = 
+                }
+                if(dgProductos.Columns[e.ColumnIndex].Name == "eliminarProducto")
+                {
+                    MessageBox.Show("eliminadi");
+                }
+                
             }
         }
     }

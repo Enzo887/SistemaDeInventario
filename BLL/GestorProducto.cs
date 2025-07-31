@@ -24,15 +24,19 @@ namespace BLL
 
             foreach (DataRow fila in tabla.Rows)
             {
-                productos.Add(
-                    new BE.Producto
-                    {
-                        IDProducto = Convert.ToInt32(fila["IdProducto"]),
-                        NombreProducto = fila["NombreProducto"].ToString(),
-                        Precio = Convert.ToDecimal(fila["Precio"]),
-                        Cantidad = Convert.ToInt32(fila["Cantidad"]),
-                    }
-                 );
+                BE.Categoria unaCategoria = new BE.Categoria();
+                BE.Producto unProducto = new BE.Producto();
+                unProducto.IDProducto = Convert.ToInt32(fila["IdProducto"]);
+                unProducto.NombreProducto = fila["NombreProducto"].ToString();
+                unProducto.Precio = Convert.ToDecimal(fila["Precio"]);
+                unProducto.Cantidad = Convert.ToInt32(fila["Cantidad"]);
+                unProducto.FechaVencimiento = (DateTime)fila["FechaVencimiento"];
+
+                unaCategoria.IDCategoria = Convert.ToInt32(fila["IdCategoria"]);
+                unaCategoria.NombreCategoria = fila["NombreCategoria"].ToString();
+                unProducto.Categoria = unaCategoria;
+
+                productos.Add(unProducto);
             }
             return productos;
         }
