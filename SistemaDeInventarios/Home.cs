@@ -51,6 +51,10 @@ namespace SistemaDeInventarios
         {
             AgregarProducto.TablaProductosActualizada -= MostrarProductosEnVenta;
             AgregarProducto.TablaProductosActualizada += MostrarProductosEnVenta;
+
+            AgregarProducto.TablaProductosActualizada -= MostrarProductosEnStock;
+            AgregarProducto.TablaProductosActualizada += MostrarProductosEnStock;
+
             CargarUserControl(AgregarProducto);
         }
 
@@ -62,6 +66,11 @@ namespace SistemaDeInventarios
         private void MostrarProductosEnVenta(object sender, EventArgs e)
         {
             RegistrarVenta.MostrarProductosDataGrid();
+        }
+
+        private void MostrarProductosEnStock(object sender, EventArgs e)
+        {
+            AgregarProducto.MostrarProductosDataGrid();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

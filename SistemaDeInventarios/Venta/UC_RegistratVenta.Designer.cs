@@ -127,7 +127,7 @@
             // lblVenta
             // 
             this.lblVenta.AutoSize = true;
-            this.lblVenta.Location = new System.Drawing.Point(341, 52);
+            this.lblVenta.Location = new System.Drawing.Point(341, 77);
             this.lblVenta.Name = "lblVenta";
             this.lblVenta.Size = new System.Drawing.Size(91, 13);
             this.lblVenta.TabIndex = 3;
@@ -234,7 +234,7 @@
             // 
             // btnLimpiarProducto
             // 
-            this.btnLimpiarProducto.Location = new System.Drawing.Point(273, 69);
+            this.btnLimpiarProducto.Location = new System.Drawing.Point(269, 68);
             this.btnLimpiarProducto.Name = "btnLimpiarProducto";
             this.btnLimpiarProducto.Size = new System.Drawing.Size(20, 20);
             this.btnLimpiarProducto.TabIndex = 11;

@@ -41,16 +41,26 @@
             this.lblFechaVencimiento = new System.Windows.Forms.Label();
             this.dtVencimiento = new System.Windows.Forms.DateTimePicker();
             this.dgCategoria = new System.Windows.Forms.DataGridView();
+            this.dgProductos = new System.Windows.Forms.DataGridView();
+            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vencimientoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.editarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.eliminarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // tboxNombreProducto
             // 
-            this.tboxNombreProducto.Location = new System.Drawing.Point(169, 68);
+            this.tboxNombreProducto.Location = new System.Drawing.Point(110, 209);
             this.tboxNombreProducto.Name = "tboxNombreProducto";
             this.tboxNombreProducto.Size = new System.Drawing.Size(122, 20);
             this.tboxNombreProducto.TabIndex = 0;
@@ -58,7 +68,7 @@
             // lblNombreProducto
             // 
             this.lblNombreProducto.AutoSize = true;
-            this.lblNombreProducto.Location = new System.Drawing.Point(166, 52);
+            this.lblNombreProducto.Location = new System.Drawing.Point(107, 193);
             this.lblNombreProducto.Name = "lblNombreProducto";
             this.lblNombreProducto.Size = new System.Drawing.Size(90, 13);
             this.lblNombreProducto.TabIndex = 1;
@@ -67,7 +77,7 @@
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(166, 97);
+            this.lblCantidad.Location = new System.Drawing.Point(253, 193);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(49, 13);
             this.lblCantidad.TabIndex = 2;
@@ -75,7 +85,7 @@
             // 
             // numCantidad
             // 
-            this.numCantidad.Location = new System.Drawing.Point(169, 113);
+            this.numCantidad.Location = new System.Drawing.Point(256, 209);
             this.numCantidad.Minimum = new decimal(new int[] {
             1,
             0,
@@ -94,7 +104,7 @@
             // numPrecio
             // 
             this.numPrecio.DecimalPlaces = 2;
-            this.numPrecio.Location = new System.Drawing.Point(169, 152);
+            this.numPrecio.Location = new System.Drawing.Point(256, 272);
             this.numPrecio.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -118,7 +128,7 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(166, 136);
+            this.lblPrecio.Location = new System.Drawing.Point(253, 256);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(37, 13);
             this.lblPrecio.TabIndex = 5;
@@ -127,7 +137,7 @@
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(316, 52);
+            this.lblCategoria.Location = new System.Drawing.Point(368, 192);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 7;
@@ -135,9 +145,9 @@
             // 
             // btnGestionarCategoria
             // 
-            this.btnGestionarCategoria.Location = new System.Drawing.Point(367, 202);
+            this.btnGestionarCategoria.Location = new System.Drawing.Point(429, 210);
             this.btnGestionarCategoria.Name = "btnGestionarCategoria";
-            this.btnGestionarCategoria.Size = new System.Drawing.Size(65, 23);
+            this.btnGestionarCategoria.Size = new System.Drawing.Size(65, 20);
             this.btnGestionarCategoria.TabIndex = 8;
             this.btnGestionarCategoria.Text = "Gestionar";
             this.btnGestionarCategoria.UseVisualStyleBackColor = true;
@@ -145,9 +155,9 @@
             // 
             // btnAgregarProducto
             // 
-            this.btnAgregarProducto.Location = new System.Drawing.Point(169, 246);
+            this.btnAgregarProducto.Location = new System.Drawing.Point(110, 327);
             this.btnAgregarProducto.Name = "btnAgregarProducto";
-            this.btnAgregarProducto.Size = new System.Drawing.Size(135, 23);
+            this.btnAgregarProducto.Size = new System.Drawing.Size(122, 23);
             this.btnAgregarProducto.TabIndex = 9;
             this.btnAgregarProducto.Text = "Agregar Producto";
             this.btnAgregarProducto.UseVisualStyleBackColor = true;
@@ -155,17 +165,18 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(319, 246);
+            this.btnCancelar.Location = new System.Drawing.Point(252, 327);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(113, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(91, 23);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // lblFechaVencimiento
             // 
             this.lblFechaVencimiento.AutoSize = true;
-            this.lblFechaVencimiento.Location = new System.Drawing.Point(166, 185);
+            this.lblFechaVencimiento.Location = new System.Drawing.Point(107, 256);
             this.lblFechaVencimiento.Name = "lblFechaVencimiento";
             this.lblFechaVencimiento.Size = new System.Drawing.Size(98, 13);
             this.lblFechaVencimiento.TabIndex = 12;
@@ -174,7 +185,7 @@
             // dtVencimiento
             // 
             this.dtVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtVencimiento.Location = new System.Drawing.Point(169, 201);
+            this.dtVencimiento.Location = new System.Drawing.Point(110, 272);
             this.dtVencimiento.Name = "dtVencimiento";
             this.dtVencimiento.Size = new System.Drawing.Size(122, 20);
             this.dtVencimiento.TabIndex = 13;
@@ -189,16 +200,103 @@
             this.dgCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idCategoria,
             this.nombreCategoria});
-            this.dgCategoria.Location = new System.Drawing.Point(319, 69);
+            this.dgCategoria.Location = new System.Drawing.Point(371, 209);
             this.dgCategoria.MultiSelect = false;
             this.dgCategoria.Name = "dgCategoria";
             this.dgCategoria.ReadOnly = true;
             this.dgCategoria.RowHeadersVisible = false;
             this.dgCategoria.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgCategoria.Size = new System.Drawing.Size(113, 129);
+            this.dgCategoria.Size = new System.Drawing.Size(124, 118);
             this.dgCategoria.TabIndex = 14;
             this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
+            // 
+            // dgProductos
+            // 
+            this.dgProductos.AllowUserToAddRows = false;
+            this.dgProductos.AllowUserToDeleteRows = false;
+            this.dgProductos.AllowUserToResizeColumns = false;
+            this.dgProductos.AllowUserToResizeRows = false;
+            this.dgProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idProducto,
+            this.nombreProducto,
+            this.precioProducto,
+            this.cantidadProducto,
+            this.vencimientoProducto,
+            this.categoriaProducto,
+            this.editarProducto,
+            this.eliminarProducto});
+            this.dgProductos.Location = new System.Drawing.Point(76, 31);
+            this.dgProductos.MultiSelect = false;
+            this.dgProductos.Name = "dgProductos";
+            this.dgProductos.ReadOnly = true;
+            this.dgProductos.RowHeadersVisible = false;
+            this.dgProductos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgProductos.Size = new System.Drawing.Size(442, 150);
+            this.dgProductos.TabIndex = 15;
+            this.dgProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellClick);
+            // 
+            // idProducto
+            // 
+            this.idProducto.HeaderText = "ID";
+            this.idProducto.Name = "idProducto";
+            this.idProducto.ReadOnly = true;
+            this.idProducto.Width = 25;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.HeaderText = "Nombre";
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            this.nombreProducto.Width = 75;
+            // 
+            // precioProducto
+            // 
+            this.precioProducto.HeaderText = "Precio";
+            this.precioProducto.Name = "precioProducto";
+            this.precioProducto.ReadOnly = true;
+            this.precioProducto.Width = 65;
+            // 
+            // cantidadProducto
+            // 
+            this.cantidadProducto.HeaderText = "Cant";
+            this.cantidadProducto.Name = "cantidadProducto";
+            this.cantidadProducto.ReadOnly = true;
+            this.cantidadProducto.Width = 35;
+            // 
+            // vencimientoProducto
+            // 
+            this.vencimientoProducto.HeaderText = "Vence";
+            this.vencimientoProducto.Name = "vencimientoProducto";
+            this.vencimientoProducto.ReadOnly = true;
+            this.vencimientoProducto.Width = 65;
+            // 
+            // categoriaProducto
+            // 
+            this.categoriaProducto.HeaderText = "Categoria";
+            this.categoriaProducto.Name = "categoriaProducto";
+            this.categoriaProducto.ReadOnly = true;
+            this.categoriaProducto.Width = 75;
+            // 
+            // editarProducto
+            // 
+            this.editarProducto.HeaderText = "";
+            this.editarProducto.Name = "editarProducto";
+            this.editarProducto.ReadOnly = true;
+            this.editarProducto.Text = "Editar";
+            this.editarProducto.UseColumnTextForButtonValue = true;
+            this.editarProducto.Width = 50;
+            // 
+            // eliminarProducto
+            // 
+            this.eliminarProducto.HeaderText = "";
+            this.eliminarProducto.Name = "eliminarProducto";
+            this.eliminarProducto.ReadOnly = true;
+            this.eliminarProducto.Text = "Eliminar";
+            this.eliminarProducto.UseColumnTextForButtonValue = true;
+            this.eliminarProducto.Width = 50;
             // 
             // idCategoria
             // 
@@ -212,17 +310,19 @@
             this.nombreCategoria.HeaderText = "Nombre";
             this.nombreCategoria.Name = "nombreCategoria";
             this.nombreCategoria.ReadOnly = true;
+            this.nombreCategoria.Width = 120;
             // 
             // UC_AgregarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnGestionarCategoria);
+            this.Controls.Add(this.dgProductos);
             this.Controls.Add(this.dgCategoria);
             this.Controls.Add(this.dtVencimiento);
             this.Controls.Add(this.lblFechaVencimiento);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAgregarProducto);
-            this.Controls.Add(this.btnGestionarCategoria);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.numPrecio);
@@ -236,6 +336,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,7 +357,16 @@
         private System.Windows.Forms.Label lblFechaVencimiento;
         private System.Windows.Forms.DateTimePicker dtVencimiento;
         private System.Windows.Forms.DataGridView dgCategoria;
+        private System.Windows.Forms.DataGridView dgProductos;
         private System.Windows.Forms.DataGridViewTextBoxColumn idCategoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreCategoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precioProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vencimientoProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoriaProducto;
+        private System.Windows.Forms.DataGridViewButtonColumn editarProducto;
+        private System.Windows.Forms.DataGridViewButtonColumn eliminarProducto;
     }
 }
