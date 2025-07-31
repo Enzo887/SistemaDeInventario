@@ -15,6 +15,7 @@ namespace SistemaDeInventarios.Venta
     {
         private BE.Venta ventaActual = new BE.Venta();
         private BLL.GestorVenta gestorVenta = new BLL.GestorVenta();
+        private List<BE.Producto> productos = new List<BE.Producto>();
 
         public UC_RegistratVenta()
         {
@@ -24,7 +25,7 @@ namespace SistemaDeInventarios.Venta
 
         public void MostrarProductosDataGrid()
         {
-            List<BE.Producto> productos = new List<BE.Producto>();
+            
             BLL.GestorProducto productoBLL = new BLL.GestorProducto();
 
             productos = productoBLL.ObtenerProductos();
@@ -101,6 +102,55 @@ namespace SistemaDeInventarios.Venta
                 ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
                 tboxTotal.Text = ventaActual.PrecioTotal.ToString();
             }
+        }
+
+        private void tboxBucarProducto_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = tboxBucarProducto.Text.Trim().ToLower();
+
+            // Mostrar u ocultar botón según el texto real
+            btnLimpiarProducto.Visible = !string.IsNullOrWhiteSpace(tboxBucarProducto.Text) &&
+                                          tboxBucarProducto.Text != "Buscar por N° o Nombre";
+
+            var filtrados = productos
+                .Where(p => p.NombreProducto.ToLower().Contains(filtro)
+                            || p.IDProducto.ToString().Contains(filtro))
+                .ToList();
+
+            dgProductos.DataSource = null;
+            dgProductos.DataSource = filtrados;
+
+
+        }
+
+        private void tboxBucarProducto_Enter(object sender, EventArgs e)
+        {
+            if (tboxBucarProducto.Text == "Buscar por N° o Nombre")
+            {
+                tboxBucarProducto.Text = "";
+                tboxBucarProducto.ForeColor = Color.Black;
+                btnLimpiarProducto.Visible = true;
+            }
+        }
+
+        private void tboxBucarProducto_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tboxBucarProducto.Text))
+            {
+                tboxBucarProducto.Text = "Buscar por N° o Nombre";
+                tboxBucarProducto.ForeColor = Color.Gray;
+                btnLimpiarProducto.Visible = false;
+                MostrarProductosDataGrid();
+            }
+        }
+
+        private void btnLimpiarProducto_Click(object sender, EventArgs e)
+        {
+            tboxBucarProducto.Text = "Buscar por N° o Nombre";
+            tboxBucarProducto.ForeColor = Color.Gray;
+            MostrarProductosDataGrid();
+            btnLimpiarProducto.Visible = false;
+            dgProductos.Focus();
         }
     }
 }
