@@ -78,7 +78,30 @@ namespace SistemaDeInventarios.Stock
             unProducto.Cantidad = cantidadProducto;
             unProducto.Categoria = dgCategoria.CurrentRow?.DataBoundItem as Categoria;
 
-            
+            if (unProductoBLL.ExisteProducto(unProducto))
+            {
+                MessageBox.Show("Este nombre de Producto ya existe", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (btnAgregarProducto.Text == "Editar Producto")
+            {
+                try
+                {
+                    unProductoBLL.EditarProducto(unProducto);
+                    TablaProductosActualizada?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show("Se editó el producto correctamente!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Hubo un error al editar el producto:\n" + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+                LimparInputsProductos();
+                btnAgregarProducto.Text = "Agregar Producto";
+                return;
+                
+            }
 
             try
             {
@@ -185,21 +208,23 @@ namespace SistemaDeInventarios.Stock
         private void dgProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex >= 0 && e.ColumnIndex >= 0){
-                BE.Producto productoSeleccionado = new Producto();
+                //BE.Producto productoSeleccionado = new Producto();
 
-                productoSeleccionado.IDProducto = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idProducto"].Value);
+                unProducto.IDProducto = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idProducto"].Value);
 
                 if (dgProductos.Columns[e.ColumnIndex].Name == "editarProducto")
                 {
-                    productoSeleccionado.NombreProducto = dgProductos.Rows[e.RowIndex].Cells["nombreProducto"].Value.ToString();
-                    productoSeleccionado.Cantidad = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["cantidadProducto"].Value);
-                    productoSeleccionado.FechaVencimiento = (DateTime)dgProductos.Rows[e.RowIndex].Cells["vencimientoProducto"].Value;
-                    productoSeleccionado.Precio = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["precioProducto"].Value);
+                    unProducto.NombreProducto = dgProductos.Rows[e.RowIndex].Cells["nombreProducto"].Value.ToString();
+                    unProducto.Cantidad = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["cantidadProducto"].Value);
+                    unProducto.FechaVencimiento = (DateTime)dgProductos.Rows[e.RowIndex].Cells["vencimientoProducto"].Value;
+                    unProducto.Precio = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["precioProducto"].Value);
 
-                    tboxNombreProducto.Text = productoSeleccionado.NombreProducto;
-                    numCantidad.Value = productoSeleccionado.Cantidad;
-                    numPrecio.Value = productoSeleccionado.Precio;
-                    dtVencimiento.Value = productoSeleccionado.FechaVencimiento;
+                    btnAgregarProducto.Text = "Editar Producto";
+
+                    tboxNombreProducto.Text = unProducto.NombreProducto;
+                    numCantidad.Value = unProducto.Cantidad;
+                    numPrecio.Value = unProducto.Precio;
+                    dtVencimiento.Value = unProducto.FechaVencimiento;
 
                     string nombreCategoriaProducto = dgProductos.Rows[e.RowIndex].Cells["categoriaProducto"].Value.ToString();
 
@@ -220,7 +245,7 @@ namespace SistemaDeInventarios.Stock
 
                     if (resultadoMsj == DialogResult.OK)
                     {
-                        unProductoBLL.EliminarProducto(productoSeleccionado);
+                        unProductoBLL.EliminarProducto(unProducto);
                         MostrarProductosDataGrid();
                         TablaProductosActualizada?.Invoke(this, EventArgs.Empty);
                         MessageBox.Show("Producto eliminado exitosamente!");
