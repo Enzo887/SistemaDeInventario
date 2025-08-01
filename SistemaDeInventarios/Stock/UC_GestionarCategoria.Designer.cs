@@ -30,14 +30,14 @@
         {
             this.lblCategoria = new System.Windows.Forms.Label();
             this.dgCategoria = new System.Windows.Forms.DataGridView();
-            this.btnAgregarCategoria = new System.Windows.Forms.Button();
-            this.tboxNombreCategoria = new System.Windows.Forms.TextBox();
-            this.btnVolver = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnEliminarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnAgregarCategoria = new System.Windows.Forms.Button();
+            this.tboxNombreCategoria = new System.Windows.Forms.TextBox();
+            this.btnVolver = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,11 +66,44 @@
             this.dgCategoria.Name = "dgCategoria";
             this.dgCategoria.ReadOnly = true;
             this.dgCategoria.RowHeadersVisible = false;
+            this.dgCategoria.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgCategoria.Size = new System.Drawing.Size(229, 248);
             this.dgCategoria.TabIndex = 16;
             this.dgCategoria.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCategoria_CellClick);
             this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
+            // 
+            // idCategoria
+            // 
+            this.idCategoria.HeaderText = "Nº";
+            this.idCategoria.Name = "idCategoria";
+            this.idCategoria.ReadOnly = true;
+            this.idCategoria.Width = 25;
+            // 
+            // NombreCategoria
+            // 
+            this.NombreCategoria.HeaderText = "Nombre";
+            this.NombreCategoria.Name = "NombreCategoria";
+            this.NombreCategoria.ReadOnly = true;
+            // 
+            // btnEditarCategoria
+            // 
+            this.btnEditarCategoria.HeaderText = "";
+            this.btnEditarCategoria.Name = "btnEditarCategoria";
+            this.btnEditarCategoria.ReadOnly = true;
+            this.btnEditarCategoria.Text = "Editar";
+            this.btnEditarCategoria.UseColumnTextForButtonValue = true;
+            this.btnEditarCategoria.Width = 50;
+            // 
+            // btnEliminarCategoria
+            // 
+            this.btnEliminarCategoria.HeaderText = "";
+            this.btnEliminarCategoria.Name = "btnEliminarCategoria";
+            this.btnEliminarCategoria.ReadOnly = true;
+            this.btnEliminarCategoria.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnEliminarCategoria.Text = "Eliminar";
+            this.btnEliminarCategoria.UseColumnTextForButtonValue = true;
+            this.btnEliminarCategoria.Width = 50;
             // 
             // btnAgregarCategoria
             // 
@@ -108,38 +141,6 @@
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // idCategoria
-            // 
-            this.idCategoria.HeaderText = "Nº";
-            this.idCategoria.Name = "idCategoria";
-            this.idCategoria.ReadOnly = true;
-            this.idCategoria.Width = 25;
-            // 
-            // NombreCategoria
-            // 
-            this.NombreCategoria.HeaderText = "Nombre";
-            this.NombreCategoria.Name = "NombreCategoria";
-            this.NombreCategoria.ReadOnly = true;
-            // 
-            // btnEditarCategoria
-            // 
-            this.btnEditarCategoria.HeaderText = "";
-            this.btnEditarCategoria.Name = "btnEditarCategoria";
-            this.btnEditarCategoria.ReadOnly = true;
-            this.btnEditarCategoria.Text = "Editar";
-            this.btnEditarCategoria.UseColumnTextForButtonValue = true;
-            this.btnEditarCategoria.Width = 50;
-            // 
-            // btnEliminarCategoria
-            // 
-            this.btnEliminarCategoria.HeaderText = "";
-            this.btnEliminarCategoria.Name = "btnEliminarCategoria";
-            this.btnEliminarCategoria.ReadOnly = true;
-            this.btnEliminarCategoria.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnEliminarCategoria.Text = "Eliminar";
-            this.btnEliminarCategoria.UseColumnTextForButtonValue = true;
-            this.btnEliminarCategoria.Width = 50;
             // 
             // UC_GestionarCategoria
             // 

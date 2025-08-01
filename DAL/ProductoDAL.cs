@@ -45,6 +45,24 @@ namespace DAL
             }
         }
 
+        public void EliminarProducto(BE.Producto unProducto)
+        {
+            try
+            {
+                SqlParameter[] parametros = new SqlParameter[]
+                            {
+                new SqlParameter("@IdProducto",unProducto.IDProducto)
+                            };
+                conexion.EscribirPorStoreProcedure("SP_EliminarProducto", parametros);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Hubo un error en el DELETE del producto en la BD", e);
+            }
+
+        }
+
 
 
 
