@@ -64,6 +64,49 @@ namespace DAL
         }
 
 
+        public bool ExisteProducto(BE.Producto producto)
+        {
+            try
+            {
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@NombreProducto", producto.NombreProducto)
+                };
+
+                DataTable resultado = conexion.LeerPorStoreProcedure("SP_BuscarProductoDuplicado", parametros);
+
+                return resultado.Rows.Count > 0;
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Hubo un error en el SELECT de existencia duplicada del producto en la BD", e);
+            }
+        }
+
+
+        public void EditarProducto(BE.Producto productoEditado)
+        {
+            try
+            {
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@idProducto", productoEditado.IDProducto),
+                    new SqlParameter("@NombreProducto", productoEditado.NombreProducto),
+                    new SqlParameter("@Precio", productoEditado.Precio),
+                    new SqlParameter("@Cantidad", productoEditado.Cantidad),
+                    new SqlParameter("@idCategoria", productoEditado.Categoria.IDCategoria),
+                    new SqlParameter("@FechaVencimiento", productoEditado.FechaVencimiento)
+                };
+                conexion.EscribirPorStoreProcedure("SP_ActualizarProducto", parametros);
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Hubo un error en el UPDATE del producto en la BD", e);
+            }
+        }
+
+
 
 
     }

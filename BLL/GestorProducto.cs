@@ -46,5 +46,14 @@ namespace BLL
             productoDAL.EliminarProducto(unProducto);
         }
 
+        public bool ExisteProducto(BE.Producto producto)
+        {
+            return productoDAL.ExisteProducto(producto);
+        }
+
+        public void EditarProducto(BE.Producto productoEditado)
+        {
+            productoDAL.EditarProducto(productoEditado);
+        }
     }
 }

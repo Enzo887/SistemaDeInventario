@@ -74,19 +74,12 @@ namespace SistemaDeInventarios.Stock
                 tboxNombreCategoria.Clear();
                 return;
             }
+            else
+            {
             
-            try
-            {
-                categoriaBLL.AgregarCategoria(unaCategoria);
-                MostrarCategoriasDataGrid();
-                CategoriaActualizada?.Invoke(this, EventArgs.Empty);
-                MessageBox.Show("Se agregó la categoria exitosamente!");
-                tboxNombreCategoria.Clear();
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Hubo un error al intentar agregar la nueva categoria", ex);
-            }
+
+                
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
