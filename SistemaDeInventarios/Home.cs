@@ -39,11 +39,8 @@ namespace SistemaDeInventarios
             panelPrincipal.Controls.Add(control);      // Agrega el nuevo
         }
 
-        public void MostrarGestionarCategoria(EventHandler eventoCategoriaActualizada)
+        public void MostrarGestionarCategoria()
         {
-            GestionarCategoria.CategoriaActualizada -= eventoCategoriaActualizada;
-            GestionarCategoria.CategoriaActualizada += eventoCategoriaActualizada;
-
             CargarUserControl(GestionarCategoria);
         }
 
@@ -54,6 +51,12 @@ namespace SistemaDeInventarios
 
             AgregarProducto.TablaProductosActualizada -= MostrarProductosEnStock;
             AgregarProducto.TablaProductosActualizada += MostrarProductosEnStock;
+
+            GestionarCategoria.CategoriaActualizada -= MostrarProductosEnStock;
+            GestionarCategoria.CategoriaActualizada += MostrarProductosEnStock;
+
+            GestionarCategoria.CategoriaActualizada -= MostrarCategoriasDataGrid;
+            GestionarCategoria.CategoriaActualizada += MostrarCategoriasDataGrid;
 
             CargarUserControl(AgregarProducto);
         }
@@ -71,6 +74,11 @@ namespace SistemaDeInventarios
         private void MostrarProductosEnStock(object sender, EventArgs e)
         {
             AgregarProducto.MostrarProductosDataGrid();
+        }
+
+        private void MostrarCategoriasDataGrid(object sender, EventArgs e)
+        {
+            AgregarProducto.MostrarCategoriasDataGrid();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)

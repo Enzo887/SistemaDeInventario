@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BE;
 
 namespace DAL
 {
@@ -84,11 +85,42 @@ namespace DAL
 
         public void EliminarCategoria(BE.Categoria cateriaAEliminar)
         {
-            SqlParameter[] parametros = new SqlParameter[]
+            try
             {
+                SqlParameter[] parametros = new SqlParameter[]
+                            {
                 new SqlParameter("@IdCategoria",cateriaAEliminar.IDCategoria)
-            };
-            conexion.EscribirPorStoreProcedure("SP_EliminarCategoria", parametros);
+                            };
+                conexion.EscribirPorStoreProcedure("SP_EliminarCategoria", parametros);
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Hubo un error en el DELETE de la categoria en la BD",e);
+            }
+            
+        }
+
+        public bool CategoriaTieneProducto(int idCategoria)
+        {
+            try
+            {
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@idCategoria", idCategoria)
+                };
+
+                DataTable resultado = conexion.LeerPorStoreProcedure("SP_CategoriaTieneProducto", parametros);
+
+                //es 1 si tiene coincidencia
+                return resultado.Rows.Count > 0;
+
+            }
+            catch (Exception e)
+            {
+
+                throw new Exception("Hubo un error en la busqueda de la categoria en productos en la BD",e);
+            }
         }
     }
 }

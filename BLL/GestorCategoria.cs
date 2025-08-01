@@ -50,5 +50,10 @@ namespace BLL
         {
             categoriaDAL.EliminarCategoria (categoriaAEliminar);
         }
+
+        public bool CategoriaTieneProductos(int idCategoria)
+        {
+            return categoriaDAL.CategoriaTieneProducto(idCategoria);
+        }
     }
 }

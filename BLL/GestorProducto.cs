@@ -41,5 +41,10 @@ namespace BLL
             return productos;
         }
 
+        public void EliminarProducto(BE.Producto unProducto)
+        {
+            productoDAL.EliminarProducto(unProducto);
+        }
+
     }
 }

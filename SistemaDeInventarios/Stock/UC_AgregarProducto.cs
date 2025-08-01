@@ -17,6 +17,7 @@ namespace SistemaDeInventarios.Stock
     {
         public event EventHandler TablaProductosActualizada;
         private BE.Producto unProducto = new BE.Producto();
+        private BLL.GestorProducto unProductoBLL = new BLL.GestorProducto();
         public UC_AgregarProducto()
         {
             InitializeComponent();
@@ -77,7 +78,7 @@ namespace SistemaDeInventarios.Stock
             unProducto.Cantidad = cantidadProducto;
             unProducto.Categoria = dgCategoria.CurrentRow?.DataBoundItem as Categoria;
 
-            BLL.GestorProducto unProductoBLL = new BLL.GestorProducto();
+            
 
             try
             {
@@ -118,7 +119,7 @@ namespace SistemaDeInventarios.Stock
         {
             var home = FindForm() as Home;
             if (home != null) {
-                home.MostrarGestionarCategoria(Gestionar_CategoriaActualizada);
+                home.MostrarGestionarCategoria();
             }
             else
             {
@@ -127,7 +128,7 @@ namespace SistemaDeInventarios.Stock
             
         }
 
-        private void MostrarCategoriasDataGrid()
+        public void MostrarCategoriasDataGrid()
         {
             List<BE.Categoria> categorias = new List<BE.Categoria>();
             BLL.GestorCategoria categoriaBLL = new BLL.GestorCategoria();
@@ -162,19 +163,7 @@ namespace SistemaDeInventarios.Stock
             dgCategoria.ClearSelection();
             dgCategoria.CurrentCell = null;
         }
-
-        //tengo que borrarlo
-        private void UC_AgregarProducto_Load(object sender, EventArgs e)
-        {
-            //MostrarCategoriasDataGrid();
-        }
         
-        //metodo que se suscribe
-        private void Gestionar_CategoriaActualizada(object sender, EventArgs e)
-        {
-            MostrarCategoriasDataGrid();
-        }
-
         private void numPrecio_ValueChanged(object sender, EventArgs e)
         {
             if (numPrecio.Value == numPrecio.Maximum) 
@@ -196,13 +185,47 @@ namespace SistemaDeInventarios.Stock
         private void dgProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex >= 0 && e.ColumnIndex >= 0){
+                BE.Producto productoSeleccionado = new Producto();
+
+                productoSeleccionado.IDProducto = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idProducto"].Value);
+
                 if (dgProductos.Columns[e.ColumnIndex].Name == "editarProducto")
                 {
-                    //tboxNombreProducto.Text = 
+                    productoSeleccionado.NombreProducto = dgProductos.Rows[e.RowIndex].Cells["nombreProducto"].Value.ToString();
+                    productoSeleccionado.Cantidad = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["cantidadProducto"].Value);
+                    productoSeleccionado.FechaVencimiento = (DateTime)dgProductos.Rows[e.RowIndex].Cells["vencimientoProducto"].Value;
+                    productoSeleccionado.Precio = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["precioProducto"].Value);
+
+                    tboxNombreProducto.Text = productoSeleccionado.NombreProducto;
+                    numCantidad.Value = productoSeleccionado.Cantidad;
+                    numPrecio.Value = productoSeleccionado.Precio;
+                    dtVencimiento.Value = productoSeleccionado.FechaVencimiento;
+
+                    string nombreCategoriaProducto = dgProductos.Rows[e.RowIndex].Cells["categoriaProducto"].Value.ToString();
+
+                    foreach (DataGridViewRow fila in dgCategoria.Rows)
+                    {
+                        if (fila.Cells["NombreCategoria"].Value != null &&
+                            fila.Cells["NombreCategoria"].Value.ToString() == nombreCategoriaProducto)
+                        {
+                            fila.Selected = true;
+                            dgCategoria.CurrentCell = fila.Cells["NombreCategoria"];
+                            break;
+                        }
+                    }
                 }
                 if(dgProductos.Columns[e.ColumnIndex].Name == "eliminarProducto")
                 {
-                    MessageBox.Show("eliminadi");
+                    DialogResult resultadoMsj = MessageBox.Show("¿Seguro que desea eliminar el producto?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+
+                    if (resultadoMsj == DialogResult.OK)
+                    {
+                        unProductoBLL.EliminarProducto(productoSeleccionado);
+                        MostrarProductosDataGrid();
+                        TablaProductosActualizada?.Invoke(this, EventArgs.Empty);
+                        MessageBox.Show("Producto eliminado exitosamente!");
+                    }
+
                 }
                 
             }

@@ -41,6 +41,8 @@
             this.lblFechaVencimiento = new System.Windows.Forms.Label();
             this.dtVencimiento = new System.Windows.Forms.DateTimePicker();
             this.dgCategoria = new System.Windows.Forms.DataGridView();
+            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgProductos = new System.Windows.Forms.DataGridView();
             this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,8 +52,6 @@
             this.categoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.eliminarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
@@ -60,7 +60,7 @@
             // 
             // tboxNombreProducto
             // 
-            this.tboxNombreProducto.Location = new System.Drawing.Point(110, 209);
+            this.tboxNombreProducto.Location = new System.Drawing.Point(111, 222);
             this.tboxNombreProducto.Name = "tboxNombreProducto";
             this.tboxNombreProducto.Size = new System.Drawing.Size(122, 20);
             this.tboxNombreProducto.TabIndex = 0;
@@ -68,7 +68,7 @@
             // lblNombreProducto
             // 
             this.lblNombreProducto.AutoSize = true;
-            this.lblNombreProducto.Location = new System.Drawing.Point(107, 193);
+            this.lblNombreProducto.Location = new System.Drawing.Point(108, 206);
             this.lblNombreProducto.Name = "lblNombreProducto";
             this.lblNombreProducto.Size = new System.Drawing.Size(90, 13);
             this.lblNombreProducto.TabIndex = 1;
@@ -77,7 +77,7 @@
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(253, 193);
+            this.lblCantidad.Location = new System.Drawing.Point(254, 206);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(49, 13);
             this.lblCantidad.TabIndex = 2;
@@ -85,7 +85,7 @@
             // 
             // numCantidad
             // 
-            this.numCantidad.Location = new System.Drawing.Point(256, 209);
+            this.numCantidad.Location = new System.Drawing.Point(257, 222);
             this.numCantidad.Minimum = new decimal(new int[] {
             1,
             0,
@@ -104,7 +104,7 @@
             // numPrecio
             // 
             this.numPrecio.DecimalPlaces = 2;
-            this.numPrecio.Location = new System.Drawing.Point(256, 272);
+            this.numPrecio.Location = new System.Drawing.Point(257, 285);
             this.numPrecio.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -128,7 +128,7 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(253, 256);
+            this.lblPrecio.Location = new System.Drawing.Point(254, 269);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(37, 13);
             this.lblPrecio.TabIndex = 5;
@@ -137,7 +137,7 @@
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(368, 192);
+            this.lblCategoria.Location = new System.Drawing.Point(369, 205);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 7;
@@ -145,7 +145,7 @@
             // 
             // btnGestionarCategoria
             // 
-            this.btnGestionarCategoria.Location = new System.Drawing.Point(429, 210);
+            this.btnGestionarCategoria.Location = new System.Drawing.Point(430, 223);
             this.btnGestionarCategoria.Name = "btnGestionarCategoria";
             this.btnGestionarCategoria.Size = new System.Drawing.Size(65, 20);
             this.btnGestionarCategoria.TabIndex = 8;
@@ -155,7 +155,7 @@
             // 
             // btnAgregarProducto
             // 
-            this.btnAgregarProducto.Location = new System.Drawing.Point(110, 327);
+            this.btnAgregarProducto.Location = new System.Drawing.Point(111, 340);
             this.btnAgregarProducto.Name = "btnAgregarProducto";
             this.btnAgregarProducto.Size = new System.Drawing.Size(122, 23);
             this.btnAgregarProducto.TabIndex = 9;
@@ -165,7 +165,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(252, 327);
+            this.btnCancelar.Location = new System.Drawing.Point(253, 340);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(91, 23);
             this.btnCancelar.TabIndex = 10;
@@ -176,7 +176,7 @@
             // lblFechaVencimiento
             // 
             this.lblFechaVencimiento.AutoSize = true;
-            this.lblFechaVencimiento.Location = new System.Drawing.Point(107, 256);
+            this.lblFechaVencimiento.Location = new System.Drawing.Point(108, 269);
             this.lblFechaVencimiento.Name = "lblFechaVencimiento";
             this.lblFechaVencimiento.Size = new System.Drawing.Size(98, 13);
             this.lblFechaVencimiento.TabIndex = 12;
@@ -185,7 +185,7 @@
             // dtVencimiento
             // 
             this.dtVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtVencimiento.Location = new System.Drawing.Point(110, 272);
+            this.dtVencimiento.Location = new System.Drawing.Point(111, 285);
             this.dtVencimiento.Name = "dtVencimiento";
             this.dtVencimiento.Size = new System.Drawing.Size(122, 20);
             this.dtVencimiento.TabIndex = 13;
@@ -200,7 +200,7 @@
             this.dgCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idCategoria,
             this.nombreCategoria});
-            this.dgCategoria.Location = new System.Drawing.Point(371, 209);
+            this.dgCategoria.Location = new System.Drawing.Point(372, 222);
             this.dgCategoria.MultiSelect = false;
             this.dgCategoria.Name = "dgCategoria";
             this.dgCategoria.ReadOnly = true;
@@ -210,6 +210,20 @@
             this.dgCategoria.Size = new System.Drawing.Size(124, 118);
             this.dgCategoria.TabIndex = 14;
             this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
+            // 
+            // idCategoria
+            // 
+            this.idCategoria.HeaderText = "idCategoria";
+            this.idCategoria.Name = "idCategoria";
+            this.idCategoria.ReadOnly = true;
+            this.idCategoria.Visible = false;
+            // 
+            // nombreCategoria
+            // 
+            this.nombreCategoria.HeaderText = "Nombre";
+            this.nombreCategoria.Name = "nombreCategoria";
+            this.nombreCategoria.ReadOnly = true;
+            this.nombreCategoria.Width = 120;
             // 
             // dgProductos
             // 
@@ -227,7 +241,7 @@
             this.categoriaProducto,
             this.editarProducto,
             this.eliminarProducto});
-            this.dgProductos.Location = new System.Drawing.Point(76, 31);
+            this.dgProductos.Location = new System.Drawing.Point(72, 39);
             this.dgProductos.MultiSelect = false;
             this.dgProductos.Name = "dgProductos";
             this.dgProductos.ReadOnly = true;
@@ -298,20 +312,6 @@
             this.eliminarProducto.UseColumnTextForButtonValue = true;
             this.eliminarProducto.Width = 50;
             // 
-            // idCategoria
-            // 
-            this.idCategoria.HeaderText = "idCategoria";
-            this.idCategoria.Name = "idCategoria";
-            this.idCategoria.ReadOnly = true;
-            this.idCategoria.Visible = false;
-            // 
-            // nombreCategoria
-            // 
-            this.nombreCategoria.HeaderText = "Nombre";
-            this.nombreCategoria.Name = "nombreCategoria";
-            this.nombreCategoria.ReadOnly = true;
-            this.nombreCategoria.Width = 120;
-            // 
             // UC_AgregarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -332,7 +332,6 @@
             this.Controls.Add(this.tboxNombreProducto);
             this.Name = "UC_AgregarProducto";
             this.Size = new System.Drawing.Size(645, 450);
-            this.Load += new System.EventHandler(this.UC_AgregarProducto_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).EndInit();

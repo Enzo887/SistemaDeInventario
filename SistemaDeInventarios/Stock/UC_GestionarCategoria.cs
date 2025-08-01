@@ -122,8 +122,15 @@ namespace SistemaDeInventarios.Stock
 
                     if (resultadoMsj == DialogResult.OK)
                     {
-                        //unaCategoria.IDCategoria = Convert.ToInt32(dgCategoria.Rows[e.RowIndex].Cells["idCategoria"].Value);
                         BLL.GestorCategoria categoriaBLL = new BLL.GestorCategoria();
+
+                        bool tieneProductos = categoriaBLL.CategoriaTieneProductos(unaCategoria.IDCategoria);
+                        if (tieneProductos)
+                        {
+                            MessageBox.Show("No se puede eliminar la categoría porque está asignada a uno o más productos. Elimínelos o reasígnelos primero.",
+                                            "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         categoriaBLL.EliminarCategoria(unaCategoria);
                         MostrarCategoriasDataGrid();
                         CategoriaActualizada?.Invoke(this,EventArgs.Empty);
