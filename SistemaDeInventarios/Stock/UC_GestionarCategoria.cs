@@ -76,7 +76,23 @@ namespace SistemaDeInventarios.Stock
             }
             else
             {
-            
+                try
+                {
+                    categoriaBLL.AgregarCategoria(unaCategoria);
+                    MostrarCategoriasDataGrid();
+                    CategoriaActualizada?.Invoke(this, EventArgs.Empty);
+                    MessageBox.Show("Se agregó la categoria correctamente!");
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Hubo un error en agregar la categoria", ex);
+                }
+                finally
+                {
+                    btnAgregarCategoria.Text = "Agregar";
+                    tboxNombreCategoria.Clear();
+                }
+                
             }
 
                 
