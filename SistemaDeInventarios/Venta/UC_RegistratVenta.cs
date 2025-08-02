@@ -8,15 +8,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BE;
+using BLL;
 
 namespace SistemaDeInventarios.Venta
 {
     public partial class UC_RegistratVenta : UserControl
     {
         public event EventHandler TablaVentasActualizada;
+
         private BE.Venta ventaActual = new BE.Venta();
         private BLL.GestorVenta gestorVenta = new BLL.GestorVenta();
         private List<BE.Producto> productos = new List<BE.Producto>();
+        private BLL.GestorProducto productoBLL = new BLL.GestorProducto();
 
         public UC_RegistratVenta()
         {
@@ -30,10 +33,19 @@ namespace SistemaDeInventarios.Venta
             }
         }
 
+        public void ActualizarDetalles()
+        {
+            List<BE.Producto> productosBD = new List<BE.Producto>();
+            //todos los productos
+            productosBD = productoBLL.ObtenerProductos(true);
+
+            gestorVenta.ActualizarDetalles(ventaActual, productosBD);
+        }
+
         public void MostrarProductosDataGrid()
         {
             
-            BLL.GestorProducto productoBLL = new BLL.GestorProducto();
+            
 
             //false -> No muestra productos DESHABILIDATOS
             productos = productoBLL.ObtenerProductos(false);
@@ -42,11 +54,18 @@ namespace SistemaDeInventarios.Venta
             dgProductos.Columns["idProducto"].DataPropertyName = "IDProducto";
             dgProductos.Columns["nombreProducto"].DataPropertyName = "NombreProducto";
             dgProductos.Columns["precio"].DataPropertyName = "Precio";
+            dgProductos.Columns["estadoProducto"].DataPropertyName = "Estado";
             dgProductos.DataSource = productos;
         }
 
         public void MostrarProductosAgregadosDataGrid()
         {
+            List<BE.Producto> productosBD = new List<BE.Producto>();
+            //todos los productos
+            productosBD = productoBLL.ObtenerProductos(true);
+
+            gestorVenta.ActualizarDetalles(ventaActual, productosBD);
+            //gestorVenta.SacarDetalle2(ventaActual);
             dgVenta.AutoGenerateColumns = false;
             dgVenta.Columns["idProductoVenta"].DataPropertyName = "IDDetalleVenta";
             dgVenta.Columns["nombreProductoAgregado"].DataPropertyName = "NombreProducto";
@@ -65,8 +84,18 @@ namespace SistemaDeInventarios.Venta
                 unProducto.IDProducto = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idProducto"].Value);
                 unProducto.NombreProducto = dgProductos.Rows[e.RowIndex].Cells["nombreProducto"].Value.ToString();
                 unProducto.Precio = Convert.ToDecimal(dgProductos.Rows[e.RowIndex].Cells["precio"].Value);
+                
+                string estadoProducto = dgProductos.Rows[e.RowIndex].Cells["estadoProducto"].Value.ToString();
+                if(estadoProducto == "Habilitado")
+                {
+                    unProducto.Activo = true;
+                }
+                else
+                {
+                    unProducto.Activo = false;
+                }
 
-                gestorVenta.AgregarDetalle(ventaActual, unProducto, 1);               
+                    gestorVenta.AgregarDetalle(ventaActual, unProducto, 1);               
                 MostrarProductosAgregadosDataGrid();
                 
                 ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
@@ -100,9 +129,7 @@ namespace SistemaDeInventarios.Venta
             DialogResult mensajeResultado = MessageBox.Show("Seguro que desea cancelar la venta?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (mensajeResultado == DialogResult.OK) 
             {
-                ventaActual = new BE.Venta();
-                dgVenta.DataSource = null;
-                tboxTotal.Clear();
+                LimpiarVenta();
             }   
         }
 
@@ -169,6 +196,13 @@ namespace SistemaDeInventarios.Venta
             MostrarProductosDataGrid();
             btnLimpiarProducto.Visible = false;
             dgProductos.Focus();
+        }
+
+        public void LimpiarVenta()
+        {
+            ventaActual = new BE.Venta();
+            dgVenta.DataSource = null;
+            tboxTotal.Clear();
         }
     }
 }

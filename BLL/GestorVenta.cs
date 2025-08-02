@@ -16,11 +16,11 @@ namespace BLL
         public void AgregarDetalle(BE.Venta venta, BE.Producto producto, int cantidad)
         {
             //Busca la primer coincidencia con el idSeleccionado
-            var productoExistente = venta.DetallesVenta.FirstOrDefault(detalle=> detalle.Producto.IDProducto == producto.IDProducto);
+            var detalleExistente = venta.DetallesVenta.FirstOrDefault(detalle=> detalle.Producto.IDProducto == producto.IDProducto);
 
-            if (productoExistente != null)
+            if (detalleExistente != null)
             {
-                productoExistente.CantidadProducto += 1;
+                detalleExistente.CantidadProducto += 1;
             }
             else
             {
@@ -50,6 +50,32 @@ namespace BLL
                 }     
             }
         }
+
+        public void SacarDetalle2(BE.Venta venta)
+        {
+            var detalleExistente = venta.DetallesVenta.FirstOrDefault(detalle => detalle.Producto.Estado == "Deshabilitado");
+
+            if (detalleExistente != null)
+            {
+                    venta.DetallesVenta.Remove(detalleExistente);   
+            }
+        }
+
+        public void ActualizarDetalles(BE.Venta unaVenta, List<BE.Producto> productosBD)
+        {
+            foreach (var producto in productosBD)
+            {
+                var detalleCoincidencia = unaVenta.DetallesVenta.FirstOrDefault(detalle => detalle.Producto.IDProducto == producto.IDProducto);
+                
+                if (detalleCoincidencia != null)
+                {
+                    detalleCoincidencia.Producto.NombreProducto = producto.NombreProducto;
+                    detalleCoincidencia.Producto.Activo = producto.Activo;
+                }
+            }
+            
+        }
+
 
 
         public decimal CalcularTotal(Venta venta)

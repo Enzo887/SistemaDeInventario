@@ -31,10 +31,6 @@
             this.tboxBucarProducto = new System.Windows.Forms.TextBox();
             this.lblBuscador = new System.Windows.Forms.Label();
             this.dgProductos = new System.Windows.Forms.DataGridView();
-            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.agregarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblVenta = new System.Windows.Forms.Label();
             this.dgVenta = new System.Windows.Forms.DataGridView();
             this.reducirCantidad = new System.Windows.Forms.DataGridViewButtonColumn();
@@ -48,6 +44,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLimpiarProducto = new System.Windows.Forms.Button();
             this.cBoxMetodoPago = new System.Windows.Forms.ComboBox();
+            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.agregarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.estadoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgVenta)).BeginInit();
             this.SuspendLayout();
@@ -84,7 +85,8 @@
             this.idProducto,
             this.nombreProducto,
             this.precio,
-            this.agregarProducto});
+            this.agregarProducto,
+            this.estadoProducto});
             this.dgProductos.Location = new System.Drawing.Point(61, 94);
             this.dgProductos.MultiSelect = false;
             this.dgProductos.Name = "dgProductos";
@@ -94,36 +96,6 @@
             this.dgProductos.Size = new System.Drawing.Size(228, 267);
             this.dgProductos.TabIndex = 2;
             this.dgProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellClick);
-            // 
-            // idProducto
-            // 
-            this.idProducto.HeaderText = "Nº";
-            this.idProducto.Name = "idProducto";
-            this.idProducto.ReadOnly = true;
-            this.idProducto.Width = 25;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.HeaderText = "Producto";
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            this.nombreProducto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // precio
-            // 
-            this.precio.HeaderText = "Precio";
-            this.precio.Name = "precio";
-            this.precio.ReadOnly = true;
-            this.precio.Width = 80;
-            // 
-            // agregarProducto
-            // 
-            this.agregarProducto.HeaderText = "+";
-            this.agregarProducto.Name = "agregarProducto";
-            this.agregarProducto.ReadOnly = true;
-            this.agregarProducto.Text = "+";
-            this.agregarProducto.UseColumnTextForButtonValue = true;
-            this.agregarProducto.Width = 20;
             // 
             // lblVenta
             // 
@@ -256,6 +228,43 @@
             this.cBoxMetodoPago.Size = new System.Drawing.Size(100, 21);
             this.cBoxMetodoPago.TabIndex = 12;
             // 
+            // idProducto
+            // 
+            this.idProducto.HeaderText = "Nº";
+            this.idProducto.Name = "idProducto";
+            this.idProducto.ReadOnly = true;
+            this.idProducto.Width = 25;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.HeaderText = "Producto";
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            this.nombreProducto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // precio
+            // 
+            this.precio.HeaderText = "Precio";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
+            this.precio.Width = 80;
+            // 
+            // agregarProducto
+            // 
+            this.agregarProducto.HeaderText = "+";
+            this.agregarProducto.Name = "agregarProducto";
+            this.agregarProducto.ReadOnly = true;
+            this.agregarProducto.Text = "+";
+            this.agregarProducto.UseColumnTextForButtonValue = true;
+            this.agregarProducto.Width = 20;
+            // 
+            // estadoProducto
+            // 
+            this.estadoProducto.HeaderText = "estadoProducto";
+            this.estadoProducto.Name = "estadoProducto";
+            this.estadoProducto.ReadOnly = true;
+            this.estadoProducto.Visible = false;
+            // 
             // UC_RegistratVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -291,10 +300,6 @@
         private System.Windows.Forms.Button btnRegistrarVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
-        private System.Windows.Forms.DataGridViewButtonColumn agregarProducto;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewButtonColumn reducirCantidad;
@@ -304,5 +309,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
         private System.Windows.Forms.Button btnLimpiarProducto;
         private System.Windows.Forms.ComboBox cBoxMetodoPago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
+        private System.Windows.Forms.DataGridViewButtonColumn agregarProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoProducto;
     }
 }
