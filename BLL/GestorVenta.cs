@@ -1,6 +1,8 @@
 ﻿using BE;
+using DAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +11,8 @@ namespace BLL
 {
     public class GestorVenta
     {
+
+        private DAL.VentaDAL ventaDAL = new DAL.VentaDAL();
         public void AgregarDetalle(BE.Venta venta, BE.Producto producto, int cantidad)
         {
             //Busca la primer coincidencia con el idSeleccionado
@@ -55,9 +59,27 @@ namespace BLL
 
         public void RegistrarVenta(BE.Venta venta)
         {
-            DAL.VentaDAL ventaDAL = new DAL.VentaDAL();
             venta.IDVenta = ventaDAL.RegistrarVenta(venta);
             ventaDAL.GuardarDetalleVenta(venta);
+        }
+
+        public List<BE.Venta> ObtenerVentas()
+        {
+            DataTable tabla = ventaDAL.ObtenerVentas();
+
+            List<BE.Venta> ventas = new List<BE.Venta>();
+
+            foreach (DataRow fila in tabla.Rows)
+            {
+               BE.Venta unaVenta = new BE.Venta();
+                unaVenta.IDVenta = Convert.ToInt32(fila["IdVenta"]);
+                unaVenta.FechaVenta = (DateTime)fila["FechaVenta"];
+                unaVenta.PrecioTotal = Convert.ToDecimal(fila["PrecioTotal"]);
+                unaVenta.MetodoPago = fila["MetodoPago"].ToString();
+
+                ventas.Add(unaVenta);
+            }
+            return ventas;
         }
     }
 }

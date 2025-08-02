@@ -78,16 +78,16 @@ namespace SistemaDeInventarios.Stock
             unProducto.Cantidad = cantidadProducto;
             unProducto.Categoria = dgCategoria.CurrentRow?.DataBoundItem as Categoria;
 
-            if (unProductoBLL.ExisteProducto(unProducto))
-            {
-                MessageBox.Show("Este nombre de Producto ya existe", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            
 
             if (btnAgregarProducto.Text == "Editar Producto")
             {
                 try
                 {
+                    if (checkRestaurar.Checked) 
+                    {
+                        unProducto.Activo = true;
+                    }
                     unProductoBLL.EditarProducto(unProducto);
                     TablaProductosActualizada?.Invoke(this, EventArgs.Empty);
                     MessageBox.Show("Se editó el producto correctamente!");
@@ -101,6 +101,12 @@ namespace SistemaDeInventarios.Stock
                 btnAgregarProducto.Text = "Agregar Producto";
                 return;
                 
+            }
+
+            if (unProductoBLL.ExisteProducto(unProducto))
+            {
+                MessageBox.Show("Este nombre de Producto ya existe", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
             try
@@ -136,6 +142,9 @@ namespace SistemaDeInventarios.Stock
             numCantidad.Value = numCantidad.Minimum;
             dtVencimiento.Value = DateTime.Today;
             dgCategoria.ClearSelection();
+            checkRestaurar.Checked = false;
+            checkRestaurar.Visible = false;
+
         }
 
         private void btnGestionarCategoria_Click(object sender, EventArgs e)
@@ -168,8 +177,9 @@ namespace SistemaDeInventarios.Stock
         {
             List<BE.Producto> productos = new List<BE.Producto>();
             BLL.GestorProducto productoBLL = new BLL.GestorProducto();
+            bool incluirEliminados = checkDeshabilitados.Checked;
 
-            productos = productoBLL.ObtenerProductos();
+            productos = productoBLL.ObtenerProductos(incluirEliminados);
 
             dgProductos.AutoGenerateColumns = false;
             dgProductos.Columns["idProducto"].DataPropertyName = "IDProducto";
@@ -178,6 +188,7 @@ namespace SistemaDeInventarios.Stock
             dgProductos.Columns["cantidadProducto"].DataPropertyName = "Cantidad";
             dgProductos.Columns["vencimientoProducto"].DataPropertyName = "FechaVencimiento";
             dgProductos.Columns["categoriaProducto"].DataPropertyName = "NombreCategoria";
+            dgProductos.Columns["estadoProducto"].DataPropertyName = "Estado";
             dgProductos.DataSource = productos;
         }
 
@@ -208,9 +219,19 @@ namespace SistemaDeInventarios.Stock
         private void dgProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.RowIndex >= 0 && e.ColumnIndex >= 0){
-                //BE.Producto productoSeleccionado = new Producto();
 
                 unProducto.IDProducto = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idProducto"].Value);
+
+                string estadoTexto = dgProductos.Rows[e.RowIndex].Cells["estadoProducto"].Value?.ToString();
+
+                if (estadoTexto == "Habilitado")
+                {
+                    unProducto.Activo = true;
+                }
+                else
+                {
+                    unProducto.Activo = false;
+                }
 
                 if (dgProductos.Columns[e.ColumnIndex].Name == "editarProducto")
                 {
@@ -238,9 +259,22 @@ namespace SistemaDeInventarios.Stock
                             break;
                         }
                     }
+
+                    if (!unProducto.Activo)
+                    {
+                        checkRestaurar.Visible = true;
+                    }
+                    
                 }
+
                 if(dgProductos.Columns[e.ColumnIndex].Name == "eliminarProducto")
                 {
+                    if (!unProducto.Activo)
+                    {
+                        MessageBox.Show("Este producto ya esta eliminada!", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     DialogResult resultadoMsj = MessageBox.Show("¿Seguro que desea eliminar el producto?", "Confirmacion", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
                     if (resultadoMsj == DialogResult.OK)
@@ -254,6 +288,23 @@ namespace SistemaDeInventarios.Stock
                 }
                 
             }
+        }
+
+        //Le doy formato a los Productos Deshabilitados
+        private void dgProductos_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            var fila = dgProductos.Rows[e.RowIndex];
+            var producto = fila.DataBoundItem as Producto;
+
+            if (producto != null && !producto.Activo)
+            {
+                fila.DefaultCellStyle.ForeColor = Color.Gray;
+            }
+        }
+
+        private void checkDeshabilitados_CheckedChanged(object sender, EventArgs e)
+        {
+            MostrarProductosDataGrid();
         }
     }
 }

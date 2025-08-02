@@ -47,6 +47,7 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btnLimpiarProducto = new System.Windows.Forms.Button();
+            this.cBoxMetodoPago = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgVenta)).BeginInit();
             this.SuspendLayout();
@@ -127,11 +128,11 @@
             // lblVenta
             // 
             this.lblVenta.AutoSize = true;
-            this.lblVenta.Location = new System.Drawing.Point(341, 77);
+            this.lblVenta.Location = new System.Drawing.Point(341, 52);
             this.lblVenta.Name = "lblVenta";
-            this.lblVenta.Size = new System.Drawing.Size(91, 13);
+            this.lblVenta.Size = new System.Drawing.Size(86, 13);
             this.lblVenta.TabIndex = 3;
-            this.lblVenta.Text = "Registro de venta";
+            this.lblVenta.Text = "Metodo de Pago";
             // 
             // dgVenta
             // 
@@ -243,10 +244,23 @@
             this.btnLimpiarProducto.Visible = false;
             this.btnLimpiarProducto.Click += new System.EventHandler(this.btnLimpiarProducto_Click);
             // 
+            // cBoxMetodoPago
+            // 
+            this.cBoxMetodoPago.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cBoxMetodoPago.FormattingEnabled = true;
+            this.cBoxMetodoPago.Items.AddRange(new object[] {
+            "Efectivo",
+            "Transferencia"});
+            this.cBoxMetodoPago.Location = new System.Drawing.Point(344, 69);
+            this.cBoxMetodoPago.Name = "cBoxMetodoPago";
+            this.cBoxMetodoPago.Size = new System.Drawing.Size(100, 21);
+            this.cBoxMetodoPago.TabIndex = 12;
+            // 
             // UC_RegistratVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cBoxMetodoPago);
             this.Controls.Add(this.btnLimpiarProducto);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
@@ -289,5 +303,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadProductoAgregado;
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
         private System.Windows.Forms.Button btnLimpiarProducto;
+        private System.Windows.Forms.ComboBox cBoxMetodoPago;
     }
 }

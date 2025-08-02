@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panelLateral = new System.Windows.Forms.Panel();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.btnVenta = new System.Windows.Forms.Button();
-            this.btnBuscarProducto = new System.Windows.Forms.Button();
+            this.btnEstadisticas = new System.Windows.Forms.Button();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.panelLateral.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,13 +41,23 @@
             // 
             this.panelLateral.Controls.Add(this.btnCerrar);
             this.panelLateral.Controls.Add(this.btnVenta);
-            this.panelLateral.Controls.Add(this.btnBuscarProducto);
+            this.panelLateral.Controls.Add(this.btnEstadisticas);
             this.panelLateral.Controls.Add(this.btnAgregarProducto);
             this.panelLateral.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelLateral.Location = new System.Drawing.Point(0, 0);
             this.panelLateral.Name = "panelLateral";
             this.panelLateral.Size = new System.Drawing.Size(155, 450);
             this.panelLateral.TabIndex = 0;
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Location = new System.Drawing.Point(0, 317);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(155, 55);
+            this.btnCerrar.TabIndex = 4;
+            this.btnCerrar.Text = "Salir del programa";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // btnVenta
             // 
@@ -59,14 +69,15 @@
             this.btnVenta.UseVisualStyleBackColor = true;
             this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
             // 
-            // btnBuscarProducto
+            // btnEstadisticas
             // 
-            this.btnBuscarProducto.Location = new System.Drawing.Point(0, 217);
-            this.btnBuscarProducto.Name = "btnBuscarProducto";
-            this.btnBuscarProducto.Size = new System.Drawing.Size(155, 55);
-            this.btnBuscarProducto.TabIndex = 2;
-            this.btnBuscarProducto.Text = "Buscar Producto";
-            this.btnBuscarProducto.UseVisualStyleBackColor = true;
+            this.btnEstadisticas.Location = new System.Drawing.Point(0, 217);
+            this.btnEstadisticas.Name = "btnEstadisticas";
+            this.btnEstadisticas.Size = new System.Drawing.Size(155, 55);
+            this.btnEstadisticas.TabIndex = 2;
+            this.btnEstadisticas.Text = "Ver Estadisticas";
+            this.btnEstadisticas.UseVisualStyleBackColor = true;
+            this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
             // 
             // btnAgregarProducto
             // 
@@ -86,16 +97,6 @@
             this.panelPrincipal.Size = new System.Drawing.Size(645, 450);
             this.panelPrincipal.TabIndex = 1;
             // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Location = new System.Drawing.Point(0, 317);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(155, 55);
-            this.btnCerrar.TabIndex = 4;
-            this.btnCerrar.Text = "Salir del programa";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -113,7 +114,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panelLateral;
-        private System.Windows.Forms.Button btnBuscarProducto;
+        private System.Windows.Forms.Button btnEstadisticas;
         private System.Windows.Forms.Button btnAgregarProducto;
         private System.Windows.Forms.Panel panelPrincipal;
         private System.Windows.Forms.Button btnVenta;

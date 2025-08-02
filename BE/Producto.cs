@@ -64,6 +64,16 @@ namespace BE
             set { _precio = value; }
         }
 
+        private bool _activo;
+
+        public bool Activo
+        {
+            get { return _activo; }
+            set { _activo = value; }
+        }
+
+        public string Estado => Activo ? "Habilitado" : "Deshabilitado";
+
         public string NombreCategoria
         {
             get { return _categoria != null ? _categoria.NombreCategoria : ""; }

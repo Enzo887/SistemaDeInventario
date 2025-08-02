@@ -19,11 +19,12 @@ namespace DAL
                 SqlParameter[] parametros = new SqlParameter[] {
                 new SqlParameter("@PrecioTotal",venta.PrecioTotal),
                 new SqlParameter("@FechaVenta",venta.FechaVenta),
+                new SqlParameter("@MetodoPago",venta.MetodoPago),
                 new SqlParameter("@Venta_ID",SqlDbType.Int)
                 {Direction = ParameterDirection.Output}
                     };
                 conexion.EscribirPorStoreProcedure("SP_RegistrarVenta", parametros);
-                int idVenta = Convert.ToInt32(parametros[2].Value);
+                int idVenta = Convert.ToInt32(parametros[3].Value);
                 return idVenta;
             }
             catch (Exception e)
@@ -50,6 +51,31 @@ namespace DAL
             catch (Exception e)
             {
                 throw new Exception("Hubo un error en el INSERT de detalleVenta", e);
+            }
+        }
+
+        public DataTable ObtenerVentas()
+        {
+            //try
+            //{
+            //    SqlParameter[] parametros = new SqlParameter[]
+            //    {
+            //    new SqlParameter("@incluirEliminados",incluirEliminados)
+            //                };
+            //    return conexion.LeerPorStoreProcedure("SP_ObtenerVentasPorFecha", parametros);
+
+            //}
+            //catch (Exception e)
+            //{
+            //    throw new Exception("Hubo un error en obtener los datos de la tabla productos en la BD", e);
+            //}
+            try
+            {
+                return conexion.LeerPorComando("SELECT * FROM V_ObtenerVentas");
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Hubo un error en obtener los datos de la tabla categoria en la BD", e);
             }
         }
     }

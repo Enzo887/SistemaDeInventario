@@ -16,9 +16,9 @@ namespace BLL
             productoDAL.AgregarProductos(unProducto);
         }
 
-        public List<BE.Producto> ObtenerProductos() 
+        public List<BE.Producto> ObtenerProductos(bool incluirEliminados) 
         {
-            DataTable tabla = productoDAL.ObtenerProductos();
+            DataTable tabla = productoDAL.ObtenerProductos(incluirEliminados);
 
             List<BE.Producto> productos = new List<BE.Producto>();
 
@@ -31,7 +31,7 @@ namespace BLL
                 unProducto.Precio = Convert.ToDecimal(fila["Precio"]);
                 unProducto.Cantidad = Convert.ToInt32(fila["Cantidad"]);
                 unProducto.FechaVencimiento = (DateTime)fila["FechaVencimiento"];
-
+                unProducto.Activo = (bool)fila["Activo"];
                 unaCategoria.IDCategoria = Convert.ToInt32(fila["IdCategoria"]);
                 unaCategoria.NombreCategoria = fila["NombreCategoria"].ToString();
                 unProducto.Categoria = unaCategoria;

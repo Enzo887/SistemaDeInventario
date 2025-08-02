@@ -13,6 +13,7 @@ namespace SistemaDeInventarios.Venta
 {
     public partial class UC_RegistratVenta : UserControl
     {
+        public event EventHandler TablaVentasActualizada;
         private BE.Venta ventaActual = new BE.Venta();
         private BLL.GestorVenta gestorVenta = new BLL.GestorVenta();
         private List<BE.Producto> productos = new List<BE.Producto>();
@@ -21,6 +22,12 @@ namespace SistemaDeInventarios.Venta
         {
             InitializeComponent();
             MostrarProductosDataGrid();
+
+            
+            if (cBoxMetodoPago.Items.Count > 0)
+            {
+                cBoxMetodoPago.SelectedIndex = 0;
+            }
         }
 
         public void MostrarProductosDataGrid()
@@ -28,7 +35,8 @@ namespace SistemaDeInventarios.Venta
             
             BLL.GestorProducto productoBLL = new BLL.GestorProducto();
 
-            productos = productoBLL.ObtenerProductos();
+            //false -> No muestra productos DESHABILIDATOS
+            productos = productoBLL.ObtenerProductos(false);
 
             dgProductos.AutoGenerateColumns = false;
             dgProductos.Columns["idProducto"].DataPropertyName = "IDProducto";
@@ -70,7 +78,17 @@ namespace SistemaDeInventarios.Venta
 
         private void btnRegistrarVenta_Click(object sender, EventArgs e)
         {
+            if (cBoxMetodoPago.SelectedItem != null)
+            {
+                ventaActual.MetodoPago = cBoxMetodoPago.Text;
+            }
+            else
+            {
+                MessageBox.Show("Por favor, selecciona un método de pago");
+                return;
+            }
             gestorVenta.RegistrarVenta(ventaActual);
+            TablaVentasActualizada?.Invoke(this, EventArgs.Empty);
             MessageBox.Show("Se registró la venta correctamente!");
             ventaActual = new BE.Venta();
             dgVenta.DataSource = null;
