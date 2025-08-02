@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BE;
 
 namespace DAL
 {
@@ -33,11 +34,16 @@ namespace DAL
             }
         }
 
-        public DataTable ObtenerProductos()
+        public DataTable ObtenerProductos(bool incluirEliminados)
         {
             try
             {
-                return conexion.LeerPorComando("SELECT * FROM V_ObtenerProductos");
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                new SqlParameter("@incluirEliminados",incluirEliminados)
+                            };
+                 return conexion.LeerPorStoreProcedure("SP_ObtenerProductos", parametros);
+                    
             }
             catch (Exception e)
             {
@@ -96,7 +102,8 @@ namespace DAL
                     new SqlParameter("@Precio", productoEditado.Precio),
                     new SqlParameter("@Cantidad", productoEditado.Cantidad),
                     new SqlParameter("@idCategoria", productoEditado.Categoria.IDCategoria),
-                    new SqlParameter("@FechaVencimiento", productoEditado.FechaVencimiento)
+                    new SqlParameter("@FechaVencimiento", productoEditado.FechaVencimiento),
+                    new SqlParameter("@Activo", productoEditado.Activo)
                 };
                 conexion.EscribirPorStoreProcedure("SP_ActualizarProducto", parametros);
             }

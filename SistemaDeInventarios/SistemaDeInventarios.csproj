@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Estadisticas\UC_VerDetalleVenta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Estadisticas\UC_VerDetalleVenta.Designer.cs">
+      <DependentUpon>UC_VerDetalleVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,12 +72,21 @@
     <Compile Include="Stock\UC_GestionarCategoria.Designer.cs">
       <DependentUpon>UC_GestionarCategoria.cs</DependentUpon>
     </Compile>
+    <Compile Include="Estadisticas\UC_VerVenta.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Estadisticas\UC_VerVenta.Designer.cs">
+      <DependentUpon>UC_VerVenta.cs</DependentUpon>
+    </Compile>
     <Compile Include="Venta\UC_RegistratVenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Venta\UC_RegistratVenta.Designer.cs">
       <DependentUpon>UC_RegistratVenta.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Estadisticas\UC_VerDetalleVenta.resx">
+      <DependentUpon>UC_VerDetalleVenta.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Stock\UC_GestionarCategoria.resx">
       <DependentUpon>UC_GestionarCategoria.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Estadisticas\UC_VerVenta.resx">
+      <DependentUpon>UC_VerVenta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Venta\UC_RegistratVenta.resx">
       <DependentUpon>UC_RegistratVenta.cs</DependentUpon>

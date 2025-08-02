@@ -17,13 +17,26 @@ namespace SistemaDeInventarios
         private UC_AgregarProducto AgregarProducto;
         private UC_GestionarCategoria GestionarCategoria;
         private UC_RegistratVenta RegistrarVenta;
+        private UC_VerVenta VerVenta;
         public Home()
         {
             InitializeComponent();
             AgregarProducto = new UC_AgregarProducto();
             GestionarCategoria = new UC_GestionarCategoria();
             RegistrarVenta = new UC_RegistratVenta();
+            VerVenta = new UC_VerVenta();
             CargarUserControl(RegistrarVenta);
+
+            AgregarProducto.TablaProductosActualizada += MostrarProductosEnVenta;
+
+            AgregarProducto.TablaProductosActualizada += MostrarProductosEnStock;
+
+            GestionarCategoria.CategoriaActualizada += MostrarProductosEnStock;
+
+            GestionarCategoria.CategoriaActualizada += MostrarCategoriasDataGrid;
+
+            RegistrarVenta.TablaVentasActualizada += MostrarVentasDataGrid;
+
 
         }
 
@@ -46,18 +59,6 @@ namespace SistemaDeInventarios
 
         public void MostrarAgregarProducto()
         {
-            AgregarProducto.TablaProductosActualizada -= MostrarProductosEnVenta;
-            AgregarProducto.TablaProductosActualizada += MostrarProductosEnVenta;
-
-            AgregarProducto.TablaProductosActualizada -= MostrarProductosEnStock;
-            AgregarProducto.TablaProductosActualizada += MostrarProductosEnStock;
-
-            GestionarCategoria.CategoriaActualizada -= MostrarProductosEnStock;
-            GestionarCategoria.CategoriaActualizada += MostrarProductosEnStock;
-
-            GestionarCategoria.CategoriaActualizada -= MostrarCategoriasDataGrid;
-            GestionarCategoria.CategoriaActualizada += MostrarCategoriasDataGrid;
-
             CargarUserControl(AgregarProducto);
         }
 
@@ -84,6 +85,16 @@ namespace SistemaDeInventarios
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnEstadisticas_Click(object sender, EventArgs e)
+        {
+            CargarUserControl(VerVenta);
+        }
+
+        private void MostrarVentasDataGrid(object sender, EventArgs e)
+        {
+            VerVenta.MostrarVentasDataGrid();
         }
     }
 }

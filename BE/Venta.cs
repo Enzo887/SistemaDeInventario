@@ -32,6 +32,15 @@ namespace BE
 			set { _fechaVenta = value; }
 		}
 
+		private string _metodoPago;
+
+		public string MetodoPago
+		{
+			get { return _metodoPago; }
+			set { _metodoPago = value; }
+		}
+
+
 		private decimal _precioTotal;
 
 		public decimal PrecioTotal

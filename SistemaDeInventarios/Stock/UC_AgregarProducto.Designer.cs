@@ -44,6 +44,10 @@
             this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgProductos = new System.Windows.Forms.DataGridView();
+            this.dtIngreso = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.checkDeshabilitados = new System.Windows.Forms.CheckBox();
+            this.checkRestaurar = new System.Windows.Forms.CheckBox();
             this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +56,7 @@
             this.categoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.editarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
             this.eliminarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.estadoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
@@ -77,7 +82,7 @@
             // lblCantidad
             // 
             this.lblCantidad.AutoSize = true;
-            this.lblCantidad.Location = new System.Drawing.Point(254, 206);
+            this.lblCantidad.Location = new System.Drawing.Point(263, 206);
             this.lblCantidad.Name = "lblCantidad";
             this.lblCantidad.Size = new System.Drawing.Size(49, 13);
             this.lblCantidad.TabIndex = 2;
@@ -85,14 +90,14 @@
             // 
             // numCantidad
             // 
-            this.numCantidad.Location = new System.Drawing.Point(257, 222);
+            this.numCantidad.Location = new System.Drawing.Point(266, 222);
             this.numCantidad.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.numCantidad.Name = "numCantidad";
-            this.numCantidad.Size = new System.Drawing.Size(87, 20);
+            this.numCantidad.Size = new System.Drawing.Size(96, 20);
             this.numCantidad.TabIndex = 3;
             this.numCantidad.Value = new decimal(new int[] {
             1,
@@ -104,7 +109,7 @@
             // numPrecio
             // 
             this.numPrecio.DecimalPlaces = 2;
-            this.numPrecio.Location = new System.Drawing.Point(257, 285);
+            this.numPrecio.Location = new System.Drawing.Point(266, 269);
             this.numPrecio.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -116,7 +121,7 @@
             0,
             0});
             this.numPrecio.Name = "numPrecio";
-            this.numPrecio.Size = new System.Drawing.Size(87, 20);
+            this.numPrecio.Size = new System.Drawing.Size(96, 20);
             this.numPrecio.TabIndex = 4;
             this.numPrecio.Value = new decimal(new int[] {
             1,
@@ -128,7 +133,7 @@
             // lblPrecio
             // 
             this.lblPrecio.AutoSize = true;
-            this.lblPrecio.Location = new System.Drawing.Point(254, 269);
+            this.lblPrecio.Location = new System.Drawing.Point(263, 253);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(37, 13);
             this.lblPrecio.TabIndex = 5;
@@ -137,7 +142,7 @@
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
-            this.lblCategoria.Location = new System.Drawing.Point(369, 205);
+            this.lblCategoria.Location = new System.Drawing.Point(385, 205);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(52, 13);
             this.lblCategoria.TabIndex = 7;
@@ -145,7 +150,7 @@
             // 
             // btnGestionarCategoria
             // 
-            this.btnGestionarCategoria.Location = new System.Drawing.Point(430, 223);
+            this.btnGestionarCategoria.Location = new System.Drawing.Point(446, 223);
             this.btnGestionarCategoria.Name = "btnGestionarCategoria";
             this.btnGestionarCategoria.Size = new System.Drawing.Size(65, 20);
             this.btnGestionarCategoria.TabIndex = 8;
@@ -155,9 +160,9 @@
             // 
             // btnAgregarProducto
             // 
-            this.btnAgregarProducto.Location = new System.Drawing.Point(111, 340);
+            this.btnAgregarProducto.Location = new System.Drawing.Point(207, 366);
             this.btnAgregarProducto.Name = "btnAgregarProducto";
-            this.btnAgregarProducto.Size = new System.Drawing.Size(122, 23);
+            this.btnAgregarProducto.Size = new System.Drawing.Size(155, 23);
             this.btnAgregarProducto.TabIndex = 9;
             this.btnAgregarProducto.Text = "Agregar Producto";
             this.btnAgregarProducto.UseVisualStyleBackColor = true;
@@ -165,9 +170,9 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(253, 340);
+            this.btnCancelar.Location = new System.Drawing.Point(388, 366);
             this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(91, 23);
+            this.btnCancelar.Size = new System.Drawing.Size(124, 23);
             this.btnCancelar.TabIndex = 10;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
@@ -176,7 +181,7 @@
             // lblFechaVencimiento
             // 
             this.lblFechaVencimiento.AutoSize = true;
-            this.lblFechaVencimiento.Location = new System.Drawing.Point(108, 269);
+            this.lblFechaVencimiento.Location = new System.Drawing.Point(108, 302);
             this.lblFechaVencimiento.Name = "lblFechaVencimiento";
             this.lblFechaVencimiento.Size = new System.Drawing.Size(98, 13);
             this.lblFechaVencimiento.TabIndex = 12;
@@ -185,7 +190,7 @@
             // dtVencimiento
             // 
             this.dtVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtVencimiento.Location = new System.Drawing.Point(111, 285);
+            this.dtVencimiento.Location = new System.Drawing.Point(111, 318);
             this.dtVencimiento.Name = "dtVencimiento";
             this.dtVencimiento.Size = new System.Drawing.Size(122, 20);
             this.dtVencimiento.TabIndex = 13;
@@ -200,7 +205,7 @@
             this.dgCategoria.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idCategoria,
             this.nombreCategoria});
-            this.dgCategoria.Location = new System.Drawing.Point(372, 222);
+            this.dgCategoria.Location = new System.Drawing.Point(388, 222);
             this.dgCategoria.MultiSelect = false;
             this.dgCategoria.Name = "dgCategoria";
             this.dgCategoria.ReadOnly = true;
@@ -240,17 +245,58 @@
             this.vencimientoProducto,
             this.categoriaProducto,
             this.editarProducto,
-            this.eliminarProducto});
-            this.dgProductos.Location = new System.Drawing.Point(72, 39);
+            this.eliminarProducto,
+            this.estadoProducto});
+            this.dgProductos.Location = new System.Drawing.Point(40, 36);
             this.dgProductos.MultiSelect = false;
             this.dgProductos.Name = "dgProductos";
             this.dgProductos.ReadOnly = true;
             this.dgProductos.RowHeadersVisible = false;
             this.dgProductos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgProductos.Size = new System.Drawing.Size(442, 150);
+            this.dgProductos.Size = new System.Drawing.Size(518, 150);
             this.dgProductos.TabIndex = 15;
             this.dgProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellClick);
+            this.dgProductos.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgProductos_RowPrePaint);
+            // 
+            // dtIngreso
+            // 
+            this.dtIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtIngreso.Location = new System.Drawing.Point(111, 268);
+            this.dtIngreso.Name = "dtIngreso";
+            this.dtIngreso.Size = new System.Drawing.Size(122, 20);
+            this.dtIngreso.TabIndex = 17;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(108, 252);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 13);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Fecha Ingreso";
+            // 
+            // checkDeshabilitados
+            // 
+            this.checkDeshabilitados.AutoSize = true;
+            this.checkDeshabilitados.Location = new System.Drawing.Point(40, 13);
+            this.checkDeshabilitados.Name = "checkDeshabilitados";
+            this.checkDeshabilitados.Size = new System.Drawing.Size(114, 17);
+            this.checkDeshabilitados.TabIndex = 19;
+            this.checkDeshabilitados.Text = "Ver Deshabilitados";
+            this.checkDeshabilitados.UseVisualStyleBackColor = true;
+            this.checkDeshabilitados.CheckedChanged += new System.EventHandler(this.checkDeshabilitados_CheckedChanged);
+            // 
+            // checkRestaurar
+            // 
+            this.checkRestaurar.AutoSize = true;
+            this.checkRestaurar.Location = new System.Drawing.Point(266, 318);
+            this.checkRestaurar.Name = "checkRestaurar";
+            this.checkRestaurar.Size = new System.Drawing.Size(72, 17);
+            this.checkRestaurar.TabIndex = 20;
+            this.checkRestaurar.Text = "Restaurar";
+            this.checkRestaurar.UseVisualStyleBackColor = true;
+            this.checkRestaurar.Visible = false;
             // 
             // idProducto
             // 
@@ -312,10 +358,21 @@
             this.eliminarProducto.UseColumnTextForButtonValue = true;
             this.eliminarProducto.Width = 50;
             // 
+            // estadoProducto
+            // 
+            this.estadoProducto.HeaderText = "Estado";
+            this.estadoProducto.Name = "estadoProducto";
+            this.estadoProducto.ReadOnly = true;
+            this.estadoProducto.Width = 75;
+            // 
             // UC_AgregarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkRestaurar);
+            this.Controls.Add(this.checkDeshabilitados);
+            this.Controls.Add(this.dtIngreso);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnGestionarCategoria);
             this.Controls.Add(this.dgProductos);
             this.Controls.Add(this.dgCategoria);
@@ -359,6 +416,10 @@
         private System.Windows.Forms.DataGridView dgProductos;
         private System.Windows.Forms.DataGridViewTextBoxColumn idCategoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreCategoria;
+        private System.Windows.Forms.DateTimePicker dtIngreso;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.CheckBox checkDeshabilitados;
+        private System.Windows.Forms.CheckBox checkRestaurar;
         private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn precioProducto;
@@ -367,5 +428,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn categoriaProducto;
         private System.Windows.Forms.DataGridViewButtonColumn editarProducto;
         private System.Windows.Forms.DataGridViewButtonColumn eliminarProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoProducto;
     }
 }
