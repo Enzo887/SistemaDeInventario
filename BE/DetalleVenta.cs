@@ -53,5 +53,10 @@ namespace BE
         {
             get { return _producto != null ? _producto.NombreProducto : ""; }
         }
+
+        public string EstadoProducto
+        {
+            get { return _producto != null ? _producto.Estado : ""; }
+        }
     }
 }
