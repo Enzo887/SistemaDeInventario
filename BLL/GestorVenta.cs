@@ -13,24 +13,37 @@ namespace BLL
     {
 
         private DAL.VentaDAL ventaDAL = new DAL.VentaDAL();
-        public void AgregarDetalle(BE.Venta venta, BE.Producto producto, int cantidad)
+        public bool AgregarDetalle(BE.Venta venta, BE.Producto producto)
         {
             //Busca la primer coincidencia con el idSeleccionado
             var detalleExistente = venta.DetallesVenta.FirstOrDefault(detalle=> detalle.Producto.IDProducto == producto.IDProducto);
 
             if (detalleExistente != null)
-            {
-                detalleExistente.CantidadProducto += 1;
+            {                                 
+                if(detalleExistente.CantidadProducto < producto.Cantidad)
+                {
+                    detalleExistente.CantidadProducto += 1;
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
             }
-            else
+            else if(producto.Cantidad > 0)
             {
                 BE.DetalleVenta nuevoDetalle = new BE.DetalleVenta
                 {
                     IDDetalleVenta = producto.IDProducto,
                     Producto = producto,
-                    CantidadProducto = cantidad
+                    CantidadProducto = 1,
                 };
                 venta.DetallesVenta.Add(nuevoDetalle);
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
 
@@ -51,16 +64,6 @@ namespace BLL
             }
         }
 
-        public void SacarDetalle2(BE.Venta venta)
-        {
-            var detalleExistente = venta.DetallesVenta.FirstOrDefault(detalle => detalle.Producto.Estado == "Deshabilitado");
-
-            if (detalleExistente != null)
-            {
-                    venta.DetallesVenta.Remove(detalleExistente);   
-            }
-        }
-
         public void ActualizarDetalles(BE.Venta unaVenta, List<BE.Producto> productosBD)
         {
             foreach (var producto in productosBD)
@@ -73,7 +76,13 @@ namespace BLL
                     detalleCoincidencia.Producto.Activo = producto.Activo;
                 }
             }
-            
+            var detalleExiste = unaVenta.DetallesVenta.FirstOrDefault(detalle => detalle.Producto.Estado == "Deshabilitado");
+
+            if (detalleExiste != null)
+            {
+                unaVenta.DetallesVenta.Remove(detalleExiste);
+            }
+
         }
 
 

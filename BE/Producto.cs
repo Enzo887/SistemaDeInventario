@@ -78,5 +78,10 @@ namespace BE
         {
             get { return _categoria != null ? _categoria.NombreCategoria : ""; }
         }
+
+        public int idCategoria
+        {
+            get { return _categoria != null ? _categoria.IDCategoria : 0; }
+        }
     }
 }

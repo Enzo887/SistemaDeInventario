@@ -12,16 +12,16 @@ using BLL;
 
 namespace SistemaDeInventarios.Venta
 {
-    public partial class UC_RegistratVenta : UserControl
+    public partial class UC_RegistrarVenta : UserControl
     {
-        public event EventHandler TablaVentasActualizada;
+        public event EventHandler VentaRealizada;
 
         private BE.Venta ventaActual = new BE.Venta();
         private BLL.GestorVenta gestorVenta = new BLL.GestorVenta();
         private List<BE.Producto> productos = new List<BE.Producto>();
         private BLL.GestorProducto productoBLL = new BLL.GestorProducto();
 
-        public UC_RegistratVenta()
+        public UC_RegistrarVenta()
         {
             InitializeComponent();
             MostrarProductosDataGrid();
@@ -33,20 +33,8 @@ namespace SistemaDeInventarios.Venta
             }
         }
 
-        public void ActualizarDetalles()
-        {
-            List<BE.Producto> productosBD = new List<BE.Producto>();
-            //todos los productos
-            productosBD = productoBLL.ObtenerProductos(true);
-
-            gestorVenta.ActualizarDetalles(ventaActual, productosBD);
-        }
-
         public void MostrarProductosDataGrid()
         {
-            
-            
-
             //false -> No muestra productos DESHABILIDATOS
             productos = productoBLL.ObtenerProductos(false);
 
@@ -54,6 +42,12 @@ namespace SistemaDeInventarios.Venta
             dgProductos.Columns["idProducto"].DataPropertyName = "IDProducto";
             dgProductos.Columns["nombreProducto"].DataPropertyName = "NombreProducto";
             dgProductos.Columns["precio"].DataPropertyName = "Precio";
+
+            //Estas 2 columnas no estan visibles
+            dgProductos.Columns["cantidadProducto"].DataPropertyName = "Cantidad";
+            dgProductos.Columns["vencimientoProducto"].DataPropertyName = "FechaVencimiento";
+            dgProductos.Columns["idCategoriaProducto"].DataPropertyName = "idCategoria";
+            dgProductos.Columns["categoriaProducto"].DataPropertyName = "NombreCategoria";
             dgProductos.Columns["estadoProducto"].DataPropertyName = "Estado";
             dgProductos.DataSource = productos;
         }
@@ -65,6 +59,8 @@ namespace SistemaDeInventarios.Venta
             productosBD = productoBLL.ObtenerProductos(true);
 
             gestorVenta.ActualizarDetalles(ventaActual, productosBD);
+            ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
+            tboxTotal.Text = ventaActual.PrecioTotal.ToString();
             //gestorVenta.SacarDetalle2(ventaActual);
             dgVenta.AutoGenerateColumns = false;
             dgVenta.Columns["idProductoVenta"].DataPropertyName = "IDDetalleVenta";
@@ -75,7 +71,7 @@ namespace SistemaDeInventarios.Venta
             dgVenta.DataSource = new BindingList<BE.DetalleVenta>(ventaActual.DetallesVenta);
         }
 
-        //Agrega un detalleVenta con su respectiva cantidad
+
         private void dgProductos_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgProductos.Columns[e.ColumnIndex].Name == "agregarProducto")
@@ -84,7 +80,15 @@ namespace SistemaDeInventarios.Venta
                 unProducto.IDProducto = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idProducto"].Value);
                 unProducto.NombreProducto = dgProductos.Rows[e.RowIndex].Cells["nombreProducto"].Value.ToString();
                 unProducto.Precio = Convert.ToDecimal(dgProductos.Rows[e.RowIndex].Cells["precio"].Value);
-                
+                unProducto.Cantidad = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["cantidadProducto"].Value);
+                unProducto.FechaVencimiento = (DateTime)dgProductos.Rows[e.RowIndex].Cells["vencimientoProducto"].Value;
+
+                BE.Categoria categoria = new BE.Categoria();
+                categoria.IDCategoria = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idCategoriaProducto"].Value);
+                categoria.NombreCategoria = dgProductos.Rows[e.RowIndex].Cells["categoriaProducto"].Value.ToString();
+
+                unProducto.Categoria = categoria;
+
                 string estadoProducto = dgProductos.Rows[e.RowIndex].Cells["estadoProducto"].Value.ToString();
                 if(estadoProducto == "Habilitado")
                 {
@@ -94,8 +98,12 @@ namespace SistemaDeInventarios.Venta
                 {
                     unProducto.Activo = false;
                 }
-
-                    gestorVenta.AgregarDetalle(ventaActual, unProducto, 1);               
+                //Agrega un nuevo detalleVenta o incrementa su cantidad
+                bool excesoCantMax = gestorVenta.AgregarDetalle(ventaActual, unProducto);
+                if (excesoCantMax)
+                {
+                    MessageBox.Show("No hay suficiente stock","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                }
                 MostrarProductosAgregadosDataGrid();
                 
                 ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
@@ -116,8 +124,20 @@ namespace SistemaDeInventarios.Venta
                 MessageBox.Show("Por favor, selecciona un método de pago");
                 return;
             }
+            if (ventaActual.DetallesVenta.Count == 0) 
+            {
+                MessageBox.Show("No hay ningun producto añadido", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             gestorVenta.RegistrarVenta(ventaActual);
-            TablaVentasActualizada?.Invoke(this, EventArgs.Empty);
+            
+            foreach (var detalle in ventaActual.DetallesVenta)
+            {
+               detalle.Producto.Cantidad -= detalle.CantidadProducto;
+                productoBLL.EditarProducto(detalle.Producto);
+            }
+            VentaRealizada?.Invoke(this, EventArgs.Empty);
+
             MessageBox.Show("Se registró la venta correctamente!");
             ventaActual = new BE.Venta();
             dgVenta.DataSource = null;
@@ -133,14 +153,14 @@ namespace SistemaDeInventarios.Venta
             }   
         }
 
-        //Reduce o elimina la cantidad de un detalleVenta
+
         private void dgVenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgVenta.Columns[e.ColumnIndex].Name == "reducirCantidad")
             {
                 BE.Producto unProducto = new BE.Producto();
                 unProducto.IDProducto = Convert.ToInt32(dgVenta.Rows[e.RowIndex].Cells["idProductoVenta"].Value);
-                
+                //Reduce o elimina la cantidad de un detalleVenta
                 gestorVenta.SacarDetalle(ventaActual, unProducto);
                 MostrarProductosAgregadosDataGrid();
 

@@ -91,11 +91,6 @@
             // numCantidad
             // 
             this.numCantidad.Location = new System.Drawing.Point(266, 222);
-            this.numCantidad.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.numCantidad.Name = "numCantidad";
             this.numCantidad.Size = new System.Drawing.Size(96, 20);
             this.numCantidad.TabIndex = 3;
@@ -254,7 +249,8 @@
             this.dgProductos.RowHeadersVisible = false;
             this.dgProductos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgProductos.Size = new System.Drawing.Size(518, 150);
+            this.dgProductos.ShowCellToolTips = false;
+            this.dgProductos.Size = new System.Drawing.Size(527, 150);
             this.dgProductos.TabIndex = 15;
             this.dgProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellClick);
             this.dgProductos.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgProductos_RowPrePaint);
@@ -331,7 +327,7 @@
             this.vencimientoProducto.HeaderText = "Vence";
             this.vencimientoProducto.Name = "vencimientoProducto";
             this.vencimientoProducto.ReadOnly = true;
-            this.vencimientoProducto.Width = 65;
+            this.vencimientoProducto.Width = 70;
             // 
             // categoriaProducto
             // 
@@ -363,7 +359,7 @@
             this.estadoProducto.HeaderText = "Estado";
             this.estadoProducto.Name = "estadoProducto";
             this.estadoProducto.ReadOnly = true;
-            this.estadoProducto.Width = 75;
+            this.estadoProducto.Width = 85;
             // 
             // UC_AgregarProducto
             // 

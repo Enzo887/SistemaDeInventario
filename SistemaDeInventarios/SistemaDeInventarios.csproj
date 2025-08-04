@@ -78,11 +78,11 @@
     <Compile Include="Estadisticas\UC_VerVenta.Designer.cs">
       <DependentUpon>UC_VerVenta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Venta\UC_RegistratVenta.cs">
+    <Compile Include="Venta\UC_RegistrarVenta.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Venta\UC_RegistratVenta.Designer.cs">
-      <DependentUpon>UC_RegistratVenta.cs</DependentUpon>
+    <Compile Include="Venta\UC_RegistrarVenta.Designer.cs">
+      <DependentUpon>UC_RegistrarVenta.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Estadisticas\UC_VerDetalleVenta.resx">
       <DependentUpon>UC_VerDetalleVenta.cs</DependentUpon>
@@ -108,8 +108,8 @@
     <EmbeddedResource Include="Estadisticas\UC_VerVenta.resx">
       <DependentUpon>UC_VerVenta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Venta\UC_RegistratVenta.resx">
-      <DependentUpon>UC_RegistratVenta.cs</DependentUpon>
+    <EmbeddedResource Include="Venta\UC_RegistrarVenta.resx">
+      <DependentUpon>UC_RegistrarVenta.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
