@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.dgVentas = new System.Windows.Forms.DataGridView();
+            this.idVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.metodoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verDetalleVenta = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVerDia = new System.Windows.Forms.Button();
             this.btnVerMes = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,12 +44,6 @@
             this.dtHasta = new System.Windows.Forms.DateTimePicker();
             this.lblFechaVencimiento = new System.Windows.Forms.Label();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.idVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.metodoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verDetalleVenta = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgVentas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,8 +67,52 @@
             this.dgVentas.ReadOnly = true;
             this.dgVentas.RowHeadersVisible = false;
             this.dgVentas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgVentas.ShowCellToolTips = false;
             this.dgVentas.Size = new System.Drawing.Size(348, 258);
             this.dgVentas.TabIndex = 0;
+            // 
+            // idVenta
+            // 
+            this.idVenta.HeaderText = "ID";
+            this.idVenta.Name = "idVenta";
+            this.idVenta.ReadOnly = true;
+            this.idVenta.Width = 25;
+            // 
+            // idDetalle
+            // 
+            this.idDetalle.HeaderText = "idDetalle";
+            this.idDetalle.Name = "idDetalle";
+            this.idDetalle.ReadOnly = true;
+            this.idDetalle.Visible = false;
+            // 
+            // fechaVenta
+            // 
+            this.fechaVenta.HeaderText = "Fecha";
+            this.fechaVenta.Name = "fechaVenta";
+            this.fechaVenta.ReadOnly = true;
+            this.fechaVenta.Width = 65;
+            // 
+            // metodoPago
+            // 
+            this.metodoPago.HeaderText = "Metodo de Pago";
+            this.metodoPago.Name = "metodoPago";
+            this.metodoPago.ReadOnly = true;
+            // 
+            // verDetalleVenta
+            // 
+            this.verDetalleVenta.HeaderText = "";
+            this.verDetalleVenta.Name = "verDetalleVenta";
+            this.verDetalleVenta.ReadOnly = true;
+            this.verDetalleVenta.Text = "Ver Detalle";
+            this.verDetalleVenta.UseColumnTextForButtonValue = true;
+            this.verDetalleVenta.Width = 75;
+            // 
+            // montoTotal
+            // 
+            this.montoTotal.HeaderText = "Monto";
+            this.montoTotal.Name = "montoTotal";
+            this.montoTotal.ReadOnly = true;
+            this.montoTotal.Width = 80;
             // 
             // btnVerDia
             // 
@@ -149,49 +193,6 @@
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
-            // 
-            // idVenta
-            // 
-            this.idVenta.HeaderText = "ID";
-            this.idVenta.Name = "idVenta";
-            this.idVenta.ReadOnly = true;
-            this.idVenta.Width = 25;
-            // 
-            // idDetalle
-            // 
-            this.idDetalle.HeaderText = "idDetalle";
-            this.idDetalle.Name = "idDetalle";
-            this.idDetalle.ReadOnly = true;
-            this.idDetalle.Visible = false;
-            // 
-            // fechaVenta
-            // 
-            this.fechaVenta.HeaderText = "Fecha";
-            this.fechaVenta.Name = "fechaVenta";
-            this.fechaVenta.ReadOnly = true;
-            this.fechaVenta.Width = 65;
-            // 
-            // metodoPago
-            // 
-            this.metodoPago.HeaderText = "Metodo de Pago";
-            this.metodoPago.Name = "metodoPago";
-            this.metodoPago.ReadOnly = true;
-            // 
-            // verDetalleVenta
-            // 
-            this.verDetalleVenta.HeaderText = "";
-            this.verDetalleVenta.Name = "verDetalleVenta";
-            this.verDetalleVenta.ReadOnly = true;
-            this.verDetalleVenta.Text = "Ver Detalle";
-            this.verDetalleVenta.UseColumnTextForButtonValue = true;
-            this.verDetalleVenta.Width = 75;
-            // 
-            // montoTotal
-            // 
-            this.montoTotal.HeaderText = "Monto";
-            this.montoTotal.Name = "montoTotal";
-            this.montoTotal.ReadOnly = true;
-            this.montoTotal.Width = 80;
             // 
             // UC_VerVenta
             // 

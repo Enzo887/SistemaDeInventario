@@ -30,7 +30,7 @@ namespace BLL
                 unProducto.NombreProducto = fila["NombreProducto"].ToString();
                 unProducto.Precio = Convert.ToDecimal(fila["Precio"]);
                 unProducto.Cantidad = Convert.ToInt32(fila["Cantidad"]);
-                unProducto.FechaVencimiento = (DateTime)fila["FechaVencimiento"];
+                unProducto.FechaVencimiento = ((DateTime)fila["FechaVencimiento"]).Date;
                 unProducto.Activo = (bool)fila["Activo"];
                 unaCategoria.IDCategoria = Convert.ToInt32(fila["IdCategoria"]);
                 unaCategoria.NombreCategoria = fila["NombreCategoria"].ToString();

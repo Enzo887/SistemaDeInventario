@@ -16,14 +16,14 @@ namespace SistemaDeInventarios
     {
         private UC_AgregarProducto AgregarProducto;
         private UC_GestionarCategoria GestionarCategoria;
-        private UC_RegistratVenta RegistrarVenta;
+        private UC_RegistrarVenta RegistrarVenta;
         private UC_VerVenta VerVenta;
         public Home()
         {
             InitializeComponent();
             AgregarProducto = new UC_AgregarProducto();
             GestionarCategoria = new UC_GestionarCategoria();
-            RegistrarVenta = new UC_RegistratVenta();
+            RegistrarVenta = new UC_RegistrarVenta();
             VerVenta = new UC_VerVenta();
             CargarUserControl(RegistrarVenta);
 
@@ -37,7 +37,10 @@ namespace SistemaDeInventarios
 
             GestionarCategoria.CategoriaActualizada += MostrarCategoriasDataGrid;
 
-            RegistrarVenta.TablaVentasActualizada += MostrarVentasDataGrid;
+            RegistrarVenta.VentaRealizada += MostrarVentasDataGrid;
+
+            RegistrarVenta.VentaRealizada += MostrarProductosEnStock;
+            RegistrarVenta.VentaRealizada += MostrarProductosEnVenta;
 
 
         }
