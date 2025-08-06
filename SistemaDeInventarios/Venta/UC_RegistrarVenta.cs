@@ -37,7 +37,7 @@ namespace SistemaDeInventarios.Venta
         {
             //false -> No muestra productos DESHABILIDATOS
             productos = productoBLL.ObtenerProductos(false);
-
+            
             dgProductos.AutoGenerateColumns = false;
             dgProductos.Columns["idProducto"].DataPropertyName = "IDProducto";
             dgProductos.Columns["nombreProducto"].DataPropertyName = "NombreProducto";
@@ -50,6 +50,7 @@ namespace SistemaDeInventarios.Venta
             dgProductos.Columns["categoriaProducto"].DataPropertyName = "NombreCategoria";
             dgProductos.Columns["estadoProducto"].DataPropertyName = "Estado";
             dgProductos.DataSource = productos;
+            AjustarDataGrid(dgProductos, 268);
         }
 
         public void MostrarProductosAgregadosDataGrid()
@@ -69,6 +70,7 @@ namespace SistemaDeInventarios.Venta
             dgVenta.Columns["subtotal"].DataPropertyName = "Subtotal";
             dgVenta.DataSource = null;
             dgVenta.DataSource = new BindingList<BE.DetalleVenta>(ventaActual.DetallesVenta);
+            AjustarDataGrid(dgVenta, 243);
         }
 
 
@@ -223,6 +225,26 @@ namespace SistemaDeInventarios.Venta
             ventaActual = new BE.Venta();
             dgVenta.DataSource = null;
             tboxTotal.Clear();
+        }
+
+        public void AjustarDataGrid(DataGridView tabla, int anchoTabla)
+        {
+            int alturaFila = tabla.RowTemplate.Height;
+            int totalFilas = tabla.Rows.Count;
+            int alturaEncabezado = tabla.ColumnHeadersHeight;
+            
+            int alturaTabla = tabla.Height;
+
+            int anchoScroll = 17;
+            int alturaContenido = alturaEncabezado + (alturaFila * totalFilas);
+            if(alturaContenido > alturaTabla)
+            {            
+                tabla.Width = anchoTabla + anchoScroll;
+            }
+            else
+            {
+                tabla.Width = anchoTabla;
+            }
         }
     }
 }

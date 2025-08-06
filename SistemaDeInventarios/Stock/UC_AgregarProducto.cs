@@ -18,6 +18,7 @@ namespace SistemaDeInventarios.Stock
         public event EventHandler TablaProductosActualizada;
         private BE.Producto unProducto = new BE.Producto();
         private BLL.GestorProducto unProductoBLL = new BLL.GestorProducto();
+        private List<BE.Producto> productos = new List<BE.Producto>();
         public UC_AgregarProducto()
         {
             InitializeComponent();
@@ -139,7 +140,7 @@ namespace SistemaDeInventarios.Stock
         {
             tboxNombreProducto.Clear();
             numPrecio.Value = numPrecio.Minimum;
-            numCantidad.Value = numCantidad.Minimum;
+            numCantidad.Value = 1;
             dtVencimiento.Value = DateTime.Today;
             dgCategoria.ClearSelection();
             checkRestaurar.Checked = false;
@@ -175,7 +176,7 @@ namespace SistemaDeInventarios.Stock
 
         public void MostrarProductosDataGrid()
         {
-            List<BE.Producto> productos = new List<BE.Producto>();
+            
             BLL.GestorProducto productoBLL = new BLL.GestorProducto();
             bool incluirEliminados = checkDeshabilitados.Checked;
 
@@ -190,6 +191,7 @@ namespace SistemaDeInventarios.Stock
             dgProductos.Columns["categoriaProducto"].DataPropertyName = "NombreCategoria";
             dgProductos.Columns["estadoProducto"].DataPropertyName = "Estado";
             dgProductos.DataSource = productos;
+            AjustarDataGrid(dgProductos,527);
         }
 
         private void dgCategoria_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -305,6 +307,74 @@ namespace SistemaDeInventarios.Stock
         private void checkDeshabilitados_CheckedChanged(object sender, EventArgs e)
         {
             MostrarProductosDataGrid();
+        }
+
+        private void tboxBucarProducto_TextChanged(object sender, EventArgs e)
+        {
+            string filtro = tboxBucarProducto.Text.Trim().ToLower();
+
+            // Mostrar u ocultar botón según el texto real
+            btnLimpiarProducto.Visible = !string.IsNullOrWhiteSpace(tboxBucarProducto.Text) &&
+                                          tboxBucarProducto.Text != "Buscar por N° o Nombre";
+
+            var filtrados = productos
+                .Where(p => p.NombreProducto.ToLower().Contains(filtro)
+                            || p.IDProducto.ToString().Contains(filtro))
+                .ToList();
+
+            dgProductos.DataSource = null;
+            dgProductos.DataSource = filtrados;
+
+        }
+
+        private void tboxBucarProducto_Enter(object sender, EventArgs e)
+        {
+            if (tboxBucarProducto.Text == "Buscar por N° o Nombre")
+            {
+                tboxBucarProducto.Text = "";
+                tboxBucarProducto.ForeColor = Color.Black;
+                btnLimpiarProducto.Visible = true;
+            }
+        }
+
+        private void tboxBucarProducto_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(tboxBucarProducto.Text))
+            {
+                tboxBucarProducto.Text = "Buscar por N° o Nombre";
+                tboxBucarProducto.ForeColor = Color.Gray;
+                btnLimpiarProducto.Visible = false;
+                MostrarProductosDataGrid();
+            }
+        }
+
+        private void btnLimpiarProducto_Click(object sender, EventArgs e)
+        {
+            tboxBucarProducto.Text = "Buscar por N° o Nombre";
+            tboxBucarProducto.ForeColor = Color.Gray;
+            MostrarProductosDataGrid();
+            btnLimpiarProducto.Visible = false;
+            dgProductos.Focus();
+        }
+
+        public void AjustarDataGrid(DataGridView tabla, int anchoTabla)
+        {
+            int alturaFila = tabla.RowTemplate.Height;
+            int totalFilas = tabla.Rows.Count;
+            int alturaEncabezado = tabla.ColumnHeadersHeight;
+
+            int alturaTabla = tabla.Height;
+
+            int anchoScroll = 17;
+            int alturaContenido = alturaEncabezado + (alturaFila * totalFilas);
+            if (alturaContenido > alturaTabla)
+            {
+                tabla.Width = anchoTabla + anchoScroll;
+            }
+            else
+            {
+                tabla.Width = anchoTabla;
+            }
         }
     }
 }
