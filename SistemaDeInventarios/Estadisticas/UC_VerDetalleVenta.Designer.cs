@@ -32,14 +32,14 @@
             this.btnVolver = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tboxTotal = new System.Windows.Forms.TextBox();
-            this.idDetalleVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotalProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.tboxVenta = new System.Windows.Forms.TextBox();
             this.dtVenta = new System.Windows.Forms.DateTimePicker();
+            this.idDetalleVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.metodoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotalProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgDetalleVenta)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,8 +53,8 @@
             this.dgDetalleVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDetalleVenta,
             this.nombreProducto,
-            this.categoriaProducto,
             this.cantidadProducto,
+            this.metodoPago,
             this.subtotalProducto});
             this.dgDetalleVenta.Location = new System.Drawing.Point(168, 71);
             this.dgDetalleVenta.MultiSelect = false;
@@ -73,6 +73,7 @@
             this.btnVolver.TabIndex = 21;
             this.btnVolver.Text = "Volver";
             this.btnVolver.UseVisualStyleBackColor = true;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // label1
             // 
@@ -91,41 +92,6 @@
             this.tboxTotal.Size = new System.Drawing.Size(278, 20);
             this.tboxTotal.TabIndex = 22;
             this.tboxTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // idDetalleVenta
-            // 
-            this.idDetalleVenta.HeaderText = "ID";
-            this.idDetalleVenta.Name = "idDetalleVenta";
-            this.idDetalleVenta.ReadOnly = true;
-            this.idDetalleVenta.Width = 25;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.HeaderText = "Producto";
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            this.nombreProducto.Width = 65;
-            // 
-            // categoriaProducto
-            // 
-            this.categoriaProducto.HeaderText = "Categoria";
-            this.categoriaProducto.Name = "categoriaProducto";
-            this.categoriaProducto.ReadOnly = true;
-            this.categoriaProducto.Width = 65;
-            // 
-            // cantidadProducto
-            // 
-            this.cantidadProducto.HeaderText = "Cant";
-            this.cantidadProducto.Name = "cantidadProducto";
-            this.cantidadProducto.ReadOnly = true;
-            this.cantidadProducto.Width = 40;
-            // 
-            // subtotalProducto
-            // 
-            this.subtotalProducto.HeaderText = "Subtotal";
-            this.subtotalProducto.Name = "subtotalProducto";
-            this.subtotalProducto.ReadOnly = true;
-            this.subtotalProducto.Width = 80;
             // 
             // label2
             // 
@@ -154,6 +120,41 @@
             this.dtVenta.Size = new System.Drawing.Size(82, 20);
             this.dtVenta.TabIndex = 31;
             // 
+            // idDetalleVenta
+            // 
+            this.idDetalleVenta.HeaderText = "ID";
+            this.idDetalleVenta.Name = "idDetalleVenta";
+            this.idDetalleVenta.ReadOnly = true;
+            this.idDetalleVenta.Width = 25;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.HeaderText = "Producto";
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            this.nombreProducto.Width = 65;
+            // 
+            // cantidadProducto
+            // 
+            this.cantidadProducto.HeaderText = "Cant";
+            this.cantidadProducto.Name = "cantidadProducto";
+            this.cantidadProducto.ReadOnly = true;
+            this.cantidadProducto.Width = 40;
+            // 
+            // metodoPago
+            // 
+            this.metodoPago.HeaderText = "Pago";
+            this.metodoPago.Name = "metodoPago";
+            this.metodoPago.ReadOnly = true;
+            this.metodoPago.Width = 65;
+            // 
+            // subtotalProducto
+            // 
+            this.subtotalProducto.HeaderText = "Subtotal";
+            this.subtotalProducto.Name = "subtotalProducto";
+            this.subtotalProducto.ReadOnly = true;
+            this.subtotalProducto.Width = 80;
+            // 
             // UC_VerDetalleVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,13 +180,13 @@
         private System.Windows.Forms.Button btnVolver;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tboxTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDetalleVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoriaProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subtotalProducto;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tboxVenta;
         private System.Windows.Forms.DateTimePicker dtVenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDetalleVenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn metodoPago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subtotalProducto;
     }
 }

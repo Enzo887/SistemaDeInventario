@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SistemaDeInventarios.Estadisticas;
 using SistemaDeInventarios.Stock;
 using SistemaDeInventarios.Venta;
 
@@ -18,6 +19,7 @@ namespace SistemaDeInventarios
         private UC_GestionarCategoria GestionarCategoria;
         private UC_RegistrarVenta RegistrarVenta;
         private UC_VerVenta VerVenta;
+        private UC_VerDetalleVenta VerDetalleVenta;
         public Home()
         {
             InitializeComponent();
@@ -25,6 +27,7 @@ namespace SistemaDeInventarios
             GestionarCategoria = new UC_GestionarCategoria();
             RegistrarVenta = new UC_RegistrarVenta();
             VerVenta = new UC_VerVenta();
+            
             CargarUserControl(RegistrarVenta);
 
             AgregarProducto.TablaProductosActualizada += MostrarProductosEnVenta;
@@ -67,9 +70,20 @@ namespace SistemaDeInventarios
             CargarUserControl(AgregarProducto);
         }
 
+        public void MostratEstadisticasVenta()
+        {
+            CargarUserControl(VerVenta);
+        }
+
         private void btnVenta_Click(object sender, EventArgs e)
         {
             CargarUserControl(RegistrarVenta);
+        }
+
+        public void MostrarVerDetalleVenta(BE.Venta ventaSeleccionada)
+        {   
+            VerDetalleVenta = new UC_VerDetalleVenta(ventaSeleccionada);
+            CargarUserControl(VerDetalleVenta);
         }
 
         private void MostrarProductosEnVenta(object sender, EventArgs e)
@@ -99,7 +113,7 @@ namespace SistemaDeInventarios
 
         private void btnEstadisticas_Click(object sender, EventArgs e)
         {
-            CargarUserControl(VerVenta);
+            MostratEstadisticasVenta();
         }
 
         private void MostrarVentasDataGrid(object sender, EventArgs e)

@@ -62,7 +62,6 @@ namespace SistemaDeInventarios.Venta
             gestorVenta.ActualizarDetalles(ventaActual, productosBD);
             ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
             tboxTotal.Text = ventaActual.PrecioTotal.ToString();
-            //gestorVenta.SacarDetalle2(ventaActual);
             dgVenta.AutoGenerateColumns = false;
             dgVenta.Columns["idProductoVenta"].DataPropertyName = "IDDetalleVenta";
             dgVenta.Columns["nombreProductoAgregado"].DataPropertyName = "NombreProducto";

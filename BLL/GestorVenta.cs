@@ -98,9 +98,9 @@ namespace BLL
             ventaDAL.GuardarDetalleVenta(venta);
         }
 
-        public List<BE.Venta> ObtenerVentas()
+        public List<BE.Venta> ObtenerVentasDia(DateTime fechaBuscada)
         {
-            DataTable tabla = ventaDAL.ObtenerVentas();
+            DataTable tabla = ventaDAL.ObtenerVentasDia(fechaBuscada);
 
             List<BE.Venta> ventas = new List<BE.Venta>();
 
@@ -108,13 +108,43 @@ namespace BLL
             {
                BE.Venta unaVenta = new BE.Venta();
                 unaVenta.IDVenta = Convert.ToInt32(fila["IdVenta"]);
-                unaVenta.FechaVenta = (DateTime)fila["FechaVenta"];
+                unaVenta.FechaVenta = ((DateTime)fila["FechaVenta"]).Date;
                 unaVenta.PrecioTotal = Convert.ToDecimal(fila["PrecioTotal"]);
                 unaVenta.MetodoPago = fila["MetodoPago"].ToString();
 
                 ventas.Add(unaVenta);
             }
             return ventas;
+        }
+
+        public decimal CalcularTotalVentas(List<BE.Venta> ventas)
+        {
+            return ventas.Sum(venta => venta.PrecioTotal);
+        }
+
+        //public void BuscarVentasDia(DateTime fechaBuscada)
+        //{
+        //    ventaDAL.BuscarFechaDia(fechaBuscada);
+        //}
+
+        public List<BE.DetalleVenta> ObtenerVentaDelDetalle(int idVenta)
+        {
+            DataTable tabla = ventaDAL.ObtenerVentaDelDetalle(idVenta);
+
+            List<BE.DetalleVenta> detalles = new List<BE.DetalleVenta>();
+
+            foreach (DataRow fila in tabla.Rows)
+            {
+                BE.DetalleVenta detalle = new BE.DetalleVenta();
+
+                detalle.IDDetalleVenta = Convert.ToInt32(fila["IdDetalleVenta"]);
+                //detalle.Producto.NombreProducto = fila["NombreProducto"].ToString();
+                detalle.CantidadProducto = Convert.ToInt32(fila["CantidadProducto"]);
+                //detalle.Subtotal = Convert.ToDecimal(fila["PrecioSubtotal"]);
+
+                detalles.Add(detalle);
+            }
+            return detalles;
         }
     }
 }

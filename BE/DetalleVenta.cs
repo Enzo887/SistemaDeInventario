@@ -47,6 +47,7 @@ namespace BE
 				}
 					
             }
+            //set { Subtotal = value; }
         }
 
         public string NombreProducto
