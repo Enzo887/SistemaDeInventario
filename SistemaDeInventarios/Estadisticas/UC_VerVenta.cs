@@ -31,6 +31,7 @@ namespace SistemaDeInventarios.Venta
             dgVentas.Columns["metodoPago"].DataPropertyName = "MetodoPago";
             dgVentas.Columns["montoTotal"].DataPropertyName = "PrecioTotal";
             dgVentas.DataSource = ventas;
+            AjustarDataGrid(dgVentas, 348);
             
             tboxTotal.Text = (ventaBLL.CalcularTotalVentas(ventas)).ToString();
         }
@@ -39,16 +40,6 @@ namespace SistemaDeInventarios.Venta
         {
             fechaBuscada = DateTime.Today;
             MostrarVentasDataGrid();
-        }
-
-        private void btnBuscarFecha_Click(object sender, EventArgs e)
-        {
-            fechaBuscada = dtFechaBuscada.Value;
-            MostrarVentasDataGrid();
-            if (ventas.Count <= 0)
-            {
-                MessageBox.Show("No se encontraron coincidencias con la fecha", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
         private void dgVentas_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -71,6 +62,36 @@ namespace SistemaDeInventarios.Venta
                 {
                     MessageBox.Show("No se encontro el form");
                 }
+            }
+        }
+
+        private void dtFechaBuscada_ValueChanged(object sender, EventArgs e)
+        {
+            fechaBuscada = dtFechaBuscada.Value.Date;
+            MostrarVentasDataGrid();
+            if (ventas.Count <= 0)
+            {
+                MessageBox.Show("No se encontraron coincidencias con la fecha", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        public void AjustarDataGrid(DataGridView tabla, int anchoTabla)
+        {
+            int alturaFila = tabla.RowTemplate.Height;
+            int totalFilas = tabla.Rows.Count;
+            int alturaEncabezado = tabla.ColumnHeadersHeight;
+
+            int alturaTabla = tabla.Height;
+
+            int anchoScroll = 17;
+            int alturaContenido = alturaEncabezado + (alturaFila * totalFilas);
+            if (alturaContenido > alturaTabla)
+            {
+                tabla.Width = anchoTabla + anchoScroll;
+            }
+            else
+            {
+                tabla.Width = anchoTabla;
             }
         }
     }

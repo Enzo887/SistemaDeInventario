@@ -75,7 +75,7 @@
             this.btnEstadisticas.Name = "btnEstadisticas";
             this.btnEstadisticas.Size = new System.Drawing.Size(155, 55);
             this.btnEstadisticas.TabIndex = 2;
-            this.btnEstadisticas.Text = "Ver Estadisticas";
+            this.btnEstadisticas.Text = "Ver Ventas";
             this.btnEstadisticas.UseVisualStyleBackColor = true;
             this.btnEstadisticas.Click += new System.EventHandler(this.btnEstadisticas_Click);
             // 

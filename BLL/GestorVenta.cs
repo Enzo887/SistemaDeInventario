@@ -136,9 +136,12 @@ namespace BLL
             foreach (DataRow fila in tabla.Rows)
             {
                 BE.DetalleVenta detalle = new BE.DetalleVenta();
+                BE.Producto producto = new BE.Producto();
 
                 detalle.IDDetalleVenta = Convert.ToInt32(fila["IdDetalleVenta"]);
-                //detalle.Producto.NombreProducto = fila["NombreProducto"].ToString();
+                producto.NombreProducto = fila["NombreProducto"].ToString();
+                producto.Precio = Convert.ToDecimal(fila["PrecioProducto"]);
+                detalle.Producto = producto;
                 detalle.CantidadProducto = Convert.ToInt32(fila["CantidadProducto"]);
                 //detalle.Subtotal = Convert.ToDecimal(fila["PrecioSubtotal"]);
 

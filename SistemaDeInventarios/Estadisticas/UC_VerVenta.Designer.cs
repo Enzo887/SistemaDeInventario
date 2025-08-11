@@ -40,7 +40,6 @@
             this.tboxTotal = new System.Windows.Forms.TextBox();
             this.dtFechaBuscada = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnBuscarFecha = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgVentas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,7 +64,7 @@
             this.dgVentas.RowHeadersVisible = false;
             this.dgVentas.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgVentas.ShowCellToolTips = false;
-            this.dgVentas.Size = new System.Drawing.Size(348, 258);
+            this.dgVentas.Size = new System.Drawing.Size(348, 255);
             this.dgVentas.TabIndex = 0;
             this.dgVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVentas_CellContentClick);
             // 
@@ -114,11 +113,11 @@
             // 
             // btnVerDia
             // 
-            this.btnVerDia.Location = new System.Drawing.Point(442, 51);
+            this.btnVerDia.Location = new System.Drawing.Point(217, 47);
             this.btnVerDia.Name = "btnVerDia";
             this.btnVerDia.Size = new System.Drawing.Size(37, 23);
             this.btnVerDia.TabIndex = 2;
-            this.btnVerDia.Text = "Día";
+            this.btnVerDia.Text = "Hoy";
             this.btnVerDia.UseVisualStyleBackColor = true;
             this.btnVerDia.Click += new System.EventHandler(this.btnVerDia_Click);
             // 
@@ -127,9 +126,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(138, 360);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 25;
-            this.label1.Text = "TOTAL:";
+            this.label1.Text = "TOTAL del día:";
             // 
             // tboxTotal
             // 
@@ -147,6 +146,7 @@
             this.dtFechaBuscada.Name = "dtFechaBuscada";
             this.dtFechaBuscada.Size = new System.Drawing.Size(82, 20);
             this.dtFechaBuscada.TabIndex = 29;
+            this.dtFechaBuscada.ValueChanged += new System.EventHandler(this.dtFechaBuscada_ValueChanged);
             // 
             // label2
             // 
@@ -157,21 +157,10 @@
             this.label2.TabIndex = 28;
             this.label2.Text = "Buscar Fecha";
             // 
-            // btnBuscarFecha
-            // 
-            this.btnBuscarFecha.Location = new System.Drawing.Point(217, 47);
-            this.btnBuscarFecha.Name = "btnBuscarFecha";
-            this.btnBuscarFecha.Size = new System.Drawing.Size(53, 23);
-            this.btnBuscarFecha.TabIndex = 30;
-            this.btnBuscarFecha.Text = "Buscar";
-            this.btnBuscarFecha.UseVisualStyleBackColor = true;
-            this.btnBuscarFecha.Click += new System.EventHandler(this.btnBuscarFecha_Click);
-            // 
             // UC_VerVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnBuscarFecha);
             this.Controls.Add(this.dtFechaBuscada);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -200,6 +189,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn metodoPago;
         private System.Windows.Forms.DataGridViewButtonColumn verDetalleVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn montoTotal;
-        private System.Windows.Forms.Button btnBuscarFecha;
     }
 }

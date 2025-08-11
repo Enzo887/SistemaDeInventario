@@ -59,5 +59,10 @@ namespace BE
         {
             get { return _producto != null ? _producto.Estado : ""; }
         }
+
+        public decimal PrecioProducto
+        {
+            get { return _producto != null ? _producto.Precio : 0; }
+        }
     }
 }
