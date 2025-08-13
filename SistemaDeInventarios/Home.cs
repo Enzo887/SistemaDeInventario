@@ -34,7 +34,7 @@ namespace SistemaDeInventarios
 
             AgregarProducto.TablaProductosActualizada += MostrarProductosEnStock;
 
-            AgregarProducto.TablaProductosActualizada += MostrarDetalleEnVenta;
+            AgregarProducto.TablaProductosActualizada += LimpiarVenta;
 
             GestionarCategoria.CategoriaActualizada += MostrarProductosEnStock;
 
@@ -91,9 +91,9 @@ namespace SistemaDeInventarios
             RegistrarVenta.MostrarProductosDataGrid();
         }
 
-        private void MostrarDetalleEnVenta(object sender, EventArgs e)
+        private void LimpiarVenta(object sender, EventArgs e)
         {
-            RegistrarVenta.MostrarProductosAgregadosDataGrid();
+            RegistrarVenta.LimpiarVenta();
         }
 
         private void MostrarProductosEnStock(object sender, EventArgs e)

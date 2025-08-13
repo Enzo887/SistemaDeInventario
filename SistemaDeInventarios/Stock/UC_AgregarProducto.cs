@@ -143,6 +143,7 @@ namespace SistemaDeInventarios.Stock
             numCantidad.Value = 1;
             dtVencimiento.Value = DateTime.Today;
             dgCategoria.ClearSelection();
+            dgCategoria.CurrentCell = null;
             checkRestaurar.Checked = false;
             checkRestaurar.Visible = false;
 

@@ -54,25 +54,7 @@ namespace DAL
             }
         }
 
-        //public DataTable ObtenerVentasDia(DateTime fechaBuscada)
-        //{
-        //    try
-        //    {
-        //        //return conexion.LeerPorComando("SELECT * FROM V_ObtenerVentas");
-        //        SqlParameter[] parametros = new SqlParameter[]
-        //        {
-        //            new SqlParameter("@fechaDiaActual",fechaBuscada),
-        //            new SqlParameter("@fechaMesActual",fechaBuscada),
-        //            new SqlParameter("@fechaDesde",fechaBuscada),
-        //            new SqlParameter("@fechaHasta",fechaBuscada),
-        //        };
-        //        return conexion.LeerPorStoreProcedure("SP_ObtenerVentasPorFecha", parametros);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        throw new Exception("Hubo un error en obtener los datos de la tabla Venta por fechas en la BD", e);
-        //    }
-        //}
+
 
         public DataTable ObtenerVentasDia(DateTime fechaBuscada)
         {

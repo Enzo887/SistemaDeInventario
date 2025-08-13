@@ -327,6 +327,7 @@
             // 
             // dtIngreso
             // 
+            this.dtIngreso.Enabled = false;
             this.dtIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtIngreso.Location = new System.Drawing.Point(110, 281);
             this.dtIngreso.Name = "dtIngreso";

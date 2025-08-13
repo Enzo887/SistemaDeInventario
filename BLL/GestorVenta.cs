@@ -149,5 +149,35 @@ namespace BLL
             }
             return detalles;
         }
+
+        public int ObtenerCantidadDetalle(BE.Venta venta, BE.Producto producto)
+        {
+            var detalleExistente = venta.DetallesVenta.FirstOrDefault(detalle => detalle.Producto.IDProducto == producto.IDProducto);
+
+            if (detalleExistente != null)
+            {
+                return detalleExistente.CantidadProducto;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public bool ActualizarCantidadDetalle(BE.Venta venta, BE.Producto productoDetalle, List<BE.Producto> productos, int cantidadDetalle)
+        {
+            var detalleExistente = venta.DetallesVenta.FirstOrDefault(detalle => detalle.Producto.IDProducto == productoDetalle.IDProducto);
+            var productoStock = productos.FirstOrDefault(producto => producto.IDProducto == productoDetalle.IDProducto);
+
+            if (detalleExistente != null && productoStock !=null)
+            {
+                if (cantidadDetalle <= productoStock.Cantidad)
+                {
+                    detalleExistente.CantidadProducto = cantidadDetalle;
+                    return false;
+                }
+                return true;
+            }
+            return true;           
+        }
     }
 }
