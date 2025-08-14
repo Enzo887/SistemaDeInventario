@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.dgVentas = new System.Windows.Forms.DataGridView();
+            this.btnVerDia = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tboxTotal = new System.Windows.Forms.TextBox();
+            this.dtFechaBuscada = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.idVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metodoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.verDetalleVenta = new System.Windows.Forms.DataGridViewButtonColumn();
             this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnVerDia = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tboxTotal = new System.Windows.Forms.TextBox();
-            this.dtFechaBuscada = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgVentas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,12 +68,58 @@
             this.dgVentas.TabIndex = 0;
             this.dgVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVentas_CellContentClick);
             // 
+            // btnVerDia
+            // 
+            this.btnVerDia.Location = new System.Drawing.Point(217, 47);
+            this.btnVerDia.Name = "btnVerDia";
+            this.btnVerDia.Size = new System.Drawing.Size(37, 23);
+            this.btnVerDia.TabIndex = 2;
+            this.btnVerDia.Text = "Hoy";
+            this.btnVerDia.UseVisualStyleBackColor = true;
+            this.btnVerDia.Click += new System.EventHandler(this.btnVerDia_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(138, 360);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 25;
+            this.label1.Text = "TOTAL del día:";
+            // 
+            // tboxTotal
+            // 
+            this.tboxTotal.Location = new System.Drawing.Point(131, 355);
+            this.tboxTotal.Name = "tboxTotal";
+            this.tboxTotal.ReadOnly = true;
+            this.tboxTotal.Size = new System.Drawing.Size(348, 20);
+            this.tboxTotal.TabIndex = 24;
+            this.tboxTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // dtFechaBuscada
+            // 
+            this.dtFechaBuscada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtFechaBuscada.Location = new System.Drawing.Point(129, 50);
+            this.dtFechaBuscada.Name = "dtFechaBuscada";
+            this.dtFechaBuscada.Size = new System.Drawing.Size(82, 20);
+            this.dtFechaBuscada.TabIndex = 29;
+            this.dtFechaBuscada.ValueChanged += new System.EventHandler(this.dtFechaBuscada_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(126, 34);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(73, 13);
+            this.label2.TabIndex = 28;
+            this.label2.Text = "Buscar Fecha";
+            // 
             // idVenta
             // 
             this.idVenta.HeaderText = "ID";
             this.idVenta.Name = "idVenta";
             this.idVenta.ReadOnly = true;
-            this.idVenta.Width = 25;
+            this.idVenta.Width = 35;
             // 
             // idDetalle
             // 
@@ -110,52 +156,6 @@
             this.montoTotal.Name = "montoTotal";
             this.montoTotal.ReadOnly = true;
             this.montoTotal.Width = 80;
-            // 
-            // btnVerDia
-            // 
-            this.btnVerDia.Location = new System.Drawing.Point(217, 47);
-            this.btnVerDia.Name = "btnVerDia";
-            this.btnVerDia.Size = new System.Drawing.Size(37, 23);
-            this.btnVerDia.TabIndex = 2;
-            this.btnVerDia.Text = "Hoy";
-            this.btnVerDia.UseVisualStyleBackColor = true;
-            this.btnVerDia.Click += new System.EventHandler(this.btnVerDia_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(138, 360);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
-            this.label1.TabIndex = 25;
-            this.label1.Text = "TOTAL del día:";
-            // 
-            // tboxTotal
-            // 
-            this.tboxTotal.Location = new System.Drawing.Point(131, 355);
-            this.tboxTotal.Name = "tboxTotal";
-            this.tboxTotal.ReadOnly = true;
-            this.tboxTotal.Size = new System.Drawing.Size(323, 20);
-            this.tboxTotal.TabIndex = 24;
-            this.tboxTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // dtFechaBuscada
-            // 
-            this.dtFechaBuscada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtFechaBuscada.Location = new System.Drawing.Point(129, 50);
-            this.dtFechaBuscada.Name = "dtFechaBuscada";
-            this.dtFechaBuscada.Size = new System.Drawing.Size(82, 20);
-            this.dtFechaBuscada.TabIndex = 29;
-            this.dtFechaBuscada.ValueChanged += new System.EventHandler(this.dtFechaBuscada_ValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(126, 34);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 13);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "Buscar Fecha";
             // 
             // UC_VerVenta
             // 
