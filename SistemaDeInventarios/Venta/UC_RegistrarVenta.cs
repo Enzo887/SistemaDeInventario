@@ -32,7 +32,7 @@ namespace SistemaDeInventarios.Venta
             InitializeComponent();
             MostrarProductosDataGrid();
 
-            
+
             if (cBoxMetodoPago.Items.Count > 0)
             {
                 cBoxMetodoPago.SelectedIndex = 0;
@@ -76,6 +76,8 @@ namespace SistemaDeInventarios.Venta
             dgVenta.DataSource = null;
             dgVenta.DataSource = ventaActual.DetallesVenta;
             AjustarDataGrid(dgVenta, 243);
+
+            dgVenta.ClearSelection();
         }
 
 
@@ -111,12 +113,31 @@ namespace SistemaDeInventarios.Venta
                 {
                     MessageBox.Show("No hay suficiente stock","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 }
-                MostrarProductosAgregadosDataGrid();
-                
-                ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
-                tboxTotal.Text = ventaActual.PrecioTotal.ToString();
-                //numCantidad.Visible = true;
-                ventaActual.FechaVenta = DateTime.Now;
+                else
+                {
+                    MostrarProductosAgregadosDataGrid();
+                    
+                    unProductoDetalle.IDProducto = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idProducto"].Value);
+                    numCantidad.Value = gestorVenta.ObtenerCantidadDetalle(ventaActual, unProductoDetalle);
+
+                    foreach (DataGridViewRow fila in dgVenta.Rows)
+                    {
+                        if (Convert.ToInt32(fila.Cells["idProductoVenta"].Value) == unProducto.IDProducto)
+                        {
+                            fila.Selected = true;
+                            dgVenta.FirstDisplayedScrollingRowIndex = fila.Index;
+
+                        }
+
+                    }
+
+                    ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
+                    tboxTotal.Text = ventaActual.PrecioTotal.ToString();
+                    ventaActual.FechaVenta = DateTime.Now;
+                    numCantidad.Visible = true;
+                    lblCantidad.Visible = true;
+                    btnSacarDetalle.Visible = true;
+                }
             }
         }
 
@@ -163,23 +184,12 @@ namespace SistemaDeInventarios.Venta
 
         private void dgVenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgVenta.Columns[e.ColumnIndex].Name == "reducirCantidad")
-            //{
-            //    BE.Producto unProducto = new BE.Producto();
-            //    unProducto.IDProducto = Convert.ToInt32(dgVenta.Rows[e.RowIndex].Cells["idProductoVenta"].Value);
-            //    //Reduce o elimina la cantidad de un detalleVenta
-            //    gestorVenta.SacarDetalle(ventaActual, unProducto);
-            //    numCantidad.Value = gestorVenta.ObtenerCantidadDetalle(ventaActual, unProducto);
-            //    MostrarProductosAgregadosDataGrid();
-
-            //    ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
-            //    tboxTotal.Text = ventaActual.PrecioTotal.ToString();
-            //}
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 unProductoDetalle.IDProducto = Convert.ToInt32(dgVenta.Rows[e.RowIndex].Cells["idProductoVenta"].Value);
-                numCantidad.Visible = true;
-                lblCantidad.Visible = true;
+                //numCantidad.Visible = true;
+                //lblCantidad.Visible = true;
+                //btnSacarDetalle.Visible = true;
                 numCantidad.Value = gestorVenta.ObtenerCantidadDetalle(ventaActual, unProductoDetalle);
             }
 
@@ -241,6 +251,7 @@ namespace SistemaDeInventarios.Venta
             tboxTotal.Clear();
             numCantidad.Visible = false;
             lblCantidad.Visible = false;
+            btnSacarDetalle.Visible = false;
         }
 
         public void AjustarDataGrid(DataGridView tabla, int anchoTabla)
@@ -269,10 +280,44 @@ namespace SistemaDeInventarios.Venta
             bool excesoCantMax = gestorVenta.ActualizarCantidadDetalle(ventaActual, unProductoDetalle,productos, cantidadDetalle);
             if (excesoCantMax)
             {
-                MessageBox.Show("No hay suficiente uwu","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("No hay suficiente stock", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if(cantidadDetalle != 0)
+                {
+                    numCantidad.Value -= 1;
+                }
             }
-            
-            MostrarProductosAgregadosDataGrid();
+            else if (cantidadDetalle <= 0) 
+            {
+                MessageBox.Show("La cantidad debe ser mayor a cero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MostrarProductosAgregadosDataGrid();
+                foreach (DataGridViewRow fila in dgVenta.Rows)
+                {
+                    if (Convert.ToInt32(fila.Cells["idProductoVenta"].Value) == unProductoDetalle.IDProducto)
+                    {
+                        fila.Selected = true;
+                        dgVenta.FirstDisplayedScrollingRowIndex = fila.Index;
+                    }
+
+                }
+            }
+
+        }
+        private void btnSacarDetalle_Click(object sender, EventArgs e)
+        {
+            if(unProductoDetalle.IDProducto == 0)
+            {
+                MessageBox.Show("No hay ningun detalle seleccionado, porfavor, seleccione uno.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                gestorVenta.SacarDetalle(ventaActual, unProductoDetalle);
+                unProductoDetalle = new BE.Producto();
+                MostrarProductosAgregadosDataGrid();
+            }    
         }
     }
 }

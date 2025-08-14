@@ -53,14 +53,7 @@ namespace BLL
 
             if(detalleExistente != null)
             {
-                if(detalleExistente.CantidadProducto > 1)
-                {
-                    detalleExistente.CantidadProducto -= 1;
-                }
-                else
-                {
-                    venta.DetallesVenta.Remove(detalleExistente);
-                }     
+                venta.DetallesVenta.Remove(detalleExistente);                   
             }
         }
 
