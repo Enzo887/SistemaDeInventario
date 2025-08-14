@@ -21,12 +21,18 @@ namespace SistemaDeInventarios.Venta
         private List<BE.Producto> productos = new List<BE.Producto>();
         private BLL.GestorProducto productoBLL = new BLL.GestorProducto();
 
+        //PRODUCTO STOCK
+        private BE.Producto unProducto;
+
+        //PRODUCTO DETALLE
+        private BE.Producto unProductoDetalle = new BE.Producto();
+
         public UC_RegistrarVenta()
         {
             InitializeComponent();
             MostrarProductosDataGrid();
 
-            
+
             if (cBoxMetodoPago.Items.Count > 0)
             {
                 cBoxMetodoPago.SelectedIndex = 0;
@@ -37,7 +43,7 @@ namespace SistemaDeInventarios.Venta
         {
             //false -> No muestra productos DESHABILIDATOS
             productos = productoBLL.ObtenerProductos(false);
-
+            
             dgProductos.AutoGenerateColumns = false;
             dgProductos.Columns["idProducto"].DataPropertyName = "IDProducto";
             dgProductos.Columns["nombreProducto"].DataPropertyName = "NombreProducto";
@@ -49,7 +55,22 @@ namespace SistemaDeInventarios.Venta
             dgProductos.Columns["idCategoriaProducto"].DataPropertyName = "idCategoria";
             dgProductos.Columns["categoriaProducto"].DataPropertyName = "NombreCategoria";
             dgProductos.Columns["estadoProducto"].DataPropertyName = "Estado";
-            dgProductos.DataSource = productos;
+
+            if (checkSinStock.Checked)
+            {
+                dgProductos.DataSource = productos;
+            }
+            else
+            {
+                
+                var filtrados = productos
+                .Where(p => p.Cantidad != 0)
+                .ToList();
+
+                dgProductos.DataSource = filtrados;
+            }
+                
+            AjustarDataGrid(dgProductos, 268);
         }
 
         public void MostrarProductosAgregadosDataGrid()
@@ -61,14 +82,16 @@ namespace SistemaDeInventarios.Venta
             gestorVenta.ActualizarDetalles(ventaActual, productosBD);
             ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
             tboxTotal.Text = ventaActual.PrecioTotal.ToString();
-            //gestorVenta.SacarDetalle2(ventaActual);
             dgVenta.AutoGenerateColumns = false;
             dgVenta.Columns["idProductoVenta"].DataPropertyName = "IDDetalleVenta";
             dgVenta.Columns["nombreProductoAgregado"].DataPropertyName = "NombreProducto";
             dgVenta.Columns["cantidadProductoAgregado"].DataPropertyName = "CantidadProducto";
             dgVenta.Columns["subtotal"].DataPropertyName = "Subtotal";
             dgVenta.DataSource = null;
-            dgVenta.DataSource = new BindingList<BE.DetalleVenta>(ventaActual.DetallesVenta);
+            dgVenta.DataSource = ventaActual.DetallesVenta;
+            AjustarDataGrid(dgVenta, 243);
+
+            dgVenta.ClearSelection();
         }
 
 
@@ -76,7 +99,7 @@ namespace SistemaDeInventarios.Venta
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgProductos.Columns[e.ColumnIndex].Name == "agregarProducto")
             {
-                BE.Producto unProducto = new BE.Producto();
+                unProducto = new BE.Producto();
                 unProducto.IDProducto = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idProducto"].Value);
                 unProducto.NombreProducto = dgProductos.Rows[e.RowIndex].Cells["nombreProducto"].Value.ToString();
                 unProducto.Precio = Convert.ToDecimal(dgProductos.Rows[e.RowIndex].Cells["precio"].Value);
@@ -104,12 +127,31 @@ namespace SistemaDeInventarios.Venta
                 {
                     MessageBox.Show("No hay suficiente stock","Advertencia",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 }
-                MostrarProductosAgregadosDataGrid();
-                
-                ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
-                tboxTotal.Text = ventaActual.PrecioTotal.ToString();
+                else
+                {
+                    MostrarProductosAgregadosDataGrid();
+                    
+                    unProductoDetalle.IDProducto = Convert.ToInt32(dgProductos.Rows[e.RowIndex].Cells["idProducto"].Value);
+                    numCantidad.Value = gestorVenta.ObtenerCantidadDetalle(ventaActual, unProductoDetalle);
 
-                ventaActual.FechaVenta = DateTime.Now;
+                    foreach (DataGridViewRow fila in dgVenta.Rows)
+                    {
+                        if (Convert.ToInt32(fila.Cells["idProductoVenta"].Value) == unProducto.IDProducto)
+                        {
+                            fila.Selected = true;
+                            dgVenta.FirstDisplayedScrollingRowIndex = fila.Index;
+
+                        }
+
+                    }
+
+                    ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
+                    tboxTotal.Text = ventaActual.PrecioTotal.ToString();
+                    ventaActual.FechaVenta = DateTime.Now;
+                    numCantidad.Visible = true;
+                    lblCantidad.Visible = true;
+                    btnSacarDetalle.Visible = true;
+                }
             }
         }
 
@@ -156,34 +198,54 @@ namespace SistemaDeInventarios.Venta
 
         private void dgVenta_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0 && dgVenta.Columns[e.ColumnIndex].Name == "reducirCantidad")
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                BE.Producto unProducto = new BE.Producto();
-                unProducto.IDProducto = Convert.ToInt32(dgVenta.Rows[e.RowIndex].Cells["idProductoVenta"].Value);
-                //Reduce o elimina la cantidad de un detalleVenta
-                gestorVenta.SacarDetalle(ventaActual, unProducto);
-                MostrarProductosAgregadosDataGrid();
-
-                ventaActual.PrecioTotal = gestorVenta.CalcularTotal(ventaActual);
-                tboxTotal.Text = ventaActual.PrecioTotal.ToString();
+                unProductoDetalle.IDProducto = Convert.ToInt32(dgVenta.Rows[e.RowIndex].Cells["idProductoVenta"].Value);
+                //numCantidad.Visible = true;
+                //lblCantidad.Visible = true;
+                //btnSacarDetalle.Visible = true;
+                numCantidad.Value = gestorVenta.ObtenerCantidadDetalle(ventaActual, unProductoDetalle);
             }
+
         }
 
         private void tboxBucarProducto_TextChanged(object sender, EventArgs e)
         {
-            string filtro = tboxBucarProducto.Text.Trim().ToLower();
+            
 
-            // Mostrar u ocultar botón según el texto real
-            btnLimpiarProducto.Visible = !string.IsNullOrWhiteSpace(tboxBucarProducto.Text) &&
-                                          tboxBucarProducto.Text != "Buscar por N° o Nombre";
+            if (checkSinStock.Checked)
+            {
+                string filtro = tboxBucarProducto.Text.Trim().ToLower();
 
-            var filtrados = productos
-                .Where(p => p.NombreProducto.ToLower().Contains(filtro)
-                            || p.IDProducto.ToString().Contains(filtro))
-                .ToList();
+                // Mostrar u ocultar botón según el texto real
+                btnLimpiarProducto.Visible = !string.IsNullOrWhiteSpace(tboxBucarProducto.Text) &&
+                                              tboxBucarProducto.Text != "Buscar por N° o Nombre";
 
-            dgProductos.DataSource = null;
-            dgProductos.DataSource = filtrados;
+                var filtrados = productos
+                    .Where(p => p.NombreProducto.ToLower().Contains(filtro)
+                                || p.IDProducto.ToString().Contains(filtro))
+                    .ToList();
+
+                dgProductos.DataSource = null;
+                dgProductos.DataSource = filtrados;
+            }
+            else
+            {
+                string filtro = tboxBucarProducto.Text.Trim().ToLower();
+
+                // Mostrar u ocultar botón según el texto real
+                btnLimpiarProducto.Visible = !string.IsNullOrWhiteSpace(tboxBucarProducto.Text) &&
+                                              tboxBucarProducto.Text != "Buscar por N° o Nombre";
+
+                var filtrados = productos
+                    .Where(p => (p.NombreProducto.ToLower().Contains(filtro)
+                                || p.IDProducto.ToString().Contains(filtro))
+                                && p.Cantidad !=0 )
+                    .ToList();
+
+                dgProductos.DataSource = null;
+                dgProductos.DataSource = filtrados;
+            }
 
 
         }
@@ -223,6 +285,96 @@ namespace SistemaDeInventarios.Venta
             ventaActual = new BE.Venta();
             dgVenta.DataSource = null;
             tboxTotal.Clear();
+            numCantidad.Visible = false;
+            lblCantidad.Visible = false;
+            btnSacarDetalle.Visible = false;
+            tboxBucarProducto.Text = "Buscar por N° o Nombre";
+            tboxBucarProducto.ForeColor = Color.Gray;
+            MostrarProductosDataGrid();
+        }
+
+        public void AjustarDataGrid(DataGridView tabla, int anchoTabla)
+        {
+            int alturaFila = tabla.RowTemplate.Height;
+            int totalFilas = tabla.Rows.Count;
+            int alturaEncabezado = tabla.ColumnHeadersHeight;
+            
+            int alturaTabla = tabla.Height;
+
+            int anchoScroll = 17;
+            int alturaContenido = alturaEncabezado + (alturaFila * totalFilas);
+            if(alturaContenido > alturaTabla)
+            {            
+                tabla.Width = anchoTabla + anchoScroll;
+            }
+            else
+            {
+                tabla.Width = anchoTabla;
+            }
+        }
+
+        private void numCantidad_ValueChanged(object sender, EventArgs e)
+        {
+            int cantidadDetalle = Convert.ToInt32(numCantidad.Value);
+            bool excesoCantMax = gestorVenta.ActualizarCantidadDetalle(ventaActual, unProductoDetalle,productos, cantidadDetalle);
+            if (excesoCantMax)
+            {
+                MessageBox.Show("No hay suficiente stock", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                if(cantidadDetalle != 0)
+                {
+                    numCantidad.Value -= 1;
+                }
+            }
+            else if (cantidadDetalle <= 0) 
+            {
+                MessageBox.Show("La cantidad debe ser mayor a cero", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                MostrarProductosAgregadosDataGrid();
+                foreach (DataGridViewRow fila in dgVenta.Rows)
+                {
+                    if (Convert.ToInt32(fila.Cells["idProductoVenta"].Value) == unProductoDetalle.IDProducto)
+                    {
+                        fila.Selected = true;
+                        dgVenta.FirstDisplayedScrollingRowIndex = fila.Index;
+                    }
+
+                }
+            }
+
+        }
+        private void btnSacarDetalle_Click(object sender, EventArgs e)
+        {
+            if(unProductoDetalle.IDProducto == 0)
+            {
+                MessageBox.Show("No hay ningun detalle seleccionado, porfavor, seleccione uno.", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            else
+            {
+                gestorVenta.SacarDetalle(ventaActual, unProductoDetalle);
+                unProductoDetalle = new BE.Producto();
+                MostrarProductosAgregadosDataGrid();
+            }    
+        }
+
+        private void checkSinStock_CheckedChanged(object sender, EventArgs e)
+        {
+            tboxBucarProducto.Text = "Buscar por N° o Nombre";
+            tboxBucarProducto.ForeColor = Color.Gray;
+            MostrarProductosDataGrid();
+        }
+
+        private void dgProductos_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            var fila = dgProductos.Rows[e.RowIndex];
+            var producto = fila.DataBoundItem as Producto;
+
+            if (producto != null && producto.Cantidad == 0)
+            {
+                fila.DefaultCellStyle.ForeColor = Color.Gray;
+            }
         }
     }
 }

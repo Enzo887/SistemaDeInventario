@@ -33,7 +33,6 @@
             this.dgProductos = new System.Windows.Forms.DataGridView();
             this.lblVenta = new System.Windows.Forms.Label();
             this.dgVenta = new System.Windows.Forms.DataGridView();
-            this.reducirCantidad = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idProductoVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProductoAgregado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidadProductoAgregado = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +43,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLimpiarProducto = new System.Windows.Forms.Button();
             this.cBoxMetodoPago = new System.Windows.Forms.ComboBox();
+            this.numCantidad = new System.Windows.Forms.NumericUpDown();
+            this.lblCantidad = new System.Windows.Forms.Label();
+            this.btnSacarDetalle = new System.Windows.Forms.Button();
             this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,8 +55,10 @@
             this.idCategoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkSinStock = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgVenta)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             this.SuspendLayout();
             // 
             // tboxBucarProducto
@@ -101,10 +105,12 @@
             this.dgProductos.ReadOnly = true;
             this.dgProductos.RowHeadersVisible = false;
             this.dgProductos.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dgProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgProductos.ShowCellToolTips = false;
-            this.dgProductos.Size = new System.Drawing.Size(285, 267);
+            this.dgProductos.Size = new System.Drawing.Size(268, 265);
             this.dgProductos.TabIndex = 2;
             this.dgProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellClick);
+            this.dgProductos.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgProductos_RowPrePaint);
             // 
             // lblVenta
             // 
@@ -123,7 +129,6 @@
             this.dgVenta.AllowUserToResizeRows = false;
             this.dgVenta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgVenta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.reducirCantidad,
             this.idProductoVenta,
             this.nombreProductoAgregado,
             this.cantidadProductoAgregado,
@@ -134,20 +139,11 @@
             this.dgVenta.ReadOnly = true;
             this.dgVenta.RowHeadersVisible = false;
             this.dgVenta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgVenta.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgVenta.ShowCellToolTips = false;
-            this.dgVenta.Size = new System.Drawing.Size(243, 143);
+            this.dgVenta.Size = new System.Drawing.Size(243, 155);
             this.dgVenta.TabIndex = 4;
             this.dgVenta.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVenta_CellClick);
-            // 
-            // reducirCantidad
-            // 
-            this.reducirCantidad.HeaderText = "-";
-            this.reducirCantidad.Name = "reducirCantidad";
-            this.reducirCantidad.ReadOnly = true;
-            this.reducirCantidad.Text = "-";
-            this.reducirCantidad.UseColumnTextForButtonValue = true;
-            this.reducirCantidad.Width = 20;
             // 
             // idProductoVenta
             // 
@@ -179,7 +175,7 @@
             // 
             // tboxTotal
             // 
-            this.tboxTotal.Location = new System.Drawing.Point(344, 243);
+            this.tboxTotal.Location = new System.Drawing.Point(344, 253);
             this.tboxTotal.Name = "tboxTotal";
             this.tboxTotal.ReadOnly = true;
             this.tboxTotal.Size = new System.Drawing.Size(243, 20);
@@ -209,7 +205,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(351, 248);
+            this.label1.Location = new System.Drawing.Point(351, 258);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 10;
@@ -237,6 +233,46 @@
             this.cBoxMetodoPago.Name = "cBoxMetodoPago";
             this.cBoxMetodoPago.Size = new System.Drawing.Size(100, 21);
             this.cBoxMetodoPago.TabIndex = 12;
+            // 
+            // numCantidad
+            // 
+            this.numCantidad.Location = new System.Drawing.Point(450, 68);
+            this.numCantidad.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numCantidad.Name = "numCantidad";
+            this.numCantidad.Size = new System.Drawing.Size(62, 20);
+            this.numCantidad.TabIndex = 14;
+            this.numCantidad.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numCantidad.Visible = false;
+            this.numCantidad.ValueChanged += new System.EventHandler(this.numCantidad_ValueChanged);
+            // 
+            // lblCantidad
+            // 
+            this.lblCantidad.AutoSize = true;
+            this.lblCantidad.Location = new System.Drawing.Point(447, 52);
+            this.lblCantidad.Name = "lblCantidad";
+            this.lblCantidad.Size = new System.Drawing.Size(49, 13);
+            this.lblCantidad.TabIndex = 13;
+            this.lblCantidad.Text = "Cantidad";
+            this.lblCantidad.Visible = false;
+            // 
+            // btnSacarDetalle
+            // 
+            this.btnSacarDetalle.Location = new System.Drawing.Point(531, 66);
+            this.btnSacarDetalle.Name = "btnSacarDetalle";
+            this.btnSacarDetalle.Size = new System.Drawing.Size(56, 20);
+            this.btnSacarDetalle.TabIndex = 15;
+            this.btnSacarDetalle.Text = "Eliminar";
+            this.btnSacarDetalle.UseVisualStyleBackColor = true;
+            this.btnSacarDetalle.Visible = false;
+            this.btnSacarDetalle.Click += new System.EventHandler(this.btnSacarDetalle_Click);
             // 
             // idProducto
             // 
@@ -303,10 +339,25 @@
             this.estadoProducto.ReadOnly = true;
             this.estadoProducto.Visible = false;
             // 
+            // checkSinStock
+            // 
+            this.checkSinStock.AutoSize = true;
+            this.checkSinStock.Location = new System.Drawing.Point(48, 365);
+            this.checkSinStock.Name = "checkSinStock";
+            this.checkSinStock.Size = new System.Drawing.Size(137, 17);
+            this.checkSinStock.TabIndex = 16;
+            this.checkSinStock.Text = "Ver productos sin stock";
+            this.checkSinStock.UseVisualStyleBackColor = true;
+            this.checkSinStock.CheckedChanged += new System.EventHandler(this.checkSinStock_CheckedChanged);
+            // 
             // UC_RegistrarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkSinStock);
+            this.Controls.Add(this.btnSacarDetalle);
+            this.Controls.Add(this.numCantidad);
+            this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.cBoxMetodoPago);
             this.Controls.Add(this.btnLimpiarProducto);
             this.Controls.Add(this.label1);
@@ -322,6 +373,7 @@
             this.Size = new System.Drawing.Size(645, 450);
             ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgVenta)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,13 +392,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewButtonColumn reducirCantidad;
+        private System.Windows.Forms.Button btnLimpiarProducto;
+        private System.Windows.Forms.ComboBox cBoxMetodoPago;
+        private System.Windows.Forms.NumericUpDown numCantidad;
+        private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn idProductoVenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreProductoAgregado;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidadProductoAgregado;
         private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
-        private System.Windows.Forms.Button btnLimpiarProducto;
-        private System.Windows.Forms.ComboBox cBoxMetodoPago;
+        private System.Windows.Forms.Button btnSacarDetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn precio;
@@ -356,5 +410,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idCategoriaProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoriaProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoProducto;
+        private System.Windows.Forms.CheckBox checkSinStock;
     }
 }

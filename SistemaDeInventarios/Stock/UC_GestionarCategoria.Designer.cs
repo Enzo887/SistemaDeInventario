@@ -68,7 +68,7 @@
             this.dgCategoria.RowHeadersVisible = false;
             this.dgCategoria.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgCategoria.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgCategoria.Size = new System.Drawing.Size(229, 248);
+            this.dgCategoria.Size = new System.Drawing.Size(229, 265);
             this.dgCategoria.TabIndex = 16;
             this.dgCategoria.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCategoria_CellClick);
             this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);

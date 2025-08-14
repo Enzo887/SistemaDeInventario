@@ -54,28 +54,39 @@ namespace DAL
             }
         }
 
-        public DataTable ObtenerVentas()
-        {
-            //try
-            //{
-            //    SqlParameter[] parametros = new SqlParameter[]
-            //    {
-            //    new SqlParameter("@incluirEliminados",incluirEliminados)
-            //                };
-            //    return conexion.LeerPorStoreProcedure("SP_ObtenerVentasPorFecha", parametros);
 
-            //}
-            //catch (Exception e)
-            //{
-            //    throw new Exception("Hubo un error en obtener los datos de la tabla productos en la BD", e);
-            //}
+
+        public DataTable ObtenerVentasDia(DateTime fechaBuscada)
+        {
             try
             {
-                return conexion.LeerPorComando("SELECT * FROM V_ObtenerVentas");
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@fechaBuscada",fechaBuscada)
+                };
+                return conexion.LeerPorStoreProcedure("SP_BuscarFechaDia", parametros);
+
             }
             catch (Exception e)
             {
-                throw new Exception("Hubo un error en obtener los datos de la tabla categoria en la BD", e);
+                throw new Exception("Hubo un error en obtener la fecha de ventas en DIA en la BD", e);
+            }
+        }
+       
+        public DataTable ObtenerVentaDelDetalle(int idVenta)
+        {
+            try
+            {
+                SqlParameter[] parametros = new SqlParameter[]
+                {
+                    new SqlParameter("@ventaID",idVenta)
+                };
+                return conexion.LeerPorStoreProcedure("SP_BuscarDetalleVenta", parametros);
+
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Hubo un error en obtener venta del detalle en la BD", e);
             }
         }
     }

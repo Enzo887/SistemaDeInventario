@@ -30,6 +30,7 @@ namespace SistemaDeInventarios.Stock
             dgCategoria.Columns["NombreCategoria"].DataPropertyName = "NombreCategoria";
             dgCategoria.Columns["idCategoria"].DataPropertyName = "IDCategoria";
             dgCategoria.DataSource = categorias;
+            AjustarDataGrid(dgCategoria, 229);
         }
     
         private void dgCategoria_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -156,6 +157,26 @@ namespace SistemaDeInventarios.Stock
             if (btnAgregarCategoria.Text == "Aceptar")
             {
                 btnAgregarCategoria.Text = "Agregar";
+            }
+        }
+
+        public void AjustarDataGrid(DataGridView tabla, int anchoTabla)
+        {
+            int alturaFila = tabla.RowTemplate.Height;
+            int totalFilas = tabla.Rows.Count;
+            int alturaEncabezado = tabla.ColumnHeadersHeight;
+
+            int alturaTabla = tabla.Height;
+
+            int anchoScroll = 17;
+            int alturaContenido = alturaEncabezado + (alturaFila * totalFilas);
+            if (alturaContenido > alturaTabla)
+            {
+                tabla.Width = anchoTabla + anchoScroll;
+            }
+            else
+            {
+                tabla.Width = anchoTabla;
             }
         }
     }

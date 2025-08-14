@@ -53,14 +53,7 @@ namespace BLL
 
             if(detalleExistente != null)
             {
-                if(detalleExistente.CantidadProducto > 1)
-                {
-                    detalleExistente.CantidadProducto -= 1;
-                }
-                else
-                {
-                    venta.DetallesVenta.Remove(detalleExistente);
-                }     
+                venta.DetallesVenta.Remove(detalleExistente);                   
             }
         }
 
@@ -98,9 +91,9 @@ namespace BLL
             ventaDAL.GuardarDetalleVenta(venta);
         }
 
-        public List<BE.Venta> ObtenerVentas()
+        public List<BE.Venta> ObtenerVentasDia(DateTime fechaBuscada)
         {
-            DataTable tabla = ventaDAL.ObtenerVentas();
+            DataTable tabla = ventaDAL.ObtenerVentasDia(fechaBuscada);
 
             List<BE.Venta> ventas = new List<BE.Venta>();
 
@@ -108,13 +101,76 @@ namespace BLL
             {
                BE.Venta unaVenta = new BE.Venta();
                 unaVenta.IDVenta = Convert.ToInt32(fila["IdVenta"]);
-                unaVenta.FechaVenta = (DateTime)fila["FechaVenta"];
+                unaVenta.FechaVenta = ((DateTime)fila["FechaVenta"]).Date;
                 unaVenta.PrecioTotal = Convert.ToDecimal(fila["PrecioTotal"]);
                 unaVenta.MetodoPago = fila["MetodoPago"].ToString();
 
                 ventas.Add(unaVenta);
             }
             return ventas;
+        }
+
+        public decimal CalcularTotalVentas(List<BE.Venta> ventas)
+        {
+            return ventas.Sum(venta => venta.PrecioTotal);
+        }
+
+        //public void BuscarVentasDia(DateTime fechaBuscada)
+        //{
+        //    ventaDAL.BuscarFechaDia(fechaBuscada);
+        //}
+
+        public List<BE.DetalleVenta> ObtenerVentaDelDetalle(int idVenta)
+        {
+            DataTable tabla = ventaDAL.ObtenerVentaDelDetalle(idVenta);
+
+            List<BE.DetalleVenta> detalles = new List<BE.DetalleVenta>();
+
+            foreach (DataRow fila in tabla.Rows)
+            {
+                BE.DetalleVenta detalle = new BE.DetalleVenta();
+                BE.Producto producto = new BE.Producto();
+
+                detalle.IDDetalleVenta = Convert.ToInt32(fila["IdDetalleVenta"]);
+                producto.NombreProducto = fila["NombreProducto"].ToString();
+                producto.Precio = Convert.ToDecimal(fila["PrecioProducto"]);
+                detalle.Producto = producto;
+                detalle.CantidadProducto = Convert.ToInt32(fila["CantidadProducto"]);
+                //detalle.Subtotal = Convert.ToDecimal(fila["PrecioSubtotal"]);
+
+                detalles.Add(detalle);
+            }
+            return detalles;
+        }
+
+        public int ObtenerCantidadDetalle(BE.Venta venta, BE.Producto producto)
+        {
+            var detalleExistente = venta.DetallesVenta.FirstOrDefault(detalle => detalle.Producto.IDProducto == producto.IDProducto);
+
+            if (detalleExistente != null)
+            {
+                return detalleExistente.CantidadProducto;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+        public bool ActualizarCantidadDetalle(BE.Venta venta, BE.Producto productoDetalle, List<BE.Producto> productos, int cantidadDetalle)
+        {
+            var detalleExistente = venta.DetallesVenta.FirstOrDefault(detalle => detalle.Producto.IDProducto == productoDetalle.IDProducto);
+            var productoStock = productos.FirstOrDefault(producto => producto.IDProducto == productoDetalle.IDProducto);
+
+            if (detalleExistente != null && productoStock !=null)
+            {
+                if (cantidadDetalle <= productoStock.Cantidad)
+                {
+                    detalleExistente.CantidadProducto = cantidadDetalle;
+                    return false;
+                }
+                return true;
+            }
+            return true;           
         }
     }
 }
