@@ -31,15 +31,6 @@
             this.tboxBucarProducto = new System.Windows.Forms.TextBox();
             this.lblBuscador = new System.Windows.Forms.Label();
             this.dgProductos = new System.Windows.Forms.DataGridView();
-            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.agregarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.vencimientoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idCategoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblVenta = new System.Windows.Forms.Label();
             this.dgVenta = new System.Windows.Forms.DataGridView();
             this.idProductoVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,6 +46,16 @@
             this.numCantidad = new System.Windows.Forms.NumericUpDown();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.btnSacarDetalle = new System.Windows.Forms.Button();
+            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.agregarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.vencimientoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idCategoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkSinStock = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgVenta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
@@ -109,71 +110,7 @@
             this.dgProductos.Size = new System.Drawing.Size(268, 265);
             this.dgProductos.TabIndex = 2;
             this.dgProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellClick);
-            // 
-            // idProducto
-            // 
-            this.idProducto.HeaderText = "Nº";
-            this.idProducto.Name = "idProducto";
-            this.idProducto.ReadOnly = true;
-            this.idProducto.Width = 25;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.HeaderText = "Producto";
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            this.nombreProducto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // precio
-            // 
-            this.precio.HeaderText = "Precio";
-            this.precio.Name = "precio";
-            this.precio.ReadOnly = true;
-            this.precio.Width = 80;
-            // 
-            // cantidadProducto
-            // 
-            this.cantidadProducto.HeaderText = "Cant";
-            this.cantidadProducto.Name = "cantidadProducto";
-            this.cantidadProducto.ReadOnly = true;
-            this.cantidadProducto.Width = 40;
-            // 
-            // agregarProducto
-            // 
-            this.agregarProducto.HeaderText = "+";
-            this.agregarProducto.Name = "agregarProducto";
-            this.agregarProducto.ReadOnly = true;
-            this.agregarProducto.Text = "+";
-            this.agregarProducto.UseColumnTextForButtonValue = true;
-            this.agregarProducto.Width = 20;
-            // 
-            // vencimientoProducto
-            // 
-            this.vencimientoProducto.HeaderText = "vencimientoProducto";
-            this.vencimientoProducto.Name = "vencimientoProducto";
-            this.vencimientoProducto.ReadOnly = true;
-            this.vencimientoProducto.Visible = false;
-            // 
-            // idCategoriaProducto
-            // 
-            this.idCategoriaProducto.HeaderText = "idCategoriaProducto";
-            this.idCategoriaProducto.Name = "idCategoriaProducto";
-            this.idCategoriaProducto.ReadOnly = true;
-            this.idCategoriaProducto.Visible = false;
-            // 
-            // categoriaProducto
-            // 
-            this.categoriaProducto.HeaderText = "categoriaProducto";
-            this.categoriaProducto.Name = "categoriaProducto";
-            this.categoriaProducto.ReadOnly = true;
-            this.categoriaProducto.Visible = false;
-            // 
-            // estadoProducto
-            // 
-            this.estadoProducto.HeaderText = "estadoProducto";
-            this.estadoProducto.Name = "estadoProducto";
-            this.estadoProducto.ReadOnly = true;
-            this.estadoProducto.Visible = false;
+            this.dgProductos.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgProductos_RowPrePaint);
             // 
             // lblVenta
             // 
@@ -337,10 +274,87 @@
             this.btnSacarDetalle.Visible = false;
             this.btnSacarDetalle.Click += new System.EventHandler(this.btnSacarDetalle_Click);
             // 
+            // idProducto
+            // 
+            this.idProducto.HeaderText = "Nº";
+            this.idProducto.Name = "idProducto";
+            this.idProducto.ReadOnly = true;
+            this.idProducto.Width = 25;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.HeaderText = "Producto";
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            this.nombreProducto.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            // 
+            // precio
+            // 
+            this.precio.HeaderText = "Precio";
+            this.precio.Name = "precio";
+            this.precio.ReadOnly = true;
+            this.precio.Width = 80;
+            // 
+            // cantidadProducto
+            // 
+            this.cantidadProducto.HeaderText = "Cant";
+            this.cantidadProducto.Name = "cantidadProducto";
+            this.cantidadProducto.ReadOnly = true;
+            this.cantidadProducto.Width = 40;
+            // 
+            // agregarProducto
+            // 
+            this.agregarProducto.HeaderText = "+";
+            this.agregarProducto.Name = "agregarProducto";
+            this.agregarProducto.ReadOnly = true;
+            this.agregarProducto.Text = "+";
+            this.agregarProducto.UseColumnTextForButtonValue = true;
+            this.agregarProducto.Width = 20;
+            // 
+            // vencimientoProducto
+            // 
+            this.vencimientoProducto.HeaderText = "vencimientoProducto";
+            this.vencimientoProducto.Name = "vencimientoProducto";
+            this.vencimientoProducto.ReadOnly = true;
+            this.vencimientoProducto.Visible = false;
+            // 
+            // idCategoriaProducto
+            // 
+            this.idCategoriaProducto.HeaderText = "idCategoriaProducto";
+            this.idCategoriaProducto.Name = "idCategoriaProducto";
+            this.idCategoriaProducto.ReadOnly = true;
+            this.idCategoriaProducto.Visible = false;
+            // 
+            // categoriaProducto
+            // 
+            this.categoriaProducto.HeaderText = "categoriaProducto";
+            this.categoriaProducto.Name = "categoriaProducto";
+            this.categoriaProducto.ReadOnly = true;
+            this.categoriaProducto.Visible = false;
+            // 
+            // estadoProducto
+            // 
+            this.estadoProducto.HeaderText = "estadoProducto";
+            this.estadoProducto.Name = "estadoProducto";
+            this.estadoProducto.ReadOnly = true;
+            this.estadoProducto.Visible = false;
+            // 
+            // checkSinStock
+            // 
+            this.checkSinStock.AutoSize = true;
+            this.checkSinStock.Location = new System.Drawing.Point(48, 365);
+            this.checkSinStock.Name = "checkSinStock";
+            this.checkSinStock.Size = new System.Drawing.Size(137, 17);
+            this.checkSinStock.TabIndex = 16;
+            this.checkSinStock.Text = "Ver productos sin stock";
+            this.checkSinStock.UseVisualStyleBackColor = true;
+            this.checkSinStock.CheckedChanged += new System.EventHandler(this.checkSinStock_CheckedChanged);
+            // 
             // UC_RegistrarVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.checkSinStock);
             this.Controls.Add(this.btnSacarDetalle);
             this.Controls.Add(this.numCantidad);
             this.Controls.Add(this.lblCantidad);
@@ -380,6 +394,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLimpiarProducto;
         private System.Windows.Forms.ComboBox cBoxMetodoPago;
+        private System.Windows.Forms.NumericUpDown numCantidad;
+        private System.Windows.Forms.Label lblCantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idProductoVenta;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProductoAgregado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadProductoAgregado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
+        private System.Windows.Forms.Button btnSacarDetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn precio;
@@ -389,12 +410,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idCategoriaProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoriaProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoProducto;
-        private System.Windows.Forms.NumericUpDown numCantidad;
-        private System.Windows.Forms.Label lblCantidad;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idProductoVenta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombreProductoAgregado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidadProductoAgregado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subtotal;
-        private System.Windows.Forms.Button btnSacarDetalle;
+        private System.Windows.Forms.CheckBox checkSinStock;
     }
 }

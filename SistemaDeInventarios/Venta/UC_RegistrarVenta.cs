@@ -55,7 +55,21 @@ namespace SistemaDeInventarios.Venta
             dgProductos.Columns["idCategoriaProducto"].DataPropertyName = "idCategoria";
             dgProductos.Columns["categoriaProducto"].DataPropertyName = "NombreCategoria";
             dgProductos.Columns["estadoProducto"].DataPropertyName = "Estado";
-            dgProductos.DataSource = productos;
+
+            if (checkSinStock.Checked)
+            {
+                dgProductos.DataSource = productos;
+            }
+            else
+            {
+                
+                var filtrados = productos
+                .Where(p => p.Cantidad != 0)
+                .ToList();
+
+                dgProductos.DataSource = filtrados;
+            }
+                
             AjustarDataGrid(dgProductos, 268);
         }
 
@@ -197,19 +211,41 @@ namespace SistemaDeInventarios.Venta
 
         private void tboxBucarProducto_TextChanged(object sender, EventArgs e)
         {
-            string filtro = tboxBucarProducto.Text.Trim().ToLower();
+            
 
-            // Mostrar u ocultar botón según el texto real
-            btnLimpiarProducto.Visible = !string.IsNullOrWhiteSpace(tboxBucarProducto.Text) &&
-                                          tboxBucarProducto.Text != "Buscar por N° o Nombre";
+            if (checkSinStock.Checked)
+            {
+                string filtro = tboxBucarProducto.Text.Trim().ToLower();
 
-            var filtrados = productos
-                .Where(p => p.NombreProducto.ToLower().Contains(filtro)
-                            || p.IDProducto.ToString().Contains(filtro))
-                .ToList();
+                // Mostrar u ocultar botón según el texto real
+                btnLimpiarProducto.Visible = !string.IsNullOrWhiteSpace(tboxBucarProducto.Text) &&
+                                              tboxBucarProducto.Text != "Buscar por N° o Nombre";
 
-            dgProductos.DataSource = null;
-            dgProductos.DataSource = filtrados;
+                var filtrados = productos
+                    .Where(p => p.NombreProducto.ToLower().Contains(filtro)
+                                || p.IDProducto.ToString().Contains(filtro))
+                    .ToList();
+
+                dgProductos.DataSource = null;
+                dgProductos.DataSource = filtrados;
+            }
+            else
+            {
+                string filtro = tboxBucarProducto.Text.Trim().ToLower();
+
+                // Mostrar u ocultar botón según el texto real
+                btnLimpiarProducto.Visible = !string.IsNullOrWhiteSpace(tboxBucarProducto.Text) &&
+                                              tboxBucarProducto.Text != "Buscar por N° o Nombre";
+
+                var filtrados = productos
+                    .Where(p => (p.NombreProducto.ToLower().Contains(filtro)
+                                || p.IDProducto.ToString().Contains(filtro))
+                                && p.Cantidad !=0 )
+                    .ToList();
+
+                dgProductos.DataSource = null;
+                dgProductos.DataSource = filtrados;
+            }
 
 
         }
@@ -252,6 +288,9 @@ namespace SistemaDeInventarios.Venta
             numCantidad.Visible = false;
             lblCantidad.Visible = false;
             btnSacarDetalle.Visible = false;
+            tboxBucarProducto.Text = "Buscar por N° o Nombre";
+            tboxBucarProducto.ForeColor = Color.Gray;
+            MostrarProductosDataGrid();
         }
 
         public void AjustarDataGrid(DataGridView tabla, int anchoTabla)
@@ -318,6 +357,24 @@ namespace SistemaDeInventarios.Venta
                 unProductoDetalle = new BE.Producto();
                 MostrarProductosAgregadosDataGrid();
             }    
+        }
+
+        private void checkSinStock_CheckedChanged(object sender, EventArgs e)
+        {
+            tboxBucarProducto.Text = "Buscar por N° o Nombre";
+            tboxBucarProducto.ForeColor = Color.Gray;
+            MostrarProductosDataGrid();
+        }
+
+        private void dgProductos_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            var fila = dgProductos.Rows[e.RowIndex];
+            var producto = fila.DataBoundItem as Producto;
+
+            if (producto != null && producto.Cantidad == 0)
+            {
+                fila.DefaultCellStyle.ForeColor = Color.Gray;
+            }
         }
     }
 }

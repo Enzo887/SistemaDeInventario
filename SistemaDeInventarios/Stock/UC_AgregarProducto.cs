@@ -146,6 +146,9 @@ namespace SistemaDeInventarios.Stock
             dgCategoria.CurrentCell = null;
             checkRestaurar.Checked = false;
             checkRestaurar.Visible = false;
+            tboxBucarProducto.Text = "Buscar por N° o Nombre";
+            tboxBucarProducto.ForeColor = Color.Gray;
+            MostrarProductosDataGrid();
 
         }
 
@@ -211,7 +214,7 @@ namespace SistemaDeInventarios.Stock
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult mensajeResultado = MessageBox.Show("Seguro que desea cancelar la venta?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+            DialogResult mensajeResultado = MessageBox.Show("Seguro que desea cancelar el ingreso del producto?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
             if (mensajeResultado == DialogResult.OK)
             {
                 unProducto = new BE.Producto();
@@ -307,6 +310,8 @@ namespace SistemaDeInventarios.Stock
 
         private void checkDeshabilitados_CheckedChanged(object sender, EventArgs e)
         {
+            tboxBucarProducto.Text = "Buscar por N° o Nombre";
+            tboxBucarProducto.ForeColor = Color.Gray;
             MostrarProductosDataGrid();
         }
 
