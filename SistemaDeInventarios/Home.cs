@@ -27,6 +27,8 @@ namespace SistemaDeInventarios
             GestionarCategoria = new UC_GestionarCategoria();
             RegistrarVenta = new UC_RegistrarVenta();
             VerVenta = new UC_VerVenta();
+
+            btnVenta.Select();
             
             CargarUserControl(RegistrarVenta);
 
