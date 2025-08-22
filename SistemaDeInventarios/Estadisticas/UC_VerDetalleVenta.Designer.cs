@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.dgDetalleVenta = new System.Windows.Forms.DataGridView();
+            this.idDetalleVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subtotalProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVolver = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tboxTotal = new System.Windows.Forms.TextBox();
@@ -40,18 +45,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.idDetalleVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.subtotalProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgDetalleVenta)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgDetalleVenta
@@ -76,6 +76,46 @@
             this.dgDetalleVenta.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgDetalleVenta.Size = new System.Drawing.Size(391, 189);
             this.dgDetalleVenta.TabIndex = 2;
+            // 
+            // idDetalleVenta
+            // 
+            this.idDetalleVenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idDetalleVenta.HeaderText = "ID";
+            this.idDetalleVenta.MinimumWidth = 25;
+            this.idDetalleVenta.Name = "idDetalleVenta";
+            this.idDetalleVenta.ReadOnly = true;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreProducto.HeaderText = "Producto";
+            this.nombreProducto.MinimumWidth = 65;
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            // 
+            // cantidadProducto
+            // 
+            this.cantidadProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cantidadProducto.HeaderText = "Cant";
+            this.cantidadProducto.MinimumWidth = 40;
+            this.cantidadProducto.Name = "cantidadProducto";
+            this.cantidadProducto.ReadOnly = true;
+            // 
+            // precioProducto
+            // 
+            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.precioProducto.HeaderText = "Precio";
+            this.precioProducto.MinimumWidth = 65;
+            this.precioProducto.Name = "precioProducto";
+            this.precioProducto.ReadOnly = true;
+            // 
+            // subtotalProducto
+            // 
+            this.subtotalProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.subtotalProducto.HeaderText = "Subtotal";
+            this.subtotalProducto.MinimumWidth = 80;
+            this.subtotalProducto.Name = "subtotalProducto";
+            this.subtotalProducto.ReadOnly = true;
             // 
             // btnVolver
             // 
@@ -192,6 +232,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(397, 275);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.tboxTotal);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 243);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(391, 29);
+            this.panel2.TabIndex = 1;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label4);
@@ -206,56 +256,6 @@
             this.panel1.Size = new System.Drawing.Size(391, 39);
             this.panel1.TabIndex = 1;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.tboxTotal);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 243);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(391, 29);
-            this.panel2.TabIndex = 1;
-            // 
-            // idDetalleVenta
-            // 
-            this.idDetalleVenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idDetalleVenta.HeaderText = "ID";
-            this.idDetalleVenta.MinimumWidth = 25;
-            this.idDetalleVenta.Name = "idDetalleVenta";
-            this.idDetalleVenta.ReadOnly = true;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreProducto.HeaderText = "Producto";
-            this.nombreProducto.MinimumWidth = 65;
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            // 
-            // cantidadProducto
-            // 
-            this.cantidadProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cantidadProducto.HeaderText = "Cant";
-            this.cantidadProducto.MinimumWidth = 40;
-            this.cantidadProducto.Name = "cantidadProducto";
-            this.cantidadProducto.ReadOnly = true;
-            // 
-            // precioProducto
-            // 
-            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.precioProducto.HeaderText = "Precio";
-            this.precioProducto.MinimumWidth = 65;
-            this.precioProducto.Name = "precioProducto";
-            this.precioProducto.ReadOnly = true;
-            // 
-            // subtotalProducto
-            // 
-            this.subtotalProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.subtotalProducto.HeaderText = "Subtotal";
-            this.subtotalProducto.MinimumWidth = 80;
-            this.subtotalProducto.Name = "subtotalProducto";
-            this.subtotalProducto.ReadOnly = true;
-            // 
             // UC_VerDetalleVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -267,10 +267,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgDetalleVenta)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }

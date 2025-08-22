@@ -29,6 +29,12 @@
         private void InitializeComponent()
         {
             this.dgVentas = new System.Windows.Forms.DataGridView();
+            this.idVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.metodoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verDetalleVenta = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVerDia = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tboxTotal = new System.Windows.Forms.TextBox();
@@ -36,19 +42,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.idVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDetalle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fechaVenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.metodoPago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verDetalleVenta = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgVentas)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgVentas
@@ -76,6 +76,54 @@
             this.dgVentas.Size = new System.Drawing.Size(397, 189);
             this.dgVentas.TabIndex = 0;
             this.dgVentas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgVentas_CellContentClick);
+            // 
+            // idVenta
+            // 
+            this.idVenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idVenta.HeaderText = "ID";
+            this.idVenta.MinimumWidth = 35;
+            this.idVenta.Name = "idVenta";
+            this.idVenta.ReadOnly = true;
+            // 
+            // idDetalle
+            // 
+            this.idDetalle.HeaderText = "idDetalle";
+            this.idDetalle.Name = "idDetalle";
+            this.idDetalle.ReadOnly = true;
+            this.idDetalle.Visible = false;
+            // 
+            // fechaVenta
+            // 
+            this.fechaVenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.fechaVenta.HeaderText = "Fecha";
+            this.fechaVenta.MinimumWidth = 65;
+            this.fechaVenta.Name = "fechaVenta";
+            this.fechaVenta.ReadOnly = true;
+            // 
+            // metodoPago
+            // 
+            this.metodoPago.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.metodoPago.HeaderText = "Metodo de Pago";
+            this.metodoPago.MinimumWidth = 100;
+            this.metodoPago.Name = "metodoPago";
+            this.metodoPago.ReadOnly = true;
+            // 
+            // verDetalleVenta
+            // 
+            this.verDetalleVenta.HeaderText = "";
+            this.verDetalleVenta.Name = "verDetalleVenta";
+            this.verDetalleVenta.ReadOnly = true;
+            this.verDetalleVenta.Text = "Ver Detalle";
+            this.verDetalleVenta.UseColumnTextForButtonValue = true;
+            this.verDetalleVenta.Width = 75;
+            // 
+            // montoTotal
+            // 
+            this.montoTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.montoTotal.HeaderText = "Monto";
+            this.montoTotal.MinimumWidth = 80;
+            this.montoTotal.Name = "montoTotal";
+            this.montoTotal.ReadOnly = true;
             // 
             // btnVerDia
             // 
@@ -158,6 +206,16 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(403, 275);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.tboxTotal);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(3, 243);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(397, 29);
+            this.panel2.TabIndex = 1;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.dtFechaBuscada);
@@ -169,64 +227,6 @@
             this.panel1.Size = new System.Drawing.Size(397, 39);
             this.panel1.TabIndex = 1;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.tboxTotal);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(3, 243);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(397, 29);
-            this.panel2.TabIndex = 1;
-            // 
-            // idVenta
-            // 
-            this.idVenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idVenta.HeaderText = "ID";
-            this.idVenta.MinimumWidth = 35;
-            this.idVenta.Name = "idVenta";
-            this.idVenta.ReadOnly = true;
-            // 
-            // idDetalle
-            // 
-            this.idDetalle.HeaderText = "idDetalle";
-            this.idDetalle.Name = "idDetalle";
-            this.idDetalle.ReadOnly = true;
-            this.idDetalle.Visible = false;
-            // 
-            // fechaVenta
-            // 
-            this.fechaVenta.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.fechaVenta.HeaderText = "Fecha";
-            this.fechaVenta.MinimumWidth = 65;
-            this.fechaVenta.Name = "fechaVenta";
-            this.fechaVenta.ReadOnly = true;
-            // 
-            // metodoPago
-            // 
-            this.metodoPago.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.metodoPago.HeaderText = "Metodo de Pago";
-            this.metodoPago.MinimumWidth = 100;
-            this.metodoPago.Name = "metodoPago";
-            this.metodoPago.ReadOnly = true;
-            // 
-            // verDetalleVenta
-            // 
-            this.verDetalleVenta.HeaderText = "";
-            this.verDetalleVenta.Name = "verDetalleVenta";
-            this.verDetalleVenta.ReadOnly = true;
-            this.verDetalleVenta.Text = "Ver Detalle";
-            this.verDetalleVenta.UseColumnTextForButtonValue = true;
-            this.verDetalleVenta.Width = 75;
-            // 
-            // montoTotal
-            // 
-            this.montoTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.montoTotal.HeaderText = "Monto";
-            this.montoTotal.MinimumWidth = 80;
-            this.montoTotal.Name = "montoTotal";
-            this.montoTotal.ReadOnly = true;
-            // 
             // UC_VerVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,10 +237,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgVentas)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
