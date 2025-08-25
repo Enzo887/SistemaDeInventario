@@ -28,26 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panelLateral = new System.Windows.Forms.Panel();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnVenta = new System.Windows.Forms.Button();
             this.btnEstadisticas = new System.Windows.Forms.Button();
             this.btnAgregarProducto = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
+            this.panelLateral = new System.Windows.Forms.Panel();
             this.panelLateral.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panelLateral
-            // 
-            this.panelLateral.Controls.Add(this.btnCerrar);
-            this.panelLateral.Controls.Add(this.btnVenta);
-            this.panelLateral.Controls.Add(this.btnEstadisticas);
-            this.panelLateral.Controls.Add(this.btnAgregarProducto);
-            this.panelLateral.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLateral.Location = new System.Drawing.Point(0, 0);
-            this.panelLateral.Name = "panelLateral";
-            this.panelLateral.Size = new System.Drawing.Size(155, 450);
-            this.panelLateral.TabIndex = 0;
             // 
             // btnCerrar
             // 
@@ -97,6 +85,18 @@
             this.panelPrincipal.Size = new System.Drawing.Size(645, 450);
             this.panelPrincipal.TabIndex = 1;
             // 
+            // panelLateral
+            // 
+            this.panelLateral.Controls.Add(this.btnCerrar);
+            this.panelLateral.Controls.Add(this.btnVenta);
+            this.panelLateral.Controls.Add(this.btnEstadisticas);
+            this.panelLateral.Controls.Add(this.btnAgregarProducto);
+            this.panelLateral.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panelLateral.Location = new System.Drawing.Point(0, 0);
+            this.panelLateral.Name = "panelLateral";
+            this.panelLateral.Size = new System.Drawing.Size(155, 450);
+            this.panelLateral.TabIndex = 0;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -112,13 +112,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panelLateral;
         private System.Windows.Forms.Button btnEstadisticas;
         private System.Windows.Forms.Button btnAgregarProducto;
         private System.Windows.Forms.Panel panelPrincipal;
         private System.Windows.Forms.Button btnVenta;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Panel panelLateral;
     }
 }
 
