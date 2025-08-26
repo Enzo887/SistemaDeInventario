@@ -30,6 +30,10 @@
         {
             this.lblCategoria = new System.Windows.Forms.Label();
             this.dgCategoria = new System.Windows.Forms.DataGridView();
+            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEditarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.btnEliminarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnAgregarCategoria = new System.Windows.Forms.Button();
             this.tboxNombreCategoria = new System.Windows.Forms.TextBox();
             this.btnVolver = new System.Windows.Forms.Button();
@@ -37,10 +41,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnEditarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.btnEliminarCategoria = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -80,6 +80,44 @@
             this.dgCategoria.TabIndex = 16;
             this.dgCategoria.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgCategoria_CellClick);
             this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
+            // 
+            // idCategoria
+            // 
+            this.idCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idCategoria.FillWeight = 25F;
+            this.idCategoria.HeaderText = "Nº";
+            this.idCategoria.MinimumWidth = 25;
+            this.idCategoria.Name = "idCategoria";
+            this.idCategoria.ReadOnly = true;
+            // 
+            // NombreCategoria
+            // 
+            this.NombreCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.NombreCategoria.HeaderText = "Nombre";
+            this.NombreCategoria.MinimumWidth = 100;
+            this.NombreCategoria.Name = "NombreCategoria";
+            this.NombreCategoria.ReadOnly = true;
+            // 
+            // btnEditarCategoria
+            // 
+            this.btnEditarCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.btnEditarCategoria.HeaderText = "";
+            this.btnEditarCategoria.MinimumWidth = 50;
+            this.btnEditarCategoria.Name = "btnEditarCategoria";
+            this.btnEditarCategoria.ReadOnly = true;
+            this.btnEditarCategoria.Text = "Editar";
+            this.btnEditarCategoria.UseColumnTextForButtonValue = true;
+            // 
+            // btnEliminarCategoria
+            // 
+            this.btnEliminarCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.btnEliminarCategoria.HeaderText = "";
+            this.btnEliminarCategoria.MinimumWidth = 50;
+            this.btnEliminarCategoria.Name = "btnEliminarCategoria";
+            this.btnEliminarCategoria.ReadOnly = true;
+            this.btnEliminarCategoria.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnEliminarCategoria.Text = "Eliminar";
+            this.btnEliminarCategoria.UseColumnTextForButtonValue = true;
             // 
             // btnAgregarCategoria
             // 
@@ -173,44 +211,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(356, 29);
             this.tableLayoutPanel3.TabIndex = 19;
-            // 
-            // idCategoria
-            // 
-            this.idCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idCategoria.FillWeight = 25F;
-            this.idCategoria.HeaderText = "Nº";
-            this.idCategoria.MinimumWidth = 25;
-            this.idCategoria.Name = "idCategoria";
-            this.idCategoria.ReadOnly = true;
-            // 
-            // NombreCategoria
-            // 
-            this.NombreCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.NombreCategoria.HeaderText = "Nombre";
-            this.NombreCategoria.MinimumWidth = 100;
-            this.NombreCategoria.Name = "NombreCategoria";
-            this.NombreCategoria.ReadOnly = true;
-            // 
-            // btnEditarCategoria
-            // 
-            this.btnEditarCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.btnEditarCategoria.HeaderText = "";
-            this.btnEditarCategoria.MinimumWidth = 50;
-            this.btnEditarCategoria.Name = "btnEditarCategoria";
-            this.btnEditarCategoria.ReadOnly = true;
-            this.btnEditarCategoria.Text = "Editar";
-            this.btnEditarCategoria.UseColumnTextForButtonValue = true;
-            // 
-            // btnEliminarCategoria
-            // 
-            this.btnEliminarCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.btnEliminarCategoria.HeaderText = "";
-            this.btnEliminarCategoria.MinimumWidth = 50;
-            this.btnEliminarCategoria.Name = "btnEliminarCategoria";
-            this.btnEliminarCategoria.ReadOnly = true;
-            this.btnEliminarCategoria.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnEliminarCategoria.Text = "Eliminar";
-            this.btnEliminarCategoria.UseColumnTextForButtonValue = true;
             // 
             // UC_GestionarCategoria
             // 
