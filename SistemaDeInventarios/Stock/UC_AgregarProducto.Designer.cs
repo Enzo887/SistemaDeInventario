@@ -41,7 +41,18 @@
             this.lblFechaVencimiento = new System.Windows.Forms.Label();
             this.dtVencimiento = new System.Windows.Forms.DateTimePicker();
             this.dgCategoria = new System.Windows.Forms.DataGridView();
+            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgProductos = new System.Windows.Forms.DataGridView();
+            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vencimientoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.editarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.eliminarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.estadoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkDeshabilitados = new System.Windows.Forms.CheckBox();
             this.checkRestaurar = new System.Windows.Forms.CheckBox();
             this.btnLimpiarProducto = new System.Windows.Forms.Button();
@@ -52,18 +63,7 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precioProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cantidadProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vencimientoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoriaProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.editarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.eliminarProducto = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.estadoProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.idCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreCategoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.numCantidad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrecio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgCategoria)).BeginInit();
@@ -237,6 +237,24 @@
             this.dgCategoria.TabIndex = 14;
             this.dgCategoria.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgCategoria_DataBindingComplete);
             // 
+            // idCategoria
+            // 
+            this.idCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idCategoria.FillWeight = 14.70342F;
+            this.idCategoria.HeaderText = "Nº";
+            this.idCategoria.MinimumWidth = 25;
+            this.idCategoria.Name = "idCategoria";
+            this.idCategoria.ReadOnly = true;
+            // 
+            // nombreCategoria
+            // 
+            this.nombreCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreCategoria.FillWeight = 101.1595F;
+            this.nombreCategoria.HeaderText = "Nombre";
+            this.nombreCategoria.MinimumWidth = 30;
+            this.nombreCategoria.Name = "nombreCategoria";
+            this.nombreCategoria.ReadOnly = true;
+            // 
             // dgProductos
             // 
             this.dgProductos.AllowUserToAddRows = false;
@@ -267,6 +285,82 @@
             this.dgProductos.TabIndex = 15;
             this.dgProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgProductos_CellClick);
             this.dgProductos.RowPrePaint += new System.Windows.Forms.DataGridViewRowPrePaintEventHandler(this.dgProductos_RowPrePaint);
+            // 
+            // idProducto
+            // 
+            this.idProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.idProducto.FillWeight = 25F;
+            this.idProducto.HeaderText = "ID";
+            this.idProducto.MinimumWidth = 25;
+            this.idProducto.Name = "idProducto";
+            this.idProducto.ReadOnly = true;
+            // 
+            // nombreProducto
+            // 
+            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreProducto.HeaderText = "Nombre";
+            this.nombreProducto.MinimumWidth = 75;
+            this.nombreProducto.Name = "nombreProducto";
+            this.nombreProducto.ReadOnly = true;
+            // 
+            // precioProducto
+            // 
+            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.precioProducto.HeaderText = "Precio";
+            this.precioProducto.MinimumWidth = 65;
+            this.precioProducto.Name = "precioProducto";
+            this.precioProducto.ReadOnly = true;
+            // 
+            // cantidadProducto
+            // 
+            this.cantidadProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.cantidadProducto.FillWeight = 35F;
+            this.cantidadProducto.HeaderText = "Cant";
+            this.cantidadProducto.MinimumWidth = 35;
+            this.cantidadProducto.Name = "cantidadProducto";
+            this.cantidadProducto.ReadOnly = true;
+            // 
+            // vencimientoProducto
+            // 
+            this.vencimientoProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.vencimientoProducto.HeaderText = "Vence";
+            this.vencimientoProducto.MinimumWidth = 70;
+            this.vencimientoProducto.Name = "vencimientoProducto";
+            this.vencimientoProducto.ReadOnly = true;
+            // 
+            // categoriaProducto
+            // 
+            this.categoriaProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.categoriaProducto.HeaderText = "Categoria";
+            this.categoriaProducto.MinimumWidth = 75;
+            this.categoriaProducto.Name = "categoriaProducto";
+            this.categoriaProducto.ReadOnly = true;
+            // 
+            // editarProducto
+            // 
+            this.editarProducto.HeaderText = "";
+            this.editarProducto.Name = "editarProducto";
+            this.editarProducto.ReadOnly = true;
+            this.editarProducto.Text = "Editar";
+            this.editarProducto.UseColumnTextForButtonValue = true;
+            this.editarProducto.Width = 50;
+            // 
+            // eliminarProducto
+            // 
+            this.eliminarProducto.HeaderText = "";
+            this.eliminarProducto.Name = "eliminarProducto";
+            this.eliminarProducto.ReadOnly = true;
+            this.eliminarProducto.Text = "Eliminar";
+            this.eliminarProducto.UseColumnTextForButtonValue = true;
+            this.eliminarProducto.Width = 50;
+            // 
+            // estadoProducto
+            // 
+            this.estadoProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.estadoProducto.HeaderText = "Estado";
+            this.estadoProducto.MinimumWidth = 85;
+            this.estadoProducto.Name = "estadoProducto";
+            this.estadoProducto.ReadOnly = true;
             // 
             // checkDeshabilitados
             // 
@@ -415,82 +509,6 @@
             this.tableLayoutPanel4.Size = new System.Drawing.Size(338, 148);
             this.tableLayoutPanel4.TabIndex = 28;
             // 
-            // idProducto
-            // 
-            this.idProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idProducto.FillWeight = 25F;
-            this.idProducto.HeaderText = "ID";
-            this.idProducto.MinimumWidth = 25;
-            this.idProducto.Name = "idProducto";
-            this.idProducto.ReadOnly = true;
-            // 
-            // nombreProducto
-            // 
-            this.nombreProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreProducto.HeaderText = "Nombre";
-            this.nombreProducto.MinimumWidth = 75;
-            this.nombreProducto.Name = "nombreProducto";
-            this.nombreProducto.ReadOnly = true;
-            // 
-            // precioProducto
-            // 
-            this.precioProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.precioProducto.HeaderText = "Precio";
-            this.precioProducto.MinimumWidth = 65;
-            this.precioProducto.Name = "precioProducto";
-            this.precioProducto.ReadOnly = true;
-            // 
-            // cantidadProducto
-            // 
-            this.cantidadProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.cantidadProducto.FillWeight = 35F;
-            this.cantidadProducto.HeaderText = "Cant";
-            this.cantidadProducto.MinimumWidth = 35;
-            this.cantidadProducto.Name = "cantidadProducto";
-            this.cantidadProducto.ReadOnly = true;
-            // 
-            // vencimientoProducto
-            // 
-            this.vencimientoProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.vencimientoProducto.HeaderText = "Vence";
-            this.vencimientoProducto.MinimumWidth = 70;
-            this.vencimientoProducto.Name = "vencimientoProducto";
-            this.vencimientoProducto.ReadOnly = true;
-            // 
-            // categoriaProducto
-            // 
-            this.categoriaProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.categoriaProducto.HeaderText = "Categoria";
-            this.categoriaProducto.MinimumWidth = 75;
-            this.categoriaProducto.Name = "categoriaProducto";
-            this.categoriaProducto.ReadOnly = true;
-            // 
-            // editarProducto
-            // 
-            this.editarProducto.HeaderText = "";
-            this.editarProducto.Name = "editarProducto";
-            this.editarProducto.ReadOnly = true;
-            this.editarProducto.Text = "Editar";
-            this.editarProducto.UseColumnTextForButtonValue = true;
-            this.editarProducto.Width = 50;
-            // 
-            // eliminarProducto
-            // 
-            this.eliminarProducto.HeaderText = "";
-            this.eliminarProducto.Name = "eliminarProducto";
-            this.eliminarProducto.ReadOnly = true;
-            this.eliminarProducto.Text = "Eliminar";
-            this.eliminarProducto.UseColumnTextForButtonValue = true;
-            this.eliminarProducto.Width = 50;
-            // 
-            // estadoProducto
-            // 
-            this.estadoProducto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.estadoProducto.HeaderText = "Estado";
-            this.estadoProducto.MinimumWidth = 85;
-            this.estadoProducto.Name = "estadoProducto";
-            this.estadoProducto.ReadOnly = true;
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 1;
@@ -507,24 +525,6 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(153, 148);
             this.tableLayoutPanel5.TabIndex = 27;
-            // 
-            // idCategoria
-            // 
-            this.idCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.idCategoria.FillWeight = 14.70342F;
-            this.idCategoria.HeaderText = "Nº";
-            this.idCategoria.MinimumWidth = 25;
-            this.idCategoria.Name = "idCategoria";
-            this.idCategoria.ReadOnly = true;
-            // 
-            // nombreCategoria
-            // 
-            this.nombreCategoria.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.nombreCategoria.FillWeight = 101.1595F;
-            this.nombreCategoria.HeaderText = "Nombre";
-            this.nombreCategoria.MinimumWidth = 30;
-            this.nombreCategoria.Name = "nombreCategoria";
-            this.nombreCategoria.ReadOnly = true;
             // 
             // UC_AgregarProducto
             // 

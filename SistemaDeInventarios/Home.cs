@@ -62,7 +62,6 @@ namespace SistemaDeInventarios
             {
                 tablePrincipal.Controls.Remove(existe);
             }
-            //tableLayoutPanel1.Controls.Clear();           // Limpia el contenido actual
             control.Dock = DockStyle.Fill;             // Ocupa todo el panel
             tablePrincipal.Controls.Add(control, 1, 0);      // Agrega el nuevo
         }
