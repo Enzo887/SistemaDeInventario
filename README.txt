@@ -1,5 +1,5 @@
 📚Sistema de Inventarios
-Aplicación de escritorio en C# para gestionar productos, categorías y ventas.
+Aplicación de escritorio en C# para gestionar productos con categorías y ventas, pudiendo ver las ventas diarias de un día a elección.
 
 📚 Aprendizajes del proyecto
 
@@ -10,4 +10,4 @@ Durante el desarrollo de este proyecto reforcé y aprendí varios conceptos:
 - Uso de LINQ  
 - Aplicación de expresiones Lambda.
 - Buenas prácticas con control de versiones (Git y GitHub)  
-- Eventos
+- Eventos en C#
