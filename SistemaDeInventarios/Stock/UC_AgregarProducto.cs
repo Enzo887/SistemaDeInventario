@@ -219,6 +219,7 @@ namespace SistemaDeInventarios.Stock
             {
                 unProducto = new BE.Producto();
                 LimparInputsProductos();
+                btnAgregarProducto.Text = "Agregar Producto";
             }
         }
 

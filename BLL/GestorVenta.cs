@@ -115,10 +115,7 @@ namespace BLL
             return ventas.Sum(venta => venta.PrecioTotal);
         }
 
-        //public void BuscarVentasDia(DateTime fechaBuscada)
-        //{
-        //    ventaDAL.BuscarFechaDia(fechaBuscada);
-        //}
+
 
         public List<BE.DetalleVenta> ObtenerVentaDelDetalle(int idVenta)
         {
@@ -136,8 +133,6 @@ namespace BLL
                 producto.Precio = Convert.ToDecimal(fila["PrecioProducto"]);
                 detalle.Producto = producto;
                 detalle.CantidadProducto = Convert.ToInt32(fila["CantidadProducto"]);
-                //detalle.Subtotal = Convert.ToDecimal(fila["PrecioSubtotal"]);
-
                 detalles.Add(detalle);
             }
             return detalles;

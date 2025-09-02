@@ -201,9 +201,6 @@ namespace SistemaDeInventarios.Venta
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 unProductoDetalle.IDProducto = Convert.ToInt32(dgVenta.Rows[e.RowIndex].Cells["idProductoVenta"].Value);
-                //numCantidad.Visible = true;
-                //lblCantidad.Visible = true;
-                //btnSacarDetalle.Visible = true;
                 numCantidad.Value = gestorVenta.ObtenerCantidadDetalle(ventaActual, unProductoDetalle);
             }
 

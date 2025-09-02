@@ -57,9 +57,13 @@ namespace SistemaDeInventarios
 
         private void CargarUserControl(UserControl control)
         {
-            panelPrincipal.Controls.Clear();           // Limpia el contenido actual
+            var existe = tablePrincipal.GetControlFromPosition(1, 0);
+            if (existe != null)
+            {
+                tablePrincipal.Controls.Remove(existe);
+            }
             control.Dock = DockStyle.Fill;             // Ocupa todo el panel
-            panelPrincipal.Controls.Add(control);      // Agrega el nuevo
+            tablePrincipal.Controls.Add(control, 1, 0);      // Agrega el nuevo
         }
 
         public void MostrarGestionarCategoria()
